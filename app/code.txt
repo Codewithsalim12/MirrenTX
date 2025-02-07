@@ -1,0 +1,153 @@
+"use client";
+import { Contact } from "lucide-react";
+import { useState } from "react";
+import {
+  FaBolt,
+  FaLightbulb,
+  FaCamera,
+  FaTools,
+  FaClock,
+} from "react-icons/fa";
+import { GiCampingTent } from "react-icons/gi";
+
+const rentalsData = [
+  {
+    id: 1,
+    name: "Generator",
+    image: "/generator.webp",
+    icon: <FaBolt />,
+    description: "Reliable power backup for your events and functions.",
+    Contact: "Call us for price details",
+  },
+  {
+    id: 2,
+    name: "Tent",
+    image: "/Tent-img.jpg",
+    icon: <GiCampingTent className="text-green-600 text-5xl mx-auto mb-3" />,
+    description: "Durable and spacious tents for weddings",
+    Contact: "Call us for price details",
+  },
+  {
+    id: 3,
+    name: "Lighting System",
+    image: "/Lighting Decoration.jpg",
+    icon: <FaLightbulb />,
+    description: "Brighten up your events with premium lighting setups.",
+    Contact: "Call us for price details",
+  },
+  {
+    id: 4,
+    name: "DSLR Camera",
+    image: "/Dslr.avif",
+    icon: <FaCamera />,
+    description: "Capture every moment with high-quality DSLR cameras.",
+    Contact: "Call us for price details",
+  },
+];
+
+export default function Rentals() {
+  const [rentals, setRentals] = useState(rentalsData);
+
+  return (
+    <div className="min-h-screen bg-gray-100 pt-10">
+      {/* Page Heading */}
+      <div className="text-center py-16 bg-blue-600 text-white">
+        <h1 className="text-5xl font-bold drop-shadow-lg">Available Rentals</h1>
+        <p className="text-lg mt-2">
+          Explore our top-quality rental services for all your event needs.
+        </p>
+      </div>
+
+      {/* Rental Items */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6">
+        {rentals.map((item) => (
+          <div
+            key={item.id}
+            className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition"
+          >
+            <div className="text-5xl text-blue-500 mx-auto mb-4">
+              {item.icon}
+            </div>
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-40 object-cover rounded-md"
+            />
+            <h2 className="text-2xl font-semibold mt-4">{item.name}</h2>
+            <p className="text-gray-600">{item.description}</p>
+            <p className="text-xl font-bold mt-2 text-green-600">
+              {item.price}
+            </p>
+            <button className="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+              Rent Now
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Our New Services Section */}
+      <section className="bg-white py-16 text-center">
+        <h2 className="text-4xl font-bold text-gray-800">Our New Services</h2>
+        <p className="text-lg text-gray-600 mt-2">
+          We are expanding our rental services to provide more convenience.
+        </p>
+        <div className="mt-8 flex flex-col md:flex-row justify-center gap-6">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md">
+            <FaTools className="text-5xl text-green-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold">Event Setup & Decoration</h3>
+            <p className="text-gray-600 mt-2">
+              Professional event setup and decoration services to make your
+              event stand out.
+            </p>
+            <button className="mt-4 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">
+              Learn More
+            </button>
+          </div>
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md">
+            <FaCamera className="text-5xl text-blue-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold">
+              Photography & Videography
+            </h3>
+            <p className="text-gray-600 mt-2">
+              Capture every special moment with our professional photography
+              services.
+            </p>
+            <button className="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+              Explore
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Rentals Section */}
+      <section className="bg-gray-200 py-16 text-center">
+        <h2 className="text-4xl font-bold text-gray-800">Upcoming Rentals</h2>
+        <p className="text-lg text-gray-600 mt-2">
+          New rental equipment arriving soon!
+        </p>
+        <div className="mt-8 flex flex-col md:flex-row justify-center gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-md max-w-md">
+            <FaClock className="text-5xl text-yellow-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold">Luxury Chairs & Tables</h3>
+            <p className="text-gray-600 mt-2">
+              Elegant seating solutions for your grand events.
+            </p>
+            <button className="mt-4 bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition">
+              Coming Soon
+            </button>
+          </div>
+          {/* <div className="bg-white p-6 rounded-lg shadow-md max-w-md">
+            <FaBolt className="text-5xl text-red-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold">High-Power Generators</h3>
+            <p className="text-gray-600 mt-2">
+              Powerful and efficient generators for large events
+            </p>
+            <button className="mt-4 bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 transition">
+              Coming Soon
+            </button>
+          </div> */}
+        </div>
+      </section>
+    </div>
+  );
+}
