@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import {
   FaBolt,
   FaLightbulb,
   FaCamera,
-  FaTools,
-  FaClock,
   FaWhatsapp,
   FaClipboard,
 } from "react-icons/fa";
@@ -14,11 +12,6 @@ import { GiCampingTent } from "react-icons/gi";
 import { MdEmail, MdLocationOn, MdArrowBack } from "react-icons/md";
 import { RiContactsBookLine } from "react-icons/ri";
 import axios from "axios";
-import { useEffect } from "react";
-// // Set the app element for accessibility
-// if (typeof window !== "undefined") {
-//   Modal.setAppElement("#__next");
-// }
 
 // Modal styles
 const customStyles = {
@@ -45,7 +38,7 @@ const rentalsData = [
     icon: <FaBolt />,
     description: "Reliable power backup for your events and functions.",
     contact: "Call us for price details",
-    image: "/generator.webp", // Add image path here
+    image: "/generator.webp",
   },
   {
     id: 2,
@@ -53,7 +46,7 @@ const rentalsData = [
     icon: <GiCampingTent className="text-green-600 text-5xl mx-auto mb-3" />,
     description: "Durable and spacious tents for weddings.",
     contact: "Call us for price details",
-    image: "/Tent-img.jpg", // Add image path here
+    image: "/Tent-img.jpg",
   },
   {
     id: 3,
@@ -61,7 +54,7 @@ const rentalsData = [
     icon: <FaLightbulb />,
     description: "Brighten up your events with premium lighting setups.",
     contact: "Call us for price details",
-    image: "/Lighting Decoration.jpg", // Add image path here
+    image: "/Lighting Decoration.jpg",
   },
   {
     id: 4,
@@ -69,16 +62,15 @@ const rentalsData = [
     icon: <FaCamera />,
     description: "Capture every moment with high-quality DSLR cameras.",
     contact: "Call us for price details",
-    image: "/Dslr.avif", // Add image path here
+    image: "/Dslr.avif",
   },
 ];
 
 export default function Rentals() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      Modal.setAppElement("#__next");
-    }
+    Modal.setAppElement("#__next");
   }, []);
+
   const [rentals, setRentals] = useState(rentalsData);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [upiModalIsOpen, setUpiModalIsOpen] = useState(false);
@@ -103,8 +95,8 @@ export default function Rentals() {
   // Close modal
   const closeModal = () => {
     setModalIsOpen(false);
-    setStep(1); // Reset to step 1
-    setFormData({ name: "", contact: "", email: "", streetAddress: "" }); // Reset form data
+    setStep(1);
+    setFormData({ name: "", contact: "", email: "", streetAddress: "" });
   };
 
   // Close UPI modal
@@ -122,11 +114,10 @@ export default function Rentals() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (step === 1) {
-      setStep(2); // Move to confirmation step
+      setStep(2);
     } else if (step === 2) {
-      setStep(3); // Move to payment step
+      setStep(3);
     } else if (step === 3) {
-      // Send email with user details
       try {
         await axios.post("/api/send-email", formData);
         alert("Your rental order has been confirmed!");
@@ -141,18 +132,16 @@ export default function Rentals() {
   // Function to copy UPI ID to clipboard
   const copyToClipboard = (upiId) => {
     navigator.clipboard.writeText(upiId).then(() => {
-      // Beautified alert
       const alertContainer = document.createElement("div");
       alertContainer.classList.add("alert", "alert-success");
       alertContainer.innerHTML = `UPI ID copied: ${upiId}`;
       document.body.appendChild(alertContainer);
-      setTimeout(() => alertContainer.remove(), 3000); // Remove alert after 3 seconds
+      setTimeout(() => alertContainer.remove(), 3000);
     });
   };
 
   return (
     <div className="min-h-screen bg-gray-100 pt-10">
-      {/* Page Heading */}
       <div className="text-center py-16 bg-blue-600 text-white px-6 sm:px-8">
         <h1 className="text-5xl font-bold drop-shadow-lg sm:text-4xl xs:text-3xl">
           Available Rentals
@@ -161,7 +150,6 @@ export default function Rentals() {
           Explore our top-quality rental services for all your event needs.
         </p>
       </div>
-      {/* Rental Items */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6">
         {rentals.map((item) => (
           <div
@@ -176,7 +164,9 @@ export default function Rentals() {
             <div className="text-5xl text-blue-500 mx-auto mb-4">
               {item.icon}
             </div>
-            <h2 className="text-2xl font-semibold mt-4">{item.name}</h2>
+            <h2 className="text-2xl font-semibold mt-4 text-black">
+              {item.name}
+            </h2>
             <p className="text-gray-600">{item.description}</p>
             <button
               onClick={openModal}
@@ -187,8 +177,6 @@ export default function Rentals() {
           </div>
         ))}
       </div>
-      {/* Modal for entering details */}
-      {/* Modal for entering details */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -259,7 +247,6 @@ export default function Rentals() {
           </form>
         )}
 
-        {/* Step 2 */}
         {step === 2 && (
           <div className="max-w-md w-full p-4 sm:p-6 bg-white rounded-lg shadow-lg mx-auto opacity-90 sm:opacity-100">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center text-gray-800">
@@ -300,7 +287,6 @@ export default function Rentals() {
           </div>
         )}
 
-        {/* Step 3 */}
         {step === 3 && (
           <div className="p-4 sm:p-6 bg-white rounded-lg shadow-lg mx-auto">
             <h2 className="text-2xl sm:text-xl font-bold mb-6 text-center text-gray-800">
@@ -316,7 +302,7 @@ export default function Rentals() {
               <button
                 onClick={() =>
                   window.open(
-                    "https://wa.me/6006798656?text=Hi%2C%20can%20I%20get%20more%20information%20about%20the%20rentals%3F%20میں%20چاہوں%20گا%20کہ%20میرے%20لئے%20مزید%20معلومات%20دیں۔",
+                    "https://wa.me/8082815863?text=Hi%2C%20can%20I%20get%20more%20information%20about%20the%20rentals%3F%20میں%20چاہوں%20گا%20کہ%20میرے%20لئے%20مزید%20معلومات%20دیں۔",
                     "_blank"
                   )
                 }
@@ -328,8 +314,6 @@ export default function Rentals() {
           </div>
         )}
       </Modal>
-      {/* UPI Payment Modal */}
-      {/* UPI Payment Modal */}
       <Modal
         isOpen={upiModalIsOpen}
         onRequestClose={closeUpiModal}
@@ -337,21 +321,21 @@ export default function Rentals() {
           ...customStyles,
           overlay: {
             ...customStyles.overlay,
-            opacity: "0.9", // Keep high opacity
+            opacity: "0.9",
           },
           content: {
             ...customStyles.content,
             maxWidth: "500px",
-            height: "auto", // Default for smaller devices
+            height: "auto",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
           },
           ...(window.innerWidth > 700 && {
-            height: "60vh", // Reduce height for larger screens
+            height: "60vh",
             display: "flex",
-            flexDirection: "row", // Side-by-side layout for large screens
+            flexDirection: "row",
             justifyContent: "space-between",
             padding: "20px",
           }),
@@ -359,7 +343,6 @@ export default function Rentals() {
         contentLabel="UPI Payment Modal"
       >
         <div className="flex flex-col sm:flex-col lg:flex-row lg:items-center lg:justify-between w-full">
-          {/* Left Side: Payment Options */}
           <div className="flex flex-col gap-5 sm:w-full lg:w-2/3">
             {["Paytm", "PhonePe", "Google Pay"].map((service, index) => {
               const colors = ["blue", "green", "red"];
@@ -398,7 +381,6 @@ export default function Rentals() {
             })}
           </div>
 
-          {/* Right Side: QR Code */}
           <div className="flex justify-center mt-4 lg:mt-0 lg:w-1/3">
             <img
               src="/QR.jpg"
@@ -408,7 +390,6 @@ export default function Rentals() {
           </div>
         </div>
 
-        {/* Close Button */}
         <div className="mt-4 w-full flex justify-center">
           <button
             onClick={closeUpiModal}

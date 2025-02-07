@@ -44,7 +44,7 @@ export default function Home() {
             parties, and events. Hassle-free booking, <br />
             reliable service, and quality equipment for a memorable occasion.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/rentals">
               <button
                 className="bg-green-500 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 font-semibold"
@@ -182,7 +182,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col gap-4 mt-6">
+            <div className="flex flex-col lg:flex-row gap-4 mt-6">
               <Link href="/rentals">
                 <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
                   <FaShoppingCart className="inline-block mr-2" /> Book Now
