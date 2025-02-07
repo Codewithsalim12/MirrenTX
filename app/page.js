@@ -70,7 +70,7 @@ export default function Home() {
 
       {/* Sliding Text Section (Restored) */}
       {/* Sliding Text Section (Restored) */}
-      <div className="absolute top-[12vh] left-0 w-full bg-yellow-600 text-white py-2 overflow-hidden z-20">
+      <div className="hidden sm:block absolute top-[12vh] left-0 w-full bg-yellow-600 text-white py-2 overflow-hidden z-20">
         <div className="animate-slide">
           <p className="text-sm sm:text-lg md:text-sm font-semibold whitespace-nowrap px-4">
             Discover quality rental services for your events. Rent cameras,
