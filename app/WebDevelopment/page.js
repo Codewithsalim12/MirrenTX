@@ -34,7 +34,7 @@ const projects = [
 
 export default function WebDevServices() {
   return (
-    <div className="p-8 space-y-16">
+    <div className="p-8 space-y-16 bg-white">
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: -20 }}
@@ -83,7 +83,9 @@ export default function WebDevServices() {
             className="p-6 text-center border rounded-lg shadow-md bg-white transition-all"
           >
             <service.icon className={`text-5xl mx-auto ${service.color}`} />
-            <h2 className="text-xl font-semibold mt-4">{service.title}</h2>
+            <h2 className="text-xl text-gray-900 font-semibold mt-4">
+              {service.title}
+            </h2>
             <p className="text-gray-600">{service.desc}</p>
           </motion.div>
         ))}
@@ -114,7 +116,9 @@ export default function WebDevServices() {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4 space-y-2">
-                <h3 className="text-lg font-semibold">{project.title}</h3>
+                <h3 className="text-lg text-gray-900 font-semibold">
+                  {project.title}
+                </h3>
                 <p className="text-gray-600">{project.description}</p>
                 <a
                   href={project.demoLink}
@@ -122,7 +126,8 @@ export default function WebDevServices() {
                   rel="noopener noreferrer"
                   className="px-4 py-2 border border-gray-500 rounded-lg inline-flex items-center transition-all hover:bg-gray-800 hover:text-white"
                 >
-                  View Demo <FaExternalLinkAlt className="ml-2" />
+                  <p className="title text-gray-800">View Demo</p>{" "}
+                  <FaExternalLinkAlt className="ml-2 text-blue-800" />
                 </a>
               </div>
             </motion.div>
@@ -139,7 +144,7 @@ export default function WebDevServices() {
       >
         <h2 className="text-2xl font-bold text-gray-900">Get in Touch</h2>
         <p className="text-lg text-gray-700">
-           Mail me at{" "}
+          Mail me at{" "}
           <a
             href="mailto:mirrentx@gmail.com"
             className="text-blue-500 font-semibold hover:underline"

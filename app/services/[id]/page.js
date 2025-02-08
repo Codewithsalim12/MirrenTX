@@ -18,7 +18,7 @@ const servicesData = [
     image: "/event-setup.jpg", // Ensure this image is in your public/images folder
     longDescription:
       "Whether you’re celebrating a grand wedding, hosting a corporate gala, or planning an intimate private gathering, we provide a comprehensive solution that covers every aspect of event décor. From initial concept design and seamless execution to post-event support, we handle everything with precision and creativity. Our passion lies in making your special occasions truly remarkable, leaving you and your guests with lasting memories of a beautifully curated experience.",
-    icon: <FaTools className="inline-block" />,
+    icon: <FaTools className="inline-block text-gray-700" />,
     externalLinks: [
       { text: "Follow us", url: "https://twitter.com/yourprofile" },
       { text: "Visit Blog", url: "https://yourblog.com" },
@@ -30,7 +30,7 @@ const servicesData = [
     image: "/videoGraphy.avif",
     longDescription:
       "Capture every precious moment with our skilled photographers and videographers. We deliver stunning visuals and lasting memories, using state-of-the-art equipment and creative techniques. Our services range from candid snapshots to full event documentaries, each tailored to capture the essence of your event in a unique narrative.",
-    icon: <FaCamera className="inline-block" />,
+    icon: <FaCamera className="inline-block text-gray-700" />,
     externalLinks: [
       { text: "Follow us", url: "https://instagram.com/yourprofile" },
       { text: "Visit Blog", url: "https://yourblog.com" },
@@ -42,7 +42,7 @@ const servicesData = [
     image: "/editing-video.avif",
     longDescription:
       "Enhance your event footage with our professional video editing services. We provide comprehensive editing including color grading, transitions, and special effects. Our experienced editors transform raw footage into a compelling narrative that highlights the best moments of your event, delivering polished results whether you need a highlight reel or a full-length video.",
-    icon: <FaVideo className="inline-block" />,
+    icon: <FaVideo className="inline-block text-gray-700" />,
     externalLinks: [
       { text: "Follow us", url: "https://facebook.com/yourprofile" },
       { text: "Visit Blog", url: "https://yourblog.com" },
@@ -83,7 +83,7 @@ export default function ServiceDetail({ params }) {
         </header>
         {/* Blog Post Style Description */}
         <section className="prose max-w-none mx-auto mb-8">
-          <p>{service.longDescription}</p>
+          <p className="text-gray-700">{service.longDescription}</p>
         </section>
         {/* Footer with External Links */}
         <footer className="flex justify-center gap-6 mt-10">
