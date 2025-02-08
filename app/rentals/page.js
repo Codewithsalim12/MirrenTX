@@ -41,7 +41,7 @@ const rentalsData = [
     title: "DSLR Camera",
     icon: <FaCamera className="w-12 h-12 mb-4 text-green-500" />,
     description: "Capture every moment with our high-quality DSLR cameras.",
-    image: "/DSLR.avif", // Add image path
+    image: "/Dslr.avif", // Add image path
   },
 ];
 
@@ -57,7 +57,7 @@ export default function RentalsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Heading Section */}
-      <section className="bg-green-600 py-20 text-center">
+      <section className="bg-green-600 py-20 sm:py-16 md:py-20 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight">
           Rentals for Every Occasion
         </h1>
@@ -187,7 +187,9 @@ export default function RentalsPage() {
                 <FaRocket className="w-6 h-6 text-blue-500" />
               </div>
               <FaCamera className="w-12 h-12 mb-4 text-green-500 mx-auto" />
-              <h3 className="text-xl font-semibold mb-2">Drone Rentals</h3>
+              <h3 className="text-xl text-black font-semibold mb-2">
+                Drone Rentals
+              </h3>
               <p className="text-gray-600 mb-4">
                 Capture stunning aerial views with our drones.
               </p>
@@ -206,7 +208,9 @@ export default function RentalsPage() {
                 <FaRocket className="w-6 h-6 text-blue-500" />
               </div>
               <FaChair className="w-12 h-12 mb-4 text-green-500 mx-auto" />
-              <h3 className="text-xl font-semibold mb-2">Tables and Chairs</h3>
+              <h3 className="text-xl text-black font-semibold mb-2">
+                Tables and Chairs
+              </h3>
               <p className="text-gray-600 mb-4">
                 Comfortable and stylish furniture for your events.
               </p>

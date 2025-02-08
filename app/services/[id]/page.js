@@ -67,7 +67,7 @@ export default function ServiceDetail({ params }) {
 
   return (
     <>
-      <article className="max-w-3xl mx-auto py-20 px-6 relative">
+      <article className="max-w-3xl mx-auto py-20 px-6 relative bg-white">
         {/* Cover Image */}
         <img
           src={service.image}
