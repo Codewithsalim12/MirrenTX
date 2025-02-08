@@ -47,7 +47,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/rentals">
               <button
-                className="bg-green-500 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 font-semibold"
+                className="bg-green-500 text-white px-8 py-3 rounded-lg shadow-md hover:bg-green-600 transition-all duration-300 transform hover:scale-105 font-semibold"
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
@@ -56,7 +56,7 @@ export default function Home() {
             </Link>
             <Link href="#about">
               <button
-                className="bg-transparent font-semibold text-white border-2 border-white px-8 py-3 rounded-lg shadow-md hover:bg-white hover:text-gray-800 transition-all duration-300 transform hover:scale-105"
+                className="bg-blue-600 font-semibold text-white border border-transparent px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
                 data-aos="fade-up"
                 data-aos-delay="300"
               >
@@ -68,9 +68,9 @@ export default function Home() {
       </div>
 
       {/* Sliding Text Section */}
-      <div className="hidden sm:block absolute top-[12vh] left-0 w-full bg-yellow-600 text-white py-2 overflow-hidden z-20">
+      <div className="hidden sm:block absolute top-[12vh] left-0 w-full bg-green-600 text-white py-2 overflow-hidden z-20">
         <div className="animate-slide">
-          <p className="text-lg font-semibold whitespace-nowrap px-4">
+          <p className="text-sm font-semibold whitespace-nowrap px-4">
             Discover quality rental services for your events. Rent cameras,
             tents, and generators. Enjoy seamless booking!
           </p>
