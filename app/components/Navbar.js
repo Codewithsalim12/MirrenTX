@@ -129,7 +129,7 @@ export default function Navbar() {
             Services
           </Link>
           <Link
-            href="/web-development"
+            href="WebDevelopment"
             className="block hover:text-green-400 transition"
             onClick={handleLinkClick}
           >
@@ -175,7 +175,7 @@ export default function Navbar() {
               className="block text-white hover:text-green-400 transition"
               onClick={handleLinkClick}
             >
-              <Settings size={24} /> Admin
+              <Settings size={24} />
             </Link>
           )}
         </div>
