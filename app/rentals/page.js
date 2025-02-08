@@ -58,12 +58,11 @@ export default function RentalsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Top Heading Section */}
       <section className="bg-green-600 py-20 text-center">
-        <h1 className="text-4xl font-bold text-white mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight">
           Rentals for Every Occasion
         </h1>
-        <p className="text-lg text-green-100 max-w-2xl mx-auto">
-          Explore our wide range of rental services to make your events
-          unforgettable. From generators to cameras, we’ve got you covered.
+        <p className="text-base sm:text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">
+          Rent everything you need for your events—from cameras to generators.
         </p>
       </section>
 
@@ -81,7 +80,9 @@ export default function RentalsPage() {
                 className="w-full h-48 object-cover rounded-t-lg mb-4"
               />
               {item.icon}
-              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+              <h2 className="text-xl text-black font-semibold mb-2">
+                {item.title}
+              </h2>
               <p className="text-gray-600 mb-4">{item.description}</p>
               <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">
                 Rent Now
