@@ -14,7 +14,7 @@ export default function About() {
       {/* Section 1: Top Header with Background Blur */}
       <section
         className="relative bg-cover bg-center h-96"
-        style={{ backgroundImage: "url('/About-header.avif')" }}
+        style={{ backgroundImage: "url('/about-header.avif')" }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 text-center text-white py-32">
@@ -116,28 +116,36 @@ export default function About() {
               “MirRenTX made our wedding stress-free with their top-notch
               service and high-quality rentals. Highly recommended!”
             </p>
-            <h3 className="text-xl font-semibold mt-4">- Sheikh Brothers</h3>
+            <h3 className="text-xl font-semibold mt-4  text-blue-700">
+              - Sheikh Brothers
+            </h3>
           </div>
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
             <p className="text-lg italic">
               “Professional, reliable, and affordable. The best rental service
               we have ever used!”
             </p>
-            <h3 className="text-xl font-semibold mt-4">- Manzoor Pandow.</h3>
+            <h3 className="text-xl font-semibold mt-4  text-blue-700">
+              - Manzoor Pandow.
+            </h3>
           </div>
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
             <p className="text-lg italic">
-              “MirRenTX made our wedding stress-free with their top-notch
-              service and high-quality rentals. Highly recommended!”
+              "MirRenTX provided exceptional rentals and seamless service,
+              making our wedding day absolutely stress-free!"
             </p>
-            <h3 className="text-xl font-semibold mt-4">- Sheikh Brothers</h3>
+            <h3 className="text-xl font-semibold mt-4  text-blue-700">
+              - Lolab Valley
+            </h3>
           </div>{" "}
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
             <p className="text-lg italic">
-              “MirRenTX made our wedding stress-free with their top-notch
-              service and high-quality rentals. Highly recommended!”
+              "Thanks to MirRenTX, our wedding was hassle-free with top-quality
+              rentals and outstanding service. Truly a great experience!"
             </p>
-            <h3 className="text-xl font-semibold mt-4">- Sheikh Brothers</h3>
+            <h3 className="text-xl font-semibold mt-4 text-blue-700">
+              - Bashir Brothers
+            </h3>
           </div>
         </div>
       </section>

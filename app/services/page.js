@@ -12,6 +12,7 @@ import {
   FaCheckCircle,
   FaShoppingCart,
   FaVideo,
+  FaCampground, FaLightbulb,
 } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -65,9 +66,7 @@ export default function Services() {
           ))}
         </Slider>
       </div>
-
       {/* Services Section */}
-
       <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {servicesData.map((service) => (
           <div
@@ -91,7 +90,6 @@ export default function Services() {
           </div>
         ))}
       </section>
-
       {/* Pricing Plans Section */}
       <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20 text-center">
         <h2 className="text-4xl font-bold">Our Pricing Plans</h2>
@@ -107,7 +105,7 @@ export default function Services() {
               description:
                 "Enhance your event with beautiful lighting setups and reliable generator support.",
               price: "$150",
-              icon: "💡",
+              icon: <FaLightbulb className="w-12 h-12 text-indigo-600" />, // Icon
               subTitle: "Lighting with Generator",
             },
             {
@@ -116,7 +114,7 @@ export default function Services() {
               description:
                 "Capture your special moments with top-quality DSLR cameras for your event.",
               price: "$200",
-              icon: "📸",
+              icon: <FaCamera className="w-12 h-12 text-indigo-600" />, // Icon
               subTitle: "High-Resolution Photography",
             },
             {
@@ -125,15 +123,20 @@ export default function Services() {
               description:
                 "Perfect for outdoor events, offering tents and camping equipment for all sizes.",
               price: "$300",
-              icon: "🏕️",
+              icon: <FaCampground className="w-12 h-12 text-indigo-600" />, // Icon
               subTitle: "Comfortable Outdoor Setup",
             },
           ].map((plan) => (
             <div
               key={plan.id}
-              className="bg-white text-gray-900 p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center text-center"
+              className="bg-white text-gray-900 p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center text-center relative overflow-hidden"
             >
-              <div className="text-5xl text-indigo-600 mb-4">{plan.icon}</div>
+              {/* Gradient Background for Icon */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500"></div>
+              {/* Icon Container */}
+              <div className="p-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6">
+                {plan.icon}
+              </div>
               <h3 className="text-2xl font-semibold">{plan.title}</h3>
               <p className="text-gray-600 mt-2">{plan.description}</p>
               <p className="text-lg text-gray-500 mt-1">{plan.subTitle}</p>
@@ -141,7 +144,7 @@ export default function Services() {
                 {plan.price} <span className="text-lg">Starting from</span>
               </p>
               <Link href="/rentals">
-                <button className="mt-6 px-6 py-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-600 flex items-center justify-center space-x-2">
+                <button className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 flex items-center justify-center space-x-2 transition-all">
                   <span>Book Now</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +166,6 @@ export default function Services() {
           ))}
         </div>
       </section>
-
       {/* Additional Info Section */}
       <section className="py-20 bg-gray-100">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6">
