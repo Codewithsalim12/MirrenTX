@@ -11,7 +11,11 @@ import {
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-const images = ["/img-1.avif", "/img-2.avif", "/img-3.jpg"];
+const images = [
+  "/about-header.avif",
+  "/camera.avif",
+  "/camping-img-slider.avif",
+];
 
 const galleryImages = [
   {

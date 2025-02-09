@@ -47,7 +47,7 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-4">About MirRenTX</h2>
 
           <p className="text-lg text-gray-600 leading-relaxed mb-4">
-            Founded in 2021 by Tanveer Mir, Sameer Mir, and Mohammad Salim,
+            Founded in 2021 by Sameer mir and Tanveer Mir,
             MirRenTX offers top-quality event rental services. Based in Kashmir,
             we specialize in tents, lighting, cameras, and generators for
             weddings, corporate events, and outdoor functions.
@@ -135,7 +135,7 @@ export default function About() {
               making our wedding day absolutely stress-free!"
             </p>
             <h3 className="text-xl font-semibold mt-4  text-blue-700">
-              - Lolab Valley
+              - Rafiq Ahmad
             </h3>
           </div>{" "}
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
@@ -144,7 +144,7 @@ export default function About() {
               rentals and outstanding service. Truly a great experience!"
             </p>
             <h3 className="text-xl font-semibold mt-4 text-blue-700">
-              - Bashir Brothers
+              - Iflaq Ahmad
             </h3>
           </div>
         </div>

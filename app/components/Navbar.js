@@ -64,7 +64,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/About" className="hover:text-green-400 transition">
-            About
+            About Us
           </Link>
           <Link href="/Contact" className="hover:text-green-400 transition">
             Contact Us
@@ -140,7 +140,7 @@ export default function Navbar() {
             className="block hover:text-green-400 transition"
             onClick={handleLinkClick}
           >
-            About
+            About Us
           </Link>
           <Link
             href="/Contact"

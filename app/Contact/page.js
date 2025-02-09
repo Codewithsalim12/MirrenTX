@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import {
   FaEnvelope,
   FaMapMarkerAlt,
@@ -6,12 +7,145 @@ import {
   FaPaperPlane,
   FaBell,
 } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [email, setEmail] = useState("");
+  const [phoneError, setPhoneError] = useState(""); // To store phone error message
+  const [emailError, setEmailError] = useState(""); // To store email error message
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const validatePhone = (phone) => {
+    const phonePattern = /^[0-9]{10}$/; // Basic phone number validation (10 digits)
+    return phonePattern.test(phone);
+  };
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email validation
+    return emailPattern.test(email);
+  };
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+
+    // Validation for empty fields
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.message
+    ) {
+      toast.warning("Please fill in all the fields.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    // Validate email format
+    if (!validateEmail(formData.email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    // Validate phone number format
+    if (!validatePhone(formData.phone)) {
+      toast.error("Please enter a valid phone number.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      toast.success("Message sent successfully!", {
+        position: "top-right",
+      });
+
+      // Clear the form fields after successful submission
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } else {
+      toast.error("Failed to send message. Please try again later.", {
+        position: "top-right",
+      });
+    }
+  };
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+
+    // Validate email format
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ subscribeEmail: email }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      toast.success(`${email} subscribed successfully!`, {
+        position: "top-right",
+      });
+
+      // Clear the email input field after successful subscription
+      setEmail("");
+    } else {
+      toast.error("Failed to subscribe. Please try again later.", {
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 py-16 px-6">
-      {/* Section 1: Contact Header */}
+      {/* Toast notifications container */}
+      <ToastContainer />
+
       <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-16">
         <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
@@ -36,45 +170,63 @@ export default function Contact() {
             </p>
           </div>
         </div>
-        <div className=" mt-10 w-full  md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+
+        <div className="mt-10 w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Send Us a Message
           </h2>
-          <form className="space-y-4">
+          <form onSubmit={sendMessage} className="space-y-4">
             <div className="flex gap-4">
               <input
                 type="text"
+                name="firstName"
                 placeholder="First Name"
                 className="w-1/2 p-3 border rounded-lg"
+                value={formData.firstName}
+                onChange={handleFormChange}
               />
               <input
                 type="text"
+                name="lastName"
                 placeholder="Last Name"
                 className="w-1/2 p-3 border rounded-lg"
+                value={formData.lastName}
+                onChange={handleFormChange}
               />
             </div>
             <input
               type="email"
+              name="email"
               placeholder="Email"
               className="w-full p-3 border rounded-lg"
+              value={formData.email}
+              onChange={handleFormChange}
             />
             <input
               type="tel"
+              name="phone"
               placeholder="Phone Number"
               className="w-full p-3 border rounded-lg"
+              value={formData.phone}
+              onChange={handleFormChange}
             />
             <textarea
+              name="message"
               placeholder="Message"
               className="w-full p-3 border rounded-lg h-32"
+              value={formData.message}
+              onChange={handleFormChange}
             ></textarea>
-            <button className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
+            <button
+              type="submit"
+              className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition"
+            >
               <FaPaperPlane /> Send Message
             </button>
           </form>
         </div>
       </section>
 
-      {/* Section 2: Why Choose Us */}
       <section className="bg-blue-600 text-white p-12 text-center rounded-lg max-w-6xl mx-auto mb-16">
         <h2 className="text-3xl font-bold mb-4">
           Why Choose{" "}
@@ -95,7 +247,6 @@ export default function Contact() {
         </Link>
       </section>
 
-      {/* Section 3: Subscribe for Updates */}
       <section className="bg-gray-800 text-white text-center p-12 rounded-lg max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
         <p className="text-lg mb-6">
@@ -107,8 +258,14 @@ export default function Contact() {
             type="email"
             placeholder="Enter your email"
             className="p-3 w-full sm:w-80 border rounded-lg text-gray-800"
+            value={email}
+            onChange={handleEmailChange}
           />
-          <button className="flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 w-full sm:w-auto rounded-xl font-semibold hover:bg-red-700 transition">
+          <button
+            type="submit"
+            onClick={subscribe}
+            className="flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 w-full sm:w-auto rounded-xl font-semibold hover:bg-red-700 transition"
+          >
             <FaBell /> Subscribe
           </button>
         </div>

@@ -12,13 +12,18 @@ import {
   FaCheckCircle,
   FaShoppingCart,
   FaVideo,
-  FaCampground, FaLightbulb,
+  FaCampground,
+  FaLightbulb,
 } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const sliderImages = ["/hero-mg.avif", "/slider2.avif", "/slider3.avif"];
+const sliderImages = [
+  "/hero-mg.avif",
+  "/slider2.avif",
+  "/camping-img-slider.avif",
+];
 
 export default function Services() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -91,7 +96,10 @@ export default function Services() {
         ))}
       </section>
       {/* Pricing Plans Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20 text-center">
+      <section
+        id="Pricing"
+        className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20 text-center"
+      >
         <h2 className="text-4xl font-bold">Our Pricing Plans</h2>
         <p className="text-lg mt-3 max-w-3xl mx-auto">
           Choose a plan that fits your needs. We offer flexible pricing options
