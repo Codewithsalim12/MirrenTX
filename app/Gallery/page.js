@@ -15,34 +15,46 @@ const images = ["/img-1.avif", "/img-2.avif", "/img-3.jpg"];
 
 const galleryImages = [
   {
-    id: 1,
-    src: "/gallery-image1.jpg", // Replace with actual image path
-    alt: "Gallery Image 1",
+    id: "event1",
+    src: "/bikers.jpg",
+    alt: "Event 1",
+    title: "Keran Valley – A Journey to Nature’s Paradise",
+    description: "An electrifying night of music, lights, and energy.",
   },
   {
-    id: 2,
-    src: "/gallery-image2.jpg", // Replace with actual image path
-    alt: "Gallery Image 2",
+    id: "event2",
+    src: "/best-shoot.jpg",
+    alt: "Event 2",
+    title: "Art Exhibition",
+    description: "Explore stunning artworks from renowned artists.",
   },
   {
-    id: 3,
-    src: "/gallery-image3.jpg", // Replace with actual image path
-    alt: "Gallery Image 3",
+    id: "event3",
+    src: "/lolab-valley.jpg",
+    alt: "Event 3",
+    title: "Tech Conference",
+    description: "Innovations and ideas shaping the future of tech.",
   },
   {
-    id: 4,
-    src: "/gallery-image4.jpg", // Replace with actual image path
-    alt: "Gallery Image 4",
+    id: "event4",
+    src: "/manzoor-marriage.jpg",
+    alt: "Event 4",
+    title: "Food Festival",
+    description: "A taste of the best flavors from around the world.",
   },
   {
-    id: 5,
-    src: "/gallery-image5.jpg", // Replace with actual image path
-    alt: "Gallery Image 5",
+    id: "event4",
+    src: "/pok.jpg",
+    alt: "Event 4",
+    title: "Food Festival",
+    description: "A taste of the best flavors from around the world.",
   },
   {
-    id: 6,
-    src: "/gallery-image6.jpg", // Replace with actual image path
-    alt: "Gallery Image 6",
+    id: "event4",
+    src: "/lighting-decor.jpg",
+    alt: "Event 4",
+    title: "Food Festival",
+    description: "A taste of the best flavors from around the world.",
   },
 ];
 
@@ -69,26 +81,28 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-gray-100 py-16 px-6">
       {/* Section 1: Slider */}
-      <section className="relative">
-        <div className="relative w-full h-96 overflow-hidden rounded-lg">
+      <section className="relative w-full">
+        <div className="relative w-full h-96 sm:h-72 overflow-hidden rounded-lg">
           {/* Dark Overlay with Blur Effect */}
           <div className="absolute inset-0 bg-black opacity-50 backdrop-blur-md"></div>
 
+          {/* Navigation Buttons */}
           <div className="absolute inset-0 flex justify-between items-center z-10 px-4">
             <button
               onClick={prevSlide}
-              className="text-white text-4xl bg-black bg-opacity-50 backdrop-blur-lg rounded-full p-2 hover:bg-opacity-100 transition"
+              className="text-white text-4xl sm:text-2xl bg-black bg-opacity-50 backdrop-blur-lg rounded-full w-12 h-12 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-opacity-100 transition hidden sm:flex"
             >
               &lt;
             </button>
             <button
               onClick={nextSlide}
-              className="text-white text-4xl bg-black bg-opacity-50 backdrop-blur-lg rounded-full p-2 hover:bg-opacity-100 transition"
+              className="text-white text-4xl sm:text-2xl bg-black bg-opacity-50 backdrop-blur-lg rounded-full w-12 h-12 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-opacity-100 transition hidden sm:flex"
             >
               &gt;
             </button>
           </div>
 
+          {/* Image */}
           <Image
             src={images[currentIndex]}
             alt="Gallery Slider"
@@ -98,7 +112,8 @@ export default function Gallery() {
           />
         </div>
 
-        <div className="absolute z-20 top-1/3 left-1/4 text-white text-5xl font-bold drop-shadow-lg">
+        {/* Title */}
+        <div className="absolute z-20 top-1/4 left-1/2 transform -translate-x-1/2 text-white text-5xl md:text-4xl sm:text-2xl font-bold drop-shadow-lg text-center w-full px-4">
           <h1>Explore Our Stunning Events</h1>
         </div>
       </section>
@@ -112,18 +127,18 @@ export default function Gallery() {
           {galleryImages.map((image) => (
             <div
               key={image.id}
-              className="w-full  bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-transform transform hover:scale-105"
+              className="w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-transform transform hover:scale-105"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 width={400}
                 height={300}
-                className="w-full max-h-[20vh] object-cover rounded-t-lg"
+                className="w-full max-h-[20vh] object-cover rounded-t-lg filter brightness-110 contrast-125 saturate-150"
               />
               <div className="p-4">
-                <p className="text-gray-600 text-lg">Event Description Here</p>
-                <Link href="#">
+                <p className="text-gray-600 text-lg">{image.title}</p>
+                <Link href={`/Gallery/${image.id}`}>
                   <button className="flex items-center mt-4 gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-blue-700 transition">
                     View Details <FaArrowRight />
                   </button>
@@ -192,7 +207,9 @@ export default function Gallery() {
         <div className="flex flex-wrap justify-center gap-8">
           <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
             <FaIndustry className="text-4xl text-blue-600 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Event Setup</h3>
+            <h3 className="text-xl text-gray-900 font-semibold mb-2">
+              Event Setup
+            </h3>
             <p className="text-gray-600">
               Browse through our portfolio showcasing event setups and
               decoration ideas tailored to your needs.
@@ -200,7 +217,9 @@ export default function Gallery() {
           </div>
           <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
             <FaCalendarAlt className="text-4xl text-green-600 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Upcoming Events</h3>
+            <h3 className="text-xl text-gray-900 font-semibold mb-2">
+              Upcoming Events
+            </h3>
             <p className="text-gray-600">
               Check out our upcoming events and make sure you don’t miss out on
               new opportunities and experiences.
@@ -208,7 +227,9 @@ export default function Gallery() {
           </div>
           <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
             <FaTools className="text-4xl text-yellow-600 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Event Rentals</h3>
+            <h3 className="text-xl text-gray-900 font-semibold mb-2">
+              Event Rentals
+            </h3>
             <p className="text-gray-600">
               Explore our rental options for your next event, from tents and
               lighting to equipment and props.
