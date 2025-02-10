@@ -1,12 +1,65 @@
 "use client";
-import { FaStar, FaUserCircle, FaPen, FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
 
-export default function Feedback() {
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { FaStar } from "react-icons/fa";
+
+export default function FeedbackPage() {
+  const [form, setForm] = useState({ name: "", email: "", feedback: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.name || !form.email || !form.feedback) {
+      toast.error("All fields are required.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      toast.error("Invalid email address.");
+      return;
+    }
+
+    if (form.feedback.length > 300) {
+      toast.error("Feedback must be under 300 characters.");
+      return;
+    }
+
+    setLoading(true);
+
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+    setLoading(false);
+
+    if (data.success) {
+      toast.success(data.message);
+      setForm({ name: "", email: "", feedback: "" });
+    } else {
+      toast.error(data.message);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 py-16 px-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-white p-6">
+      {/* Top Beautiful Header
+      <div className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-8 text-center rounded-lg shadow-lg mb-6">
+        <h1 className="text-4xl font-extrabold mt-16">Your Feedback Matters</h1>
+        <p className="text-lg mt-2 opacity-90">
+          Help us improve by sharing your thoughts
+        </p>
+      </div> */}
       {/* Section 1: Intro */}
-      <section className="max-w-3xl mx-auto text-center mt-10 mb-12">
+      <section className="max-w-3xl mx-auto text-center mt-16 mb-12">
         <h1 className="text-4xl font-bold text-gray-900">
           We Appreciate Your Feedback
         </h1>
@@ -15,10 +68,9 @@ export default function Feedback() {
         </p>
       </section>
 
-      {/* Section 2: Quick Rating */}
-      <section className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg text-center mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Rate Your Experience
+      <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-lg w-full border border-gray-200">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+          Share Your Feedback
         </h2>
         <div className="flex justify-center gap-2 text-yellow-400 text-3xl mb-4">
           <FaStar />
@@ -27,89 +79,76 @@ export default function Feedback() {
           <FaStar />
           <FaStar />
         </div>
-        <textarea
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg mt-4"
-          rows="3"
-          placeholder="Share your thoughts..."
-        ></textarea>
-        <button className="bg-blue-600 text-white px-6 py-3 mt-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition">
-          Submit
-        </button>
-      </section>
-
-      {/* Section 3: Detailed Feedback Form */}
-      <section className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">
-          Leave a Detailed Feedback
-        </h2>
-        <form className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-lg mb-2">Your Name</label>
-              <input
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter your name"
-              />
-            </div>
-            <div>
-              <label className="block text-lg mb-2">Email</label>
-              <input
-                type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                placeholder="Enter your email"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="block text-lg mb-2">Your Feedback</label>
-            <textarea
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              rows="4"
-              placeholder="Enter your feedback"
-            ></textarea>
-          </div>
-          <button className="w-full bg-green-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
-            Submit Feedback <FaPen className="inline ml-2" />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            required
+          />
+          <textarea
+            name="feedback"
+            placeholder="Your Feedback (Max 300 characters)"
+            value={form.feedback}
+            onChange={handleChange}
+            maxLength="300"
+            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            required
+          />
+          <p className="text-gray-500 text-sm">Max 300 characters allowed.</p>
+          <p className="text-gray-600 text-center font-semibold text-sm">
+            {" "}
+            Kindly take a moment to tell us what you think
+          </p>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-indigo-600 text-white p-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-md"
+          >
+            {loading ? "Submitting..." : "Share My Feedback"}
           </button>
         </form>
-      </section>
+      </div>
 
-      {/* Section 4: Feedback Stats & Improvements */}
-      <section className="max-w-5xl mx-auto text-center mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          What We’ve Improved So Far
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-3xl font-bold text-blue-600">95%</h3>
-            <p className="text-gray-600 mt-2">Customer Satisfaction</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-3xl font-bold text-green-600">1,200+</h3>
-            <p className="text-gray-600 mt-2">Positive Reviews</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-3xl font-bold text-red-600">24/7</h3>
-            <p className="text-gray-600 mt-2">Customer Support</p>
-          </div>
-        </div>
-      </section>
+      {/* Additional Section Below Form */}
+      <div className="mt-10 max-w-lg text-center bg-white p-8 rounded-2xl shadow-lg border border-gray-300">
+        <h3 className="text-2xl font-semibold text-gray-800">
+          Why Your Feedback is Important
+        </h3>
+        <p className="text-gray-600 mt-3 leading-relaxed">
+          Your insights help us enhance our services and deliver a better
+          experience. We value every suggestion and appreciate you taking the
+          time to help us improve.
+        </p>
+      </div>
 
-      {/* Section 5: Client Feedback */}
-      <section className="max-w-6xl mx-auto text-center">
+      <section className="max-w-6xl mx-auto text-center mt-4">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          What Our Clients Say
+          What Our Users Say 💬
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
           {/* Testimonial 1 */}
           <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
             <img
-              src="/Tanveer-img.jpg"
+              src="/profile-black.jpg"
               alt="John Doe"
               className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
             />
-            <h3 className="text-xl font-semibold mb-2">John Doe</h3>
+            <h3 className="text-xl text-gray-800 font-semibold mb-2">
+              RASHID EHMAD
+            </h3>
             <div className="text-yellow-400 flex justify-center gap-1">
               <FaStar />
               <FaStar />
@@ -126,11 +165,13 @@ export default function Feedback() {
           {/* Testimonial 2 */}
           <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
             <img
-              src="/owner2.jpg"
+              src="/profile-black.jpg"
               alt="Jane Smith"
               className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
             />
-            <h3 className="text-xl font-semibold mb-2">Jane Smith</h3>
+            <h3 className="text-xl text-gray-800 font-semibold mb-2">
+              IFLAQ AHMAD
+            </h3>
             <div className="text-yellow-400 flex justify-center gap-1">
               <FaStar />
               <FaStar />
@@ -141,6 +182,28 @@ export default function Feedback() {
             <p className="text-gray-600 mt-2">
               "Absolutely loved the experience! The team was so responsive and
               helpful."
+            </p>
+          </div>
+          {/* Testnomial 3 */}
+          <div className="w-full sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-lg text-center">
+            <img
+              src="/profile-black.jpg"
+              alt="Jane Smith"
+              className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 className="text-xl text-gray-800 font-semibold mb-2">
+              LONE MANZOOR
+            </h3>
+            <div className="text-yellow-400 flex justify-center gap-1">
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+            </div>
+            <p className="text-gray-600 mt-2">
+              "The experience was fantastic! The team was quick to respond and
+              very supportive."
             </p>
           </div>
         </div>

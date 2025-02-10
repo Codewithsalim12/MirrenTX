@@ -151,7 +151,7 @@ export default function Contact() {
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
             Get in Touch
           </h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-60 font-medium mb-4">
             We’d love to hear from you! Whether you have questions, feedback, or
             just want to connect, feel free to reach out. Our team is here to
             assist you and ensure you have a great experience. Don’t hesitate to
