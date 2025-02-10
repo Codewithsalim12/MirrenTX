@@ -104,7 +104,7 @@ export default function FeedbackPage() {
             value={form.feedback}
             onChange={handleChange}
             maxLength="300"
-            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            className="w-full p-3 text-gray-800 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
             required
           />
           <p className="text-gray-500 text-sm">Max 300 characters allowed.</p>
