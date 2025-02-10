@@ -1,0 +1,67 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FaArrowLeft, FaCheck } from "react-icons/fa";
+
+export default function ConfirmDetails() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    district: "",
+    streetAddress: "",
+  });
+
+  useEffect(() => {
+    // Retrieve stored data from local storage
+    const storedData = localStorage.getItem("rentFormData");
+    if (storedData) {
+      setFormData(JSON.parse(storedData));
+    }
+  }, []);
+
+  const handleConfirm = () => {
+    // Proceed to payment options
+    router.push("/rentals/payment-options");
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Confirm Details</h2>
+        <div className="space-y-4">
+          <p>
+            <strong>Name:</strong> {formData.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {formData.email}
+          </p>
+          <p>
+            <strong>Contact:</strong> {formData.contact}
+          </p>
+          <p>
+            <strong>District:</strong> {formData.district}
+          </p>
+          <p>
+            <strong>Street Address:</strong> {formData.streetAddress}
+          </p>
+        </div>
+        <div className="flex justify-between mt-6">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+          >
+            <FaArrowLeft className="mr-2" /> Back
+          </button>
+          <button
+            onClick={handleConfirm}
+            className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+          >
+            Confirm <FaCheck className="ml-2" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

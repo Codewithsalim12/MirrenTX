@@ -47,10 +47,10 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-4">About MirRenTX</h2>
 
           <p className="text-lg text-gray-600 leading-relaxed mb-4">
-            Founded in 2021 by Sameer mir and Tanveer Mir,
-            MirRenTX offers top-quality event rental services. Based in Kashmir,
-            we specialize in tents, lighting, cameras, and generators for
-            weddings, corporate events, and outdoor functions.
+            Founded in 2021 by Sameer mir and Tanveer Mir, MirRenTX offers
+            top-quality event rental services. Based in Kashmir, we specialize
+            in tents, lighting, cameras, and generators for weddings, corporate
+            events, and outdoor functions.
           </p>
 
           <p className="text-lg text-gray-600 leading-relaxed mb-4">
@@ -117,7 +117,7 @@ export default function About() {
               service and high-quality rentals. Highly recommended!”
             </p>
             <h3 className="text-xl font-semibold mt-4  text-blue-700">
-              - Sheikh Brothers
+              - SHEIKH BROTHERS.
             </h3>
           </div>
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
@@ -126,7 +126,7 @@ export default function About() {
               we have ever used!”
             </p>
             <h3 className="text-xl font-semibold mt-4  text-blue-700">
-              - Manzoor Pandow.
+              - MANZOOR PANDOW.
             </h3>
           </div>
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
@@ -135,7 +135,7 @@ export default function About() {
               making our wedding day absolutely stress-free!"
             </p>
             <h3 className="text-xl font-semibold mt-4  text-blue-700">
-              - Rafiq Ahmad
+              - RAFIQ AHMAD.
             </h3>
           </div>{" "}
           <div className="bg-purple-50 shadow-2xl rounded-lg p-6 text-gray-800">
@@ -144,7 +144,7 @@ export default function About() {
               rentals and outstanding service. Truly a great experience!"
             </p>
             <h3 className="text-xl font-semibold mt-4 text-blue-700">
-              - Iflaq Ahmad
+              - IFLAQ AHMAD.
             </h3>
           </div>
         </div>

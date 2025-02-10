@@ -8,7 +8,7 @@ const eventDetails = {
     title: "Keran Valley – A Journey to Nature’s Paradise",
     description:
       "Keran Valley, located in Kupwara district, Jammu and Kashmir, is a hidden gem along the Neelum River. Surrounded by lush meadows, dense forests, and snow-capped peaks, the valley offers breathtaking views of Pakistan’s Neelum Valley just across the river.The trip was a serene escape, with moments like standing at the Indian Keran viewpoint and seeing the peaceful villages of Neelum Valley on the other side. It was a unique experience, reflecting on how nature connects people despite borders.The friendly locals, traditional wooden houses, and authentic Kashmiri food made this journey even more special. As the sun set, the golden reflections on the river created a mesmerizing scene, making it a memory to cherish forever.To relive this beautiful journey, we’ve shared our experience in a vlog. You can watch the full video on YouTube, where we take you through the stunning landscapes and the tranquility of the valley.If you’re looking for untouched beauty, peaceful landscapes, and a unique travel experience, Keran Valley should definitely be on your list! 🌿🏞️",
-    youtube: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID", // YouTube link
+    youtube: "https://youtu.be/0mZiyN9wbzs?si=Tebrp2pYMVqbVlDs", // YouTube link
   },
   event2: {
     src: "/fun-pic.jpg",

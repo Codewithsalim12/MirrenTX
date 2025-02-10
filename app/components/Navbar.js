@@ -21,8 +21,8 @@ export default function Navbar() {
         {/* Logo Section */}
         <div className="flex items-center justify-center gap-2">
           <Link className="flex items-center justify-center gap-1" href="/">
-            <h1 className="text-3xl font-extrabold text-green-400">MirRenTX</h1>
             <FaKey size={25} />
+            <h1 className="text-3xl font-extrabold text-green-400">MirRenTX</h1>
           </Link>
         </div>
 

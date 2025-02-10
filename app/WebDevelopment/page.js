@@ -13,19 +13,19 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "Project One- Tech-Bog",
+    title: "Tech-Bog",
     description: "A Blog for Web Developers.",
     image: "/Tech-blog.png",
     demoLink: "https://tech-blog-ten-iota.vercel.app/",
   },
   {
-    title: "Project Two - Bitlinks(URL Shortener)",
+    title: "Bitlinks(URL Shortener)",
     description: "Shorten URL with this free Bitlinks Url Shortener. ",
     image: "/Bitlinks.png",
     demoLink: "https://bitlinks-omega.vercel.app/",
   },
   {
-    title: "Project Three - Tour & Travels UI",
+    title: "Tour & Travels UI",
     description: "An interactive UI/UX design showcase.",
     image: "/Tourly - Travel agancy.png",
     demoLink: "https://codewithsalim12.github.io/tour-guide.github.io/",

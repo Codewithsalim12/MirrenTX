@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const rentalsData = [
   {
@@ -46,6 +48,13 @@ const rentalsData = [
 ];
 
 export default function RentalsPage() {
+  const router = useRouter();
+
+  // Add this click handler function
+  const handleRentNow = (itemId) => {
+    router.push(`/rentals/rent-form?item=${itemId}`);
+  };
+
   const handleNotifyClick = () => {
     toast.success("You'll be notified soon!", {
       position: "bottom-center",
@@ -84,7 +93,10 @@ export default function RentalsPage() {
                 {item.title}
               </h2>
               <p className="text-gray-600 mb-4">{item.description}</p>
-              <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors">
+              <button
+                className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors"
+                onClick={() => handleRentNow(item.id)}
+              >
                 Rent Now
               </button>
             </div>

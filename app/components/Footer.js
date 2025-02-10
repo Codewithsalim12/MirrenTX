@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { FaFacebook, FaKey, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaKey,
+  FaInstagram,
+  FaYoutube,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -15,11 +23,11 @@ const Footer = () => {
               </h2>
             </Link>
           </h2>
-          <p className="text-gray-300 text-[15px] leading-relaxed tracking-wide">
+          {/* <p className="text-gray-300 text-[15px] leading-relaxed tracking-wide">
             Rent tents, lighting, DSLR cameras, generators, and more for
             weddings, parties, and events. Enjoy easy booking, reliable service,
             and top-quality equipment.
-          </p>
+          </p> */}
         </div>
 
         {/* Quick Links */}
@@ -91,9 +99,21 @@ const Footer = () => {
         {/* Contact Info */}
         <div className="space-y-4 mt-8 md:mt-0">
           <h3 className="text-xl font-semibold text-primary">Contact Us</h3>
-          <p className="text-gray-400">193224 Kupwara, Jammu & Kashmir, India</p>
-          <p className="text-gray-400">Phone: +91-8082815863</p>
-          <p className="text-gray-400">Email: mirrentx@gmail.com</p>
+          <p className="text-gray-400 flex items-center">
+            <FaMapMarkerAlt className="text-blue-600 mr-2" /> Kupwara, Jammu &
+            Kashmir, India
+          </p>
+          <p className="text-gray-400 flex items-center">
+            {" "}
+            <FaPhone className="text-green-600 mr-2" />{" "}
+            <Link href="tel: +91-8082815863">Phone: +91-8082815863</Link>
+          </p>
+          <p className="text-gray-400 flex items-center">
+            <FaEnvelope className="text-red-600 mr-2" />{" "}
+            <Link href="mailto: mirrentx@gmail.com">
+              Email: mirrentx@gmail.com
+            </Link>
+          </p>
         </div>
       </div>
 

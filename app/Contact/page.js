@@ -151,7 +151,7 @@ export default function Contact() {
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
             Get in Touch
           </h2>
-          <p className="text-gray-60 font-medium mb-4">
+          <p className="text-gray-800 font-medium mb-4">
             We’d love to hear from you! Whether you have questions, feedback, or
             just want to connect, feel free to reach out. Our team is here to
             assist you and ensure you have a great experience. Don’t hesitate to
@@ -160,13 +160,15 @@ export default function Contact() {
           <div className="space-y-4">
             <p className="flex items-center gap-2 text-gray-700">
               <FaMapMarkerAlt className="text-blue-600" /> Kralpora, (Kupwara),
-              Jammu & Kashmir, India 193224
+              Jammu & Kashmir, India.
             </p>
             <p className="flex items-center gap-2 text-gray-700">
-              <FaPhone className="text-green-600" /> +91-8082815863
+              <FaPhone className="text-green-600" />{" "}
+              <Link href="tel: +91-8082815863">+91-8082815863</Link>
             </p>
             <p className="flex items-center gap-2 text-gray-700">
-              <FaEnvelope className="text-red-600" /> mirrentx@gmail.com
+              <FaEnvelope className="text-red-600" />{" "}
+              <Link href="mailto: mirrentx@gmail.com">mirrentx@gmail.com</Link>
             </p>
           </div>
         </div>
