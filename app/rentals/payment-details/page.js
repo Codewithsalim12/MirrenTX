@@ -51,7 +51,7 @@ export default function PaymentDetails() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-14">
         <div
-          className="flex items-center space-x-2 cursor-pointer"
+          className="flex items-center space-x-2 mb-4 cursor-pointer"
           onClick={() => window.history.back()}
         >
           <FaArrowLeft className="text-blue-600 text-xl" />

@@ -36,20 +36,17 @@ export default function ConfirmDetails() {
           <p className="text-gray-800">
             <strong>Name:</strong> {formData.name}
           </p>
-          <p>
-            <strong className="text-gray-800">Email:</strong> {formData.email}
+          <p className="text-gray-800">
+            <strong>Email:</strong> {formData.email}
           </p>
-          <p>
-            <strong className="text-gray-800">Contact:</strong>{" "}
-            {formData.contact}
+          <p className="text-gray-800">
+            <strong>Contact:</strong> {formData.contact}
           </p>
-          <p>
-            <strong className="text-gray-800">District:</strong>{" "}
-            {formData.district}
+          <p className="text-gray-800">
+            <strong>District:</strong> {formData.district}
           </p>
-          <p>
-            <strong className="text-gray-800">Street Address:</strong>{" "}
-            {formData.streetAddress}
+          <p className="text-gray-800">
+            <strong>Street Address:</strong> {formData.streetAddress}
           </p>
         </div>
         <div className="flex justify-between mt-6">
