@@ -38,9 +38,9 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 md:space-y-3">
               {[
-                ["About", "/about"],
+                ["About", "/About"],
                 ["Services", "/services"],
-                ["Privacy", "/privacy"],
+                ["Privacy", "/PrivacyPolicy"],
               ].map(([title, url]) => (
                 <li key={title}>
                   <Link
@@ -59,9 +59,9 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 md:space-y-3">
               {[
-                ["Contact", "/contact"],
-                ["Feedback", "/feedback"],
-                ["Pricing", "/pricing"],
+                ["Contact", "/Contact"],
+                ["Feedback", "/Feedback"],
+                ["Pricing", "/services"],
               ].map(([title, url]) => (
                 <li key={title}>
                   <Link
