@@ -91,23 +91,14 @@ const Footer = () => {
         {/* Contact Info */}
         <div className="space-y-4 mt-8 md:mt-0">
           <h3 className="text-xl font-semibold text-primary">Contact Us</h3>
-          <p className="text-gray-400">
-            193224 Kupwara, Jammu & Kashmir, India
-          </p>
+          <p className="text-gray-400">193224 Kupwara, Jammu & Kashmir, India</p>
           <p className="text-gray-400">Phone: +91-8082815863</p>
           <p className="text-gray-400">Email: mirrentx@gmail.com</p>
         </div>
       </div>
 
       {/* Social Media & Copyright */}
-      <div className="flex justify-around  mt-12 border-t border-gray-700 pt-6">
-        <div className="text">
-          <p className="text-gray-500 text-lg">
-            &copy; {new Date().getFullYear()} MirRenTX Rental Service. All
-            rights reserved.
-          </p>
-        </div>
-
+      <div className="text-center mt-12 border-t border-gray-700 pt-6">
         <div className="flex justify-center space-x-6 mb-4">
           <Link
             href="#"
@@ -128,6 +119,10 @@ const Footer = () => {
             <FaYoutube />
           </Link>
         </div>
+        <p className="text-gray-500 text-lg">
+          &copy; {new Date().getFullYear()} MirRenTX Rental Service. All rights
+          reserved.
+        </p>
       </div>
     </footer>
   );

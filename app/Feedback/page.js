@@ -86,7 +86,7 @@ export default function FeedbackPage() {
             placeholder="Your Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            className="w-full text-gray-800 p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
             required
           />
           <input
@@ -95,7 +95,7 @@ export default function FeedbackPage() {
             placeholder="Your Email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+            className="w-full p-3 text-gray-800 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
             required
           />
           <textarea
