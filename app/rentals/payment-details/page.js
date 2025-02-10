@@ -67,7 +67,7 @@ export default function PaymentDetails() {
             Scan the QR code or use the UPI ID below:
           </p>
           <img
-            src="/Qr.jpg" // Replace with your QR code image
+            src="/QR.jpg" // Replace with your QR code image
             alt="QR Code"
             className="w-48 h-48 mx-auto rounded-sm"
           />

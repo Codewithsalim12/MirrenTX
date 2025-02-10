@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaSpinner } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RentForm() {
   const router = useRouter();
@@ -20,13 +22,30 @@ export default function RentForm() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Store form data in local storage
-    localStorage.setItem("rentFormData", JSON.stringify(formData));
+    try {
+      const response = await fetch("/api/rent-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Redirect to the confirmation page after 5 seconds
-    setTimeout(() => {
-      router.push("/rentals/confirm-details");
-    }, 5000);
+      if (response.ok) {
+        toast.success("Form submitted successfully!");
+        localStorage.setItem("rentFormData", JSON.stringify(formData));
+
+        setTimeout(() => {
+          router.push("/rentals/confirm-details");
+        }, 2000);
+      } else {
+        throw new Error("Failed to send form");
+      }
+    } catch (error) {
+      toast.error("Submission failed! Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -35,14 +54,16 @@ export default function RentForm() {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Rent Now</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">
+          Rent Now
+        </h2>
         <div className="space-y-4">
           <input
             type="text"
             placeholder="Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg text-gray-800"
             required
           />
           <input
@@ -52,7 +73,7 @@ export default function RentForm() {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg text-gray-800"
             required
           />
           <input
@@ -62,7 +83,7 @@ export default function RentForm() {
             onChange={(e) =>
               setFormData({ ...formData, contact: e.target.value })
             }
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg text-gray-800"
             required
           />
           <select
@@ -70,7 +91,7 @@ export default function RentForm() {
             onChange={(e) =>
               setFormData({ ...formData, district: e.target.value })
             }
-            className="w-full p-2 border rounded-lg"
+            className="w-full bg-gray-50 p-2 border rounded-lg text-gray-800"
             required
           >
             <option value="">Select District</option>
@@ -87,7 +108,7 @@ export default function RentForm() {
             onChange={(e) =>
               setFormData({ ...formData, streetAddress: e.target.value })
             }
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg text-gray-800"
             required
           />
         </div>
@@ -106,6 +127,7 @@ export default function RentForm() {
           )}
         </button>
       </form>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

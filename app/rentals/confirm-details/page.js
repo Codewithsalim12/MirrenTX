@@ -29,22 +29,27 @@ export default function ConfirmDetails() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Confirm Details</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">
+          Confirm Details
+        </h2>
         <div className="space-y-4">
-          <p>
+          <p className="text-gray-800">
             <strong>Name:</strong> {formData.name}
           </p>
           <p>
-            <strong>Email:</strong> {formData.email}
+            <strong className="text-gray-800">Email:</strong> {formData.email}
           </p>
           <p>
-            <strong>Contact:</strong> {formData.contact}
+            <strong className="text-gray-800">Contact:</strong>{" "}
+            {formData.contact}
           </p>
           <p>
-            <strong>District:</strong> {formData.district}
+            <strong className="text-gray-800">District:</strong>{" "}
+            {formData.district}
           </p>
           <p>
-            <strong>Street Address:</strong> {formData.streetAddress}
+            <strong className="text-gray-800">Street Address:</strong>{" "}
+            {formData.streetAddress}
           </p>
         </div>
         <div className="flex justify-between mt-6">
