@@ -62,7 +62,7 @@ export default function Home() {
               </button>
             </Link>
             <Link href="#about">
-              <button className="bg-transparent border-2 border-green-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-500 transition-all duration-300 transform hover:scale-105 font-semibold flex items-center gap-2">
+              <button className="bg-transparent border-2 border-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 font-semibold flex items-center gap-2">
                 Get Started
               </button>
             </Link>
@@ -128,7 +128,7 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-rotate"
               data-aos="fade-up"
               data-aos-delay={`${index * 100}`}
             >
@@ -189,7 +189,7 @@ export default function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 p-4 bg-white rounded-lg  hover:shadow-lg transition-shadow duration-300"
+                  className="flex items-center gap-3 p-4  rounded-lg  hover:shadow-lg transition-shadow duration-300"
                 >
                   {item.icon}
                   <span className="text-lg font-semibold text-gray-800">
