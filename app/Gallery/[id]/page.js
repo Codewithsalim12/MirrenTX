@@ -54,7 +54,7 @@ export default function EventPage({ params }) {
   }
 
   return (
-    <div className="max-w-5xl mx-auto min-h-screen px-4 pt-20 bg-gray-100 mb-2">
+    <div className="flex flex-col items-center justify-center max-w-5xl mx-auto min-h-screen px-4 pt-20 bg-gray-100 mb-2 sm:text-center sm:px-2">
       {/* 8K HD Image */}
       <div className="w-full max-h-[52vh] overflow-hidden rounded-lg shadow-2xl">
         <Image
