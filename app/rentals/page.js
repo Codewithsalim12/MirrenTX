@@ -67,7 +67,7 @@ export default function RentalsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Top Heading Section */}
       <section className="bg-green-600 py-20 sm:py-16 md:py-20 text-center">
-        <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight">
+        <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight mt-10">
           Avaliable Rentals
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">

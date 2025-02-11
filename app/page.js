@@ -153,7 +153,7 @@ export default function Home() {
             <img
               src="/hero-mg.avif"
               alt="Rental Services"
-              className="w-full h-[67vh] rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300"
+              className="w-full h-[67vh] rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300 object-cover"
             />
           </div>
           <div
