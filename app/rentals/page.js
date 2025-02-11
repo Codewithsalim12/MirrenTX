@@ -68,10 +68,9 @@ export default function RentalsPage() {
       {/* Top Heading Section */}
       <section className="relative py-16 sm:py-12 md:py-16 text-center">
         {/* Gradient & Dark Overlay for Text Visibility */}
-       
 
         <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gra-900 tracking-tight leading-tight mt-10 drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mt-10 drop-shadow-lg">
             Available Rentals
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-800 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">
