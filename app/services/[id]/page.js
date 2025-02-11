@@ -1,14 +1,8 @@
-// app/services/[id]/page.js
 "use client";
 
 import { useRouter } from "next/navigation";
-import {
-  FaTools,
-  FaCamera,
-  FaVideo,
-  FaExternalLinkAlt,
-  FaArrowLeft,
-} from "react-icons/fa";
+import { FaTools, FaCamera, FaVideo, FaArrowLeft } from "react-icons/fa";
+import Link from "next/link"; // Ensure you import Link for navigation
 
 // Inline service data (this can be moved to a separate data file if preferred)
 const servicesData = [
@@ -19,10 +13,7 @@ const servicesData = [
     longDescription:
       "Whether you’re celebrating a grand wedding, hosting a corporate gala, or planning an intimate private gathering, we provide a comprehensive solution that covers every aspect of event décor. From initial concept design and seamless execution to post-event support, we handle everything with precision and creativity. Our passion lies in making your special occasions truly remarkable, leaving you and your guests with lasting memories of a beautifully curated experience.",
     icon: <FaTools className="inline-block text-gray-700" />,
-    externalLinks: [
-      { text: "Follow us", url: "https://twitter.com/yourprofile" },
-      { text: "Visit Blog", url: "https://yourblog.com" },
-    ],
+    cta: "Get a Free Consultation", // New CTA instead of external links
   },
   {
     id: "photography-videography",
@@ -31,10 +22,7 @@ const servicesData = [
     longDescription:
       "Capture every precious moment with our skilled photographers and videographers. We deliver stunning visuals and lasting memories, using state-of-the-art equipment and creative techniques. Our services range from candid snapshots to full event documentaries, each tailored to capture the essence of your event in a unique narrative.",
     icon: <FaCamera className="inline-block text-gray-700" />,
-    externalLinks: [
-      { text: "Follow us", url: "https://instagram.com/yourprofile" },
-      { text: "Visit Blog", url: "https://yourblog.com" },
-    ],
+    cta: "Book Your Session Now", // New CTA instead of external links
   },
   {
     id: "event-video-editing",
@@ -43,10 +31,7 @@ const servicesData = [
     longDescription:
       "Enhance your event footage with our professional video editing services. We provide comprehensive editing including color grading, transitions, and special effects. Our experienced editors transform raw footage into a compelling narrative that highlights the best moments of your event, delivering polished results whether you need a highlight reel or a full-length video.",
     icon: <FaVideo className="inline-block text-gray-700" />,
-    externalLinks: [
-      { text: "Follow us", url: "https://facebook.com/yourprofile" },
-      { text: "Visit Blog", url: "https://yourblog.com" },
-    ],
+    cta: "Start Your Project Today", // New CTA instead of external links
   },
 ];
 
@@ -83,30 +68,28 @@ export default function ServiceDetail({ params }) {
         </header>
         {/* Blog Post Style Description */}
         <section className="prose max-w-none mx-auto mb-8">
-          <p className="text-gray-700">{service.longDescription}</p>
+          <p className="text-gray-700 text-center">{service.longDescription}</p>
         </section>
-        {/* Footer with External Links */}
-        <footer className="flex justify-center gap-6 mt-10">
-          {service.externalLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 text-blue-600 hover:underline"
-            >
-              {link.text} <FaExternalLinkAlt />
-            </a>
-          ))}
+        {/* Footer with CTA */}
+        <footer className="text-center mt-10">
+          <p className="text-lg font-medium text-gray-700 mb-4">
+            {service.cta}
+          </p>
+          <Link href="/Contact">
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition-all duration-300">
+              Contact Us
+            </button>
+          </Link>
         </footer>
       </article>
+
       {/* Back Button - Fixed at the bottom left corner */}
-      <button
-        onClick={() => router.back()}
-        className="fixed bottom-10 right-4 bg-green-600 text-blue-600 p-3 rounded-full shadow-2xl hover:bg-green-400 flex items-center justify-center"
+      <Link
+        href="/services"
+        className="fixed right-4 bottom-4 flex justify-center items-center bg-green-400 p-2 rounded-full text-2xl text-gray-800 hover:text-gray-600"
       >
-        <FaArrowLeft className="h-5 w-5 text-black" />
-      </button>
+        <FaArrowLeft />
+      </Link>
     </>
   );
 }
