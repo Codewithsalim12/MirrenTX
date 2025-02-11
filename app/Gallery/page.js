@@ -118,7 +118,9 @@ export default function Gallery() {
 
         {/* Title */}
         <div className="absolute z-20 top-1/4 left-1/2 transform -translate-x-1/2 text-white text-5xl md:text-4xl sm:text-2xl font-bold drop-shadow-lg text-center w-full px-4">
-          <h1>Explore Our Stunning Events</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-50 tracking-tight leading-tight  drop-shadow-lg ">
+            Explore Our Stunnig Events
+          </h1>
         </div>
       </section>
 

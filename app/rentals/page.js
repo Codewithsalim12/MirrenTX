@@ -1,4 +1,3 @@
-// app/rentals/page.js
 "use client";
 import {
   FaBolt,
@@ -63,20 +62,26 @@ export default function RentalsPage() {
       closeButton: false, // Remove close button
     });
   };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Heading Section */}
-      <section className="bg-green-600 py-20 sm:py-16 md:py-20 text-center">
-        <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight mt-10">
-          Avaliable Rentals
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">
-          Rent everything you need for your events—from cameras to generators.
-        </p>
+      <section className="relative py-16 sm:py-12 md:py-16 text-center">
+        {/* Gradient & Dark Overlay for Text Visibility */}
+       
+
+        <div className="relative z-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gra-900 tracking-tight leading-tight mt-10 drop-shadow-lg">
+            Available Rentals
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-800 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">
+            Rent everything you need for your events—from cameras to generators.
+          </p>
+        </div>
       </section>
 
       {/* Rental Cards Section */}
-      <section className="container  mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {rentalsData.map((item) => (
             <div
@@ -84,10 +89,11 @@ export default function RentalsPage() {
               className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow"
             >
               <img
-                src={item.image}
+                src={item.image} // Use your 8K image file here
                 alt={item.title}
-                className="w-full h-48 object-cover rounded-t-lg mb-4"
+                className="w-full h-48 object-cover rounded-t-lg mb-4 filter brightness-110 contrast-125 saturate-150"
               />
+
               {item.icon}
               <h2 className="text-xl text-black font-semibold mb-2">
                 {item.title}
@@ -103,6 +109,8 @@ export default function RentalsPage() {
           ))}
         </div>
       </section>
+
+      {/* New Services Section */}
       <section className="relative bg-gradient-to-b from-green-50 to-white py-20 flex justify-center items-center min-h-screen">
         {/* Decorative Wave */}
         <div className="absolute top-0 left-0 w-full">
@@ -130,18 +138,13 @@ export default function RentalsPage() {
             for more!
           </p>
 
-          {/* Glowing Effect */}
           <div className="relative flex justify-center">
             <div className="absolute w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30"></div>
             <div className="relative bg-white p-8 rounded-lg shadow-lg text-center w-96 border-t-4 border-green-500 transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
-              {/* Animated Spinning Star */}
               <div className="absolute top-3 right-3 animate-spin-slow">
                 <FaStar className="w-6 h-6 text-yellow-400" />
               </div>
-
-              {/* Main Icon */}
               <FaPalette className="w-14 h-14 mb-4 text-green-500 mx-auto" />
-
               <h3 className="text-2xl font-semibold mb-2 text-gray-900">
                 Event Decoration
               </h3>
@@ -149,23 +152,20 @@ export default function RentalsPage() {
                 Transform your events with our elegant and creative decoration
                 services.
               </p>
-
               <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-transform transform hover:scale-105">
                 Learn More
               </button>
             </div>
           </div>
 
-          {/* Call-to-Action Message */}
           <p className="text-gray-500 mt-8 text-sm">
             More exciting services coming soon... Stay updated!
           </p>
         </div>
       </section>
 
-      {/* New Services Section */}
+      {/* Upcoming Rentals Section */}
       <section className="relative bg-gradient-to-b from-blue-50 to-white py-20 flex flex-col items-center min-h-screen">
-        {/* Decorative Wave */}
         <div className="absolute top-0 left-0 w-full">
           <svg
             viewBox="0 0 1440 320"
@@ -179,7 +179,6 @@ export default function RentalsPage() {
           </svg>
         </div>
 
-        {/* Content */}
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold mb-4 text-gray-800 relative inline-block">
             Upcoming Rentals
@@ -190,11 +189,8 @@ export default function RentalsPage() {
             Our latest rental services are coming soon! Be the first to know.
           </p>
 
-          {/* Rental Cards */}
           <div className="flex flex-wrap justify-center gap-8">
-            {/* Drone Rentals */}
             <div className="relative bg-white p-8 rounded-lg shadow-lg text-center w-80 border-t-4 border-blue-500 transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
-              {/* Animated Rocket Icon */}
               <div className="absolute top-2 right-2 animate-bounce">
                 <FaRocket className="w-6 h-6 text-blue-500" />
               </div>
@@ -213,9 +209,7 @@ export default function RentalsPage() {
               </button>
             </div>
 
-            {/* Tables and Chairs */}
             <div className="relative bg-white p-8 rounded-lg shadow-lg text-center w-80 border-t-4 border-blue-500 transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
-              {/* Animated Rocket Icon */}
               <div className="absolute top-2 right-2 animate-bounce">
                 <FaRocket className="w-6 h-6 text-blue-500" />
               </div>
@@ -233,12 +227,9 @@ export default function RentalsPage() {
                 Notify Me
               </button>
             </div>
-
-            {/* Add more upcoming rentals here */}
           </div>
         </div>
 
-        {/* Toast container */}
         <ToastContainer />
       </section>
     </div>

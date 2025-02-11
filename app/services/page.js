@@ -47,15 +47,19 @@ export default function Services() {
       <div className="relative h-[70vh] overflow-hidden">
         <Slider {...settings} className="h-full">
           {sliderImages.map((img, index) => (
-            <div key={index} className="h-[70vh]">
+            <div key={index} className="h-[70vh] relative">
               <img
                 src={img}
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white px-4">
-                <h1 className="text-5xl font-bold drop-shadow-lg">
-                  Premium Event Services
+              {/* Dark Overlay with subtle opacity */}
+              <div className="absolute inset-0 bg-black bg-opacity-20"></div>{" "}
+              {/* Adjusted opacity */}
+              {/* Text Container */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-50 tracking-tight leading-tight mt-10 drop-shadow-lg">
+                  Premium Rental Services
                 </h1>
                 <p className="text-lg mt-3 mb-4 max-w-2xl">
                   From professional event setups to top-notch logistics, we
@@ -71,6 +75,7 @@ export default function Services() {
           ))}
         </Slider>
       </div>
+
       {/* Services Section */}
       <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {servicesData.map((service) => (
@@ -95,6 +100,7 @@ export default function Services() {
           </div>
         ))}
       </section>
+
       {/* Pricing Plans Section */}
       <section
         id="Pricing"
@@ -113,7 +119,7 @@ export default function Services() {
               description:
                 "Enhance your event with beautiful lighting setups and reliable generator support.",
               price: "$150",
-              icon: <FaLightbulb className="w-12 h-12 text-indigo-600" />, // Icon
+              icon: <FaLightbulb className="w-12 h-12 text-indigo-600" />,
               subTitle: "Lighting with Generator",
             },
             {
@@ -122,7 +128,7 @@ export default function Services() {
               description:
                 "Capture your special moments with top-quality DSLR cameras for your event.",
               price: "$200",
-              icon: <FaCamera className="w-12 h-12 text-indigo-600" />, // Icon
+              icon: <FaCamera className="w-12 h-12 text-indigo-600" />,
               subTitle: "High-Resolution Photography",
             },
             {
@@ -131,7 +137,7 @@ export default function Services() {
               description:
                 "Perfect for outdoor events, offering tents and camping equipment for all sizes.",
               price: "$300",
-              icon: <FaCampground className="w-12 h-12 text-indigo-600" />, // Icon
+              icon: <FaCampground className="w-12 h-12 text-indigo-600" />,
               subTitle: "Comfortable Outdoor Setup",
             },
           ].map((plan) => (
@@ -174,6 +180,7 @@ export default function Services() {
           ))}
         </div>
       </section>
+
       {/* Additional Info Section */}
       <section className="py-20 bg-gray-100">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6">
@@ -205,56 +212,3 @@ export default function Services() {
     </div>
   );
 }
-
-// const servicesData = [
-//   {
-//     id: "event-setup-decoration",
-//     name: "Event Setup & Decoration",
-//     description:
-//       "We bring your vision to life with breathtaking decorations, transforming any space into a stunning and unforgettable setting for your special occasions.",
-//     icon: <FaTools />,
-//   },
-//   {
-//     id: "photography-videography",
-//     name: "Photography & Videography",
-//     description:
-//       "Capture every precious moment with our skilled photographers and videographers, ensuring stunning visuals and lasting memories for any occasion.",
-//     icon: <FaCamera />,
-//   },
-//   {
-//     id: "event-video-editing",
-//     name: "Event Video Editing",
-//     description:
-//       "Enhance your event footage with our professional video editing services. From highlights to full event videos, we provide top-tier editing to create lasting memories.",
-//     icon: <FaVideo />,
-//   },
-// ];
-const whyChooseUs = [
-  {
-    id: 1,
-    title: "Experienced Team",
-    description:
-      "Our team of professionals ensures high-quality service with attention to detail.",
-    icon: <FaUsers className="text-blue-600" />,
-  },
-  {
-    id: 2,
-    title: "24/7 Support",
-    description: "We are always available to assist you, anytime, anywhere.",
-    icon: <FaConciergeBell className="text-green-600" />,
-  },
-  {
-    id: 3,
-    title: "Trusted by Clients",
-    description:
-      "Our commitment to excellence has earned us trust and repeat customers.",
-    icon: <FaStar className="text-yellow-500" />,
-  },
-  {
-    id: 4,
-    title: "Reliable & Efficient",
-    description:
-      "We ensure timely and efficient service to make your event stress-free.",
-    icon: <FaCheckCircle className="text-indigo-500" />,
-  },
-];
