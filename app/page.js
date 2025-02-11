@@ -27,6 +27,7 @@ export default function Home() {
         className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
         style={{
           backgroundImage: "url('/hero-img.avif')",
+          backgroundAttachment: "fixed",
         }}
       >
         {/* Gradient Overlay */}

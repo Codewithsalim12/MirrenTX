@@ -103,9 +103,15 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <button
             type="button"
-            className="focus:outline-none text-white font-semibold bg-green-600 hover:bg-green-700  shadow-lg focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
+            className="focus:outline-none text-white font-semibold bg-green-600 hover:bg-green-700 shadow-lg focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
           >
-            Sign in
+            Sign In
+          </button>
+          <button
+            type="button"
+            className="focus:outline-none text-white font-semibold bg-blue-600 hover:bg-blue-700 shadow-lg focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
+          >
+            Sign Up
           </button>
           {isAdmin && (
             <Link
@@ -185,12 +191,20 @@ export default function Navbar() {
           >
             Feedback
           </Link>
-          <button
-            type="button"
-            className="w-full text-white font-semibold bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
-          >
-            Sign in
-          </button>
+          <div className="flex flex-col space-y-3">
+            <button
+              type="button"
+              className="w-full text-white font-semibold bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              className="w-full text-white font-semibold bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
+            >
+              Sign Up
+            </button>
+          </div>
           {isAdmin && (
             <Link
               href="/admin"

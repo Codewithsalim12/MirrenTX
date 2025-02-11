@@ -56,7 +56,7 @@ export default function RentalsPage() {
 
   const handleNotifyClick = () => {
     toast.success("You'll be notified soon!", {
-      position: "bottom-center",
+      position: "top-center",
       autoClose: 3000, // Notification duration
       hideProgressBar: true, // Hide progress bar
       closeButton: false, // Remove close button
@@ -68,7 +68,6 @@ export default function RentalsPage() {
       {/* Top Heading Section */}
       <section className="relative py-16 sm:py-12 md:py-16 text-center">
         {/* Gradient & Dark Overlay for Text Visibility */}
-       
 
         <div className="relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mt-10 drop-shadow-lg">
