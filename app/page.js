@@ -189,7 +189,7 @@ export default function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 p-4  rounded-lg  hover:shadow-lg transition-shadow duration-300"
+                  className="flex items-center gap-3 p-4  rounded-lg bg-gray-30  hover:shadow-lg transition-shadow duration-300"
                 >
                   {item.icon}
                   <span className="text-lg font-semibold text-gray-800">
