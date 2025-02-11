@@ -204,7 +204,7 @@ export default function Home() {
                   <FaShoppingCart className="text-xl" /> Book Now
                 </button>
               </Link>
-              <Link href="/gallery">
+              <Link href="/Gallery">
                 <button className="bg-gray-800 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-gray-900 transition flex items-center gap-2">
                   <FaCamera className="text-xl" /> View Gallery
                 </button>
