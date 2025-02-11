@@ -21,7 +21,7 @@ const Footer = () => {
               className="flex items-center justify-center md:justify-start gap-2"
             >
               <FaKey size={25} />
-              <span className="text-green-500 font-extrabold">MirRenTX</span>
+              <span className="text-green-50 font-extrabold">MirRenTX</span>
             </Link>
           </h2>
           <p className="text-gray-400 text-sm md:text-base leading-relaxed">

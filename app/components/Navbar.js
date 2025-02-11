@@ -8,30 +8,40 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Dummy admin check (Replace this with real authentication logic)
-  const isAdmin = true; // Change this based on your auth logic
+  const isAdmin = true; // Dummy admin check
 
   const handleLinkClick = () => {
     setMenuOpen(false); // Close menu when a link is clicked
   };
 
   return (
-    <nav className="bg-gray-900 text-white fixed w-full shadow-md z-50">
-      <div className="container mx-auto flex justify-between px-4 items-center p-4">
+    <nav className="bg-gradient-to-r from-green-500 to-teal-500 text-white fixed w-full shadow-lg z-50">
+      <div className="container mx-auto flex justify-between px-6 py-4 items-center">
         {/* Logo Section */}
         <div className="flex items-center justify-center gap-2">
           <Link className="flex items-center justify-center gap-1" href="/">
-            <FaKey size={25} />
-            <h1 className="text-3xl font-extrabold text-green-400">MirRenTX</h1>
+            <FaKey
+              size={25}
+              className="transition-all transform hover:scale-110"
+            />
+            <h1 className="text-3xl font-extrabold text-white hover:text-green-100 transition-colors duration-300">
+              MirRenTX
+            </h1>
           </Link>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-6">
-          <Link href="/" className="hover:text-green-400 transition">
+        <div className="hidden md:flex space-x-8">
+          <Link
+            href="/"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             Home
           </Link>
-          <Link href="/rentals" className="hover:text-green-400 transition">
+          <Link
+            href="/rentals"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             Rentals
           </Link>
 
@@ -39,22 +49,22 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center hover:text-green-400 transition"
+              className="flex items-center hover:text-green-100 transition-colors duration-300"
             >
               Services <ChevronDown className="ml-1" size={16} />
             </button>
             {dropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg transition-all duration-300">
                 <Link
                   href="/services"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-2 hover:bg-gray-700 transition-all duration-300"
                   onClick={() => setDropdownOpen(false)}
                 >
                   Services
                 </Link>
                 <Link
                   href="/WebDevelopment"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-2 hover:bg-gray-700 transition-all duration-300"
                   onClick={() => setDropdownOpen(false)}
                 >
                   Web Development
@@ -63,16 +73,28 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="/About" className="hover:text-green-400 transition">
+          <Link
+            href="/About"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             About Us
           </Link>
-          <Link href="/Contact" className="hover:text-green-400 transition">
+          <Link
+            href="/Contact"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             Contact Us
           </Link>
-          <Link href="/Gallery" className="hover:text-green-400 transition">
+          <Link
+            href="/Gallery"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             Gallery
           </Link>
-          <Link href="/Feedback" className="hover:text-green-400 transition">
+          <Link
+            href="/Feedback"
+            className="hover:text-green-100 transition-colors duration-300"
+          >
             Feedback
           </Link>
         </div>
@@ -81,14 +103,14 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <button
             type="button"
-            className="focus:outline-none text-white font-semibold bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            className="focus:outline-none text-white font-semibold bg-green-600 hover:bg-green-700  shadow-lg focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
           >
             Sign in
           </button>
           {isAdmin && (
             <Link
               href="/admin"
-              className="text-white hover:text-green-400 transition"
+              className="text-white hover:text-green-100 transition-colors duration-300"
             >
               <Settings size={24} />
             </Link>
@@ -106,73 +128,73 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 shadow-lg p-4 flex flex-col space-y-4">
+        <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 shadow-lg p-6 flex flex-col space-y-6">
           <Link
             href="/"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Home
           </Link>
           <Link
             href="/rentals"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Rentals
           </Link>
           <Link
             href="/services"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Services
           </Link>
           <Link
-            href="WebDevelopment"
-            className="block hover:text-green-400 transition"
+            href="/WebDevelopment"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Web Development
           </Link>
           <Link
             href="/About"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             About Us
           </Link>
           <Link
             href="/Contact"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Contact Us
           </Link>
           <Link
             href="/Gallery"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Gallery
           </Link>
           <Link
             href="/Feedback"
-            className="block hover:text-green-400 transition"
+            className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
           >
             Feedback
           </Link>
           <button
             type="button"
-            className="w-full text-white font-semibold bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            className="w-full text-white font-semibold bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 transition-all duration-300"
           >
             Sign in
           </button>
           {isAdmin && (
             <Link
               href="/admin"
-              className="block text-white hover:text-green-400 transition"
+              className="block text-white hover:text-green-100 transition-colors duration-300"
               onClick={handleLinkClick}
             >
               <Settings size={24} />

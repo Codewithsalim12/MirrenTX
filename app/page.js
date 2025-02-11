@@ -144,7 +144,7 @@ export default function Home() {
 
       {/* Our Services Section */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-12 justify-center lg:justify-start">
           <div
             className="w-full lg:w-1/2"
             data-aos="fade-right"
@@ -157,7 +157,7 @@ export default function Home() {
             />
           </div>
           <div
-            className="w-full lg:w-1/2"
+            className="w-full lg:w-1/2 text-center lg:text-left"
             data-aos="fade-left"
             data-aos-delay="200"
           >
@@ -168,7 +168,7 @@ export default function Home() {
               We provide high-quality rentals including tents, lighting,
               cameras, and generators to make your event seamless and memorable.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
               {[
                 {
                   icon: <GiCampingTent className="text-green-600 text-3xl" />,
@@ -189,7 +189,7 @@ export default function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 p-4  rounded-lg bg-gray-30  hover:shadow-lg transition-shadow duration-300"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-gray-30 hover:shadow-lg transition-shadow duration-300 justify-center"
                 >
                   {item.icon}
                   <span className="text-lg font-semibold text-gray-800">
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col lg:flex-row gap-4 mt-8">
+            <div className="flex flex-col lg:flex-row gap-4 mt-8 justify-center items-center">
               <Link href="/rentals">
                 <button className="bg-green-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition flex items-center gap-2">
                   <FaShoppingCart className="text-xl" /> Book Now
