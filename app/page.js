@@ -151,9 +151,9 @@ export default function Home() {
             data-aos-delay="100"
           >
             <img
-              src="/rent-img.avif"
+              src="/hero-mg.avif"
               alt="Rental Services"
-              className="w-full h-auto rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300"
+              className="w-full h-[67vh] rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300"
             />
           </div>
           <div
