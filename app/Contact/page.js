@@ -183,7 +183,7 @@ export default function Contact() {
                 type="text"
                 name="firstName"
                 placeholder="First Name"
-                className="w-1/2 p-3 border rounded-lg"
+                className="w-1/2 p-3 border rounded-lg text-gray-800"
                 value={formData.firstName}
                 onChange={handleFormChange}
               />
@@ -191,7 +191,7 @@ export default function Contact() {
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
-                className="w-1/2 p-3 border rounded-lg"
+                className="w-1/2 p-3 border rounded-lg text-gray-800"
                 value={formData.lastName}
                 onChange={handleFormChange}
               />
@@ -200,7 +200,7 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder="Email"
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg text-gray-800"
               value={formData.email}
               onChange={handleFormChange}
             />
@@ -208,14 +208,14 @@ export default function Contact() {
               type="tel"
               name="phone"
               placeholder="Phone Number"
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg text-gray-800"
               value={formData.phone}
               onChange={handleFormChange}
             />
             <textarea
               name="message"
               placeholder="Message"
-              className="w-full p-3 border rounded-lg h-32"
+              className="w-full p-3 border rounded-lg h-32 text-gray-800"
               value={formData.message}
               onChange={handleFormChange}
             ></textarea>

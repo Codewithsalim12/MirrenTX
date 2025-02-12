@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 
+
 // Font Imports
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,9 @@ export default function RootLayout({ children }) {
         <Navbar />
         <Toaster position="top-right" />{" "}
         {/* ✅ Added Toaster for global toast alerts */}
-        <div id="__next">{children}</div>
-        <Footer />
+          <div id="__next">{children}</div>
+          <Footer />
+       
       </body>
     </html>
   );
