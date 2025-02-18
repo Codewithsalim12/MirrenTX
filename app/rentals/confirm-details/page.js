@@ -27,7 +27,7 @@ export default function ConfirmDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-r from-[#1b0918] to-[#280d21] flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">
           Confirm Details
@@ -52,13 +52,13 @@ export default function ConfirmDetails() {
         <div className="flex justify-between mt-6">
           <button
             onClick={() => router.back()}
-            className="flex items-center bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+            className="flex items-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors"
           >
             <FaArrowLeft className="mr-2" /> Back
           </button>
           <button
             onClick={handleConfirm}
-            className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex items-center justify-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
           >
             Confirm <FaCheck className="ml-2" />
           </button>

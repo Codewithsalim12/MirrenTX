@@ -9,9 +9,12 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { ArrowRight } from "lucide-react";
+import ProtectedRoute from "../components/ProtectedRoute";
+
 
 export default function About() {
   return (
+    <ProtectedRoute>
     <div className="min-h-screen bg-gray-100 py-16 px-6">
       {/* Section 1: Top Header with Background Blur */}
       <section
@@ -115,7 +118,6 @@ export default function About() {
       {/* Section 5: Customer Testimonials */}
       <section className="max-w-6xl mx-auto text-center py-12 mb-16 rounded-lg">
         <h2 className="text-3xl sm:text-4xl font-semibold text-gray-800 mb-6 sm:mb-8 tracking-tight flex justify-center items-center gap-2">
-          
           {/* Star icon for the heading */}
           What Our Customers Say
         </h2>
@@ -167,5 +169,6 @@ export default function About() {
         </div>
       </section>
     </div>
+  </ProtectedRoute>
   );
 }

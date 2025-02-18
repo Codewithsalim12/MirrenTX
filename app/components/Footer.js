@@ -117,7 +117,11 @@ const Footer = () => {
             {[
               [FaFacebook, "#", "text-gray-300 hover:text-gray-400"],
               [FaInstagram, "#", "text-gray-300 hover:text-gray-400"],
-              [FaYoutube, "#", "text-gray-300 hover:text-gray-400"],
+              [
+                FaYoutube,
+                "https://youtube.com/@scenicwanderers?si=me6NdoJfKjh8gdYl",
+                "text-gray-300 hover:text-gray-400",
+              ],
             ].map(([Icon, url, colorClass]) => (
               <Link
                 key={url}

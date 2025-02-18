@@ -32,7 +32,7 @@ export default function RentForm() {
       });
 
       if (response.ok) {
-        toast.success("Form submitted successfully!");
+        toast.info("Please wait... Redirecting");
         localStorage.setItem("rentFormData", JSON.stringify(formData));
 
         setTimeout(() => {
@@ -49,7 +49,7 @@ export default function RentForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-r from-[#1b0918] to-[#280d21] flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10"
@@ -115,7 +115,7 @@ export default function RentForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full mt-6 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
+          className="w-full mt-6 bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors flex items-center justify-center"
         >
           {isLoading ? (
             <>

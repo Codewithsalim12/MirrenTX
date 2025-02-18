@@ -48,8 +48,8 @@ export default function PaymentDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-14">
+    <div className="bg-gradient-to-r from-[#1b0918] to-[#280d21] min-h-screen flex items-center justify-center p-4 ">
+      <div className=" p-8 rounded-lg shadow-lg w-full max-w-md mt-16 bg-white">
         <div
           className="flex items-center space-x-2 mb-4 cursor-pointer"
           onClick={() => window.history.back()}
@@ -123,7 +123,7 @@ export default function PaymentDetails() {
             {/* WhatsApp Submit Button */}
             <button
               onClick={handleWhatsAppSubmit}
-              className="w-full bg-green-500 text-white py-4 rounded-lg hover:bg-green-600 mt-4 transition-colors"
+              className="w-full bg-purple-700 text-white py-4 rounded-lg hover:bg-purple-800 mt-4 transition-colors"
             >
               Send Payment Screenshot on WhatsApp
             </button>

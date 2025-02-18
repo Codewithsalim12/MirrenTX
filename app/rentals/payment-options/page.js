@@ -27,7 +27,7 @@ export default function PaymentOptions() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="bg-gradient-to-r from-[#1b0918] to-[#280d21] min-h-screen  flex items-center justify-center p-4 ">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div
           className="flex items-center space-x-2 mb-4 cursor-pointer"
@@ -43,7 +43,7 @@ export default function PaymentOptions() {
           <button
             onClick={handlePayOnline}
             disabled={isLoading}
-            className="w-full flex items-center justify-center bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="w-full flex items-center justify-center  bg-[#FF9119] hover:bg-[#FF9119]/80 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
           >
             {isLoading ? (
               <>
@@ -57,7 +57,7 @@ export default function PaymentOptions() {
           </button>
           <button
             onClick={handleWhatsApp}
-            className="w-full flex items-center justify-center bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
           >
             <FaWhatsapp className="mr-2" /> Chat on WhatsApp
           </button>

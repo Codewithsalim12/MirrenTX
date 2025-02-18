@@ -11,6 +11,8 @@ import {
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import ProtectedRoute from "../components/ProtectedRoute";
+
 const images = [
   "/about-header.avif",
   "/camera.avif",
@@ -83,6 +85,7 @@ export default function Gallery() {
   };
   const [isPlaying, setIsPlaying] = useState(false);
   return (
+    <ProtectedRoute>
     <div className="min-h-screen bg-gray-100 py-16 px-6">
       {/* Section 1: Slider */}
       <section className="relative w-full">
@@ -244,5 +247,6 @@ export default function Gallery() {
         </div>
       </section>
     </div>
+    </ProtectedRoute>
   );
 }
