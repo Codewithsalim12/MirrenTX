@@ -56,7 +56,7 @@ const SignIn = () => {
     <div className="h-screen flex items-center justify-center bg-gradient-to-r from-[#1b0918] to-[#280d21]">
       <Card className=" mt-16 w-full max-w-md p-6 sm:p-8 shadow-xl border border-border/40 rounded-2xl bg-white">
         <CardHeader>
-          <CardTitle className="text-center text-2xl font-semibold">
+          <CardTitle className="text-center text-gray-900 text-2xl font-semibold">
             Welcome Back
           </CardTitle>
           <CardDescription className="text-sm text-center text-gray-500">
@@ -115,7 +115,7 @@ const SignIn = () => {
               size="lg"
               className="border border-gray-300 hover:bg-gray-100 shadow-md rounded-full p-2 transition-transform transform hover:scale-110"
             >
-              <FaGithub className="size-6 text-gray-800" />
+              <FaGithub className="size-6 text-gray-800 bg-white" />
             </Button>
           </div>
 
