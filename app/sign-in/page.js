@@ -105,7 +105,7 @@ const SignIn = () => {
               onClick={(e) => handleProvider(e, "google")}
               variant="outline"
               size="lg"
-              className="border border-gray-300 hover:bg-gray-100 shadow-md rounded-full p-2 transition-transform transform hover:scale-110"
+              className="border border-gray-300 bg-white hover:bg-gray-100 shadow-md rounded-full p-2 transition-transform transform hover:scale-110"
             >
               <FcGoogle className="size-6" />
             </Button>
@@ -113,9 +113,9 @@ const SignIn = () => {
               onClick={(e) => handleProvider(e, "github")}
               variant="outline"
               size="lg"
-              className="border border-gray-300 hover:bg-gray-100 shadow-md rounded-full p-2 transition-transform transform hover:scale-110"
+              className="border border-gray-300 bg-white hover:bg-gray-100 shadow-md rounded-full p-2 transition-transform transform hover:scale-110"
             >
-              <FaGithub className="size-6 text-gray-800 bg-white" />
+              <FaGithub className="size-6 text-gray-800" />
             </Button>
           </div>
 
