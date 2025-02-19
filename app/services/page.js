@@ -47,7 +47,7 @@ export default function Services() {
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section with Slider */}
-        <div className="relative h-[70vh] overflow-hidden">
+        <div className="relative h-[70vh] overflow-hidden mx-5 rounded-lg">
           <Slider {...settings} className="h-full">
             {sliderImages.map((img, index) => (
               <div key={index} className="h-[70vh] relative group">
@@ -59,7 +59,7 @@ export default function Services() {
                 />
 
                 {/* Subtle Dark Overlay for Better Readability */}
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-0"></div>
 
                 {/* Text Container with Enhanced Styling */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
