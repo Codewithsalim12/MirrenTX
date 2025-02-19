@@ -14,6 +14,8 @@ import {
   FaVideo,
   FaCampground,
   FaLightbulb,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -48,33 +50,46 @@ export default function Services() {
         <div className="relative h-[70vh] overflow-hidden">
           <Slider {...settings} className="h-full">
             {sliderImages.map((img, index) => (
-              <div key={index} className="h-[70vh] relative">
+              <div key={index} className="h-[70vh] relative group">
+                {/* Background Image with Zoom Effect */}
                 <img
                   src={img}
                   alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transform transition duration-700 ease-in-out group-hover:scale-105"
                 />
-                {/* Dark Overlay with subtle opacity */}
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>{" "}
-                {/* Adjusted opacity */}
-                {/* Text Container */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-50 tracking-tight leading-tight mt-10 drop-shadow-lg">
+
+                {/* Subtle Dark Overlay for Better Readability */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+                {/* Text Container with Enhanced Styling */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-50 tracking-tight leading-tight mt-10 drop-shadow-2xl">
                     Premium Rental Services
                   </h1>
-                  <p className="text-lg mt-3 mb-4 max-w-2xl">
+                  <p className="text-lg mt-3 mb-6 max-w-2xl text-gray-200">
                     From professional event setups to top-notch logistics, we
                     ensure a hassle-free experience.
                   </p>
+
+                  {/* Call to Action Button with 3D Hover Effect */}
                   <Link href="/rentals">
-                    <button className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
-                      <FaShoppingCart /> Book Now
+                    <button className="flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-700 px-6 py-3 rounded-xl text-lg font-semibold text-white shadow-lg hover:from-green-600 hover:to-green-800 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                      <FaShoppingCart className="text-xl" />
+                      Book Now
                     </button>
                   </Link>
                 </div>
               </div>
             ))}
           </Slider>
+
+          {/* Custom Navigation Arrows */}
+          {/* <button className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full shadow-md hover:bg-white/40 transition">
+            <FaChevronLeft className="text-white text-2xl" />
+          </button>
+          <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full shadow-md hover:bg-white/40 transition">
+            <FaChevronRight className="text-white text-2xl" />
+          </button> */}
         </div>
 
         {/* Services Section */}
@@ -105,22 +120,24 @@ export default function Services() {
         {/* Pricing Plans Section */}
         <section
           id="Pricing"
-          className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20 text-center"
+          className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20 px-4 md:px-10 text-center"
         >
           <h2 className="text-4xl font-bold">Our Pricing Plans</h2>
           <p className="text-lg mt-3 max-w-3xl mx-auto">
             Choose a plan that fits your needs. We offer flexible pricing
             options for every event size.
           </p>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+          {/* Pricing Cards */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
                 id: 1,
                 title: "Lighting & Generator",
                 description:
-                  "Enhance your event with beautiful lighting setups and reliable generator support.",
+                  "Enhance your event with beautiful lighting setups and reliable generator.",
                 price: "$150",
-                icon: <FaLightbulb className="w-12 h-12 text-indigo-600" />,
+                icon: <FaLightbulb className="w-14 h-14 text-blue-600" />,
                 subTitle: "Lighting with Generator",
               },
               {
@@ -129,7 +146,7 @@ export default function Services() {
                 description:
                   "Capture your special moments with top-quality DSLR cameras for your event.",
                 price: "$200",
-                icon: <FaCamera className="w-12 h-12 text-indigo-600" />,
+                icon: <FaCamera className="w-14 h-14 text-blue-600" />,
                 subTitle: "High-Resolution Photography",
               },
               {
@@ -138,26 +155,34 @@ export default function Services() {
                 description:
                   "Perfect for outdoor events, offering tents and camping equipment for all sizes.",
                 price: "$300",
-                icon: <FaCampground className="w-12 h-12 text-indigo-600" />,
+                icon: <FaCampground className="w-14 h-14 text-blue-600" />,
                 subTitle: "Comfortable Outdoor Setup",
               },
             ].map((plan) => (
               <div
                 key={plan.id}
-                className="bg-white text-gray-900 p-8 rounded-lg shadow-xl transform transition duration-300 hover:scale-105 flex flex-col items-center justify-center text-center relative overflow-hidden"
+                className="bg-white/90 backdrop-blur-lg text-gray-900 p-8 rounded-xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl relative overflow-hidden flex flex-col items-center text-center border border-gray-200"
               >
-                {/* Gradient Background for Icon */}
+                {/* Gradient Border on Top */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500"></div>
+
                 {/* Icon Container */}
-                <div className="p-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6">
+                <div className="p-5 bg-blue-100 rounded-full shadow-lg mb-6">
                   {plan.icon}
                 </div>
+
+                {/* Title & Subtitle */}
                 <h3 className="text-2xl font-semibold">{plan.title}</h3>
                 <p className="text-gray-600 mt-2">{plan.description}</p>
                 <p className="text-lg text-gray-500 mt-1">{plan.subTitle}</p>
+
+                {/* Price */}
                 <p className="text-3xl font-bold mt-4">
-                  {plan.price} <span className="text-lg">Starting from</span>
+                  {plan.price}{" "}
+                  <span className="text-lg text-gray-600">/ Starting from</span>
                 </p>
+
+                {/* Call to Action */}
                 <Link href="/rentals">
                   <button className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 flex items-center justify-center space-x-2 transition-all">
                     <span>Book Now</span>
@@ -183,17 +208,24 @@ export default function Services() {
         </section>
 
         {/* Additional Info Section */}
-        <section className="py-20 bg-gray-100">
+        <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6">
+            {/* Image Section with Shadow & Rounded Corners */}
             <div className="md:w-1/2">
-              <img
-                src="/services-img.avif"
-                alt="Service Details"
-                className="w-full rounded-lg shadow-lg"
-              />
+              <div className="relative">
+                <img
+                  src="/services-img.avif"
+                  alt="Service Details"
+                  className="w-full rounded-xl shadow-2xl transform transition duration-500 hover:scale-105"
+                />
+                {/* Decorative Overlay */}
+                <div className="absolute top-5 left-5 w-16 h-16 bg-blue-500 opacity-20 rounded-full blur-2xl"></div>
+              </div>
             </div>
-            <div className="md:w-1/2 text-center md:text-left">
-              <h2 className="text-4xl font-bold text-gray-800">
+
+            {/* Content Section */}
+            <div className="md:w-1/2 text-center md:text-left bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg">
+              <h2 className="text-4xl font-extrabold text-gray-800 leading-tight">
                 Comprehensive Event Solutions
               </h2>
               <p className="text-lg text-gray-600 mt-4">
@@ -201,13 +233,28 @@ export default function Services() {
                 and professional photography. Ensure a seamless experience with
                 our dedicated team.
               </p>
+
+              {/* Animated Button */}
               <Link
-                className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition font-semibold"
+                className="mt-6 inline-flex items-center bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-600 transition transform hover:scale-105 font-semibold"
                 href="/services"
               >
                 Explore Services
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  ></path>
+                </svg>
               </Link>
-             
             </div>
           </div>
         </section>

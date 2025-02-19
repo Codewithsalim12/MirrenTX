@@ -212,6 +212,13 @@ const Navbar = () => {
             Services
           </Link>
           <Link
+            href="/WebDevelopment"
+            className="block hover:text-green-100 transition-colors duration-300"
+            onClick={handleLinkClick}
+          >
+            Web Development
+          </Link>
+          <Link
             href="/About"
             className="block hover:text-green-100 transition-colors duration-300"
             onClick={handleLinkClick}
