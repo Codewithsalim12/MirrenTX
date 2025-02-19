@@ -48,7 +48,7 @@ export default function ServiceDetail() {
 
   return (
     <section className="max-w-6xl mx-auto py-16 px-6 flex flex-col md:flex-row items-center gap-12 bg-white rounded-lg shadow-2xl">
-      {/* Back Button - Now on the Top Left */}
+      {/* Back Button */}
       <Link
         href="/services"
         className="mt-20 fixed bottom-10 right-6 bg-purple-900 text-white p-3 rounded-full text-sm hover:bg-gray-700 transition-all shadow-lg flex items-center gap-2"
@@ -68,13 +68,21 @@ export default function ServiceDetail() {
 
       {/* Right Side: Content */}
       <div className="md:w-1/2 space-y-6 text-center md:text-left">
-        <div className="text-6xl">{service.icon}</div>
+        {/* Center the icon on small devices */}
+        <div className="text-6xl md:text-left flex justify-center md:justify-start">
+          {service.icon}
+        </div>
+
         <h1 className="text-4xl font-bold text-gray-900">{service.name}</h1>
-        <p className="text-gray-700 leading-relaxed">
+
+        {/* Properly formatted description with better spacing on small devices */}
+        <p className="text-gray-700 leading-relaxed md:text-left text-justify">
           {service.longDescription}
         </p>
+
+        {/* Button with proper margin on all devices */}
         <Link href="/Contact">
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition-all duration-300 text-lg font-medium">
+          <button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition-all duration-300 text-lg font-medium mt-6">
             {service.cta}
           </button>
         </Link>

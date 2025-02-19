@@ -14,7 +14,7 @@ export default function PaymentOptions() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/8082815863?text=Can%20I%20get%20more%20info%20about%20the%20rentals%3F",
+      "https://wa.me/918082815863?text=Can%20I%20get%20more%20info%20about%20the%20rentals%3F",
       "_blank"
     );
   };
@@ -27,27 +27,33 @@ export default function PaymentOptions() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#1b0918] to-[#280d21] min-h-screen  flex items-center justify-center p-4 ">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="bg-gradient-to-r from-[#1b0918] to-[#280d21] min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 sm:p-8 rounded-xl shadow-xl w-full max-w-md text-white">
+        {/* Back Button */}
         <div
-          className="flex items-center space-x-2 mb-4 cursor-pointer"
+          className="flex items-center space-x-2 mb-4 cursor-pointer hover:text-gray-300 transition-colors"
           onClick={() => window.history.back()}
         >
-          <FaArrowLeft className="text-blue-600 text-xl" />
-          <span className="text-lg text-blue-600">Back</span>
+          <FaArrowLeft className="text-white text-xl" />
+          <span className="text-lg">Back</span>
         </div>
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">
-          Payment Options
-        </h2>
+
+        {/* Title */}
+        <h2 className="text-2xl font-bold mb-4 text-center">Payment Options</h2>
+        <p className="text-center text-white/80 text-sm mb-6">
+          Choose a preferred payment method to proceed with your rental.
+        </p>
+
+        {/* Buttons */}
         <div className="space-y-4">
           <button
             onClick={handlePayOnline}
             disabled={isLoading}
-            className="w-full flex items-center justify-center  bg-[#FF9119] hover:bg-[#FF9119]/80 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="w-full flex items-center justify-center bg-[#FF9119] hover:bg-[#FF9119]/80 text-white py-3 rounded-lg transition-all font-medium shadow-md"
           >
             {isLoading ? (
               <>
-                <FaSpinner className="animate-spin mr-2" /> Loading...
+                <FaSpinner className="animate-spin mr-2" /> Processing...
               </>
             ) : (
               <>
@@ -55,13 +61,19 @@ export default function PaymentOptions() {
               </>
             )}
           </button>
+
           <button
             onClick={handleWhatsApp}
-            className="w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition-all font-medium shadow-md"
           >
             <FaWhatsapp className="mr-2" /> Chat on WhatsApp
           </button>
         </div>
+
+        {/* Footer */}
+        <p className="text-xs text-center text-white/70 mt-6">
+          Secure & hassle-free transactions.
+        </p>
       </div>
     </div>
   );

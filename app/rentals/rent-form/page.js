@@ -1,7 +1,14 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { FaSpinner } from "react-icons/fa";
+import {
+  FaSpinner,
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaHome,
+} from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,70 +59,89 @@ export default function RentForm() {
     <div className="min-h-screen bg-gradient-to-r from-[#1b0918] to-[#280d21] flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10"
+        className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 sm:p-8 rounded-xl shadow-xl w-full max-w-md text-white mt-16"
       >
-        <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">
-          Rent Now
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Rent Now</h2>
         <div className="space-y-4">
-          <input
-            type="text"
-            placeholder="Name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full p-2 border rounded-lg text-gray-800"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="w-full p-2 border rounded-lg text-gray-800"
-            required
-          />
-          <input
-            type="tel"
-            placeholder="Contact"
-            value={formData.contact}
-            onChange={(e) =>
-              setFormData({ ...formData, contact: e.target.value })
-            }
-            className="w-full p-2 border rounded-lg text-gray-800"
-            required
-          />
-          <select
-            value={formData.district}
-            onChange={(e) =>
-              setFormData({ ...formData, district: e.target.value })
-            }
-            className="w-full bg-gray-50 p-2 border rounded-lg text-gray-800"
-            required
-          >
-            <option value="">Select District</option>
-            {districts.map((district) => (
-              <option key={district} value={district}>
-                {district}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Street Address"
-            value={formData.streetAddress}
-            onChange={(e) =>
-              setFormData({ ...formData, streetAddress: e.target.value })
-            }
-            className="w-full p-2 border rounded-lg text-gray-800"
-            required
-          />
+          <div className="relative">
+            <FaUser className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              className="w-full p-2 pl-10 border rounded-lg bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
+          <div className="relative">
+            <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="w-full p-2 pl-10 border rounded-lg bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
+          <div className="relative">
+            <FaPhone className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="tel"
+              placeholder="Contact"
+              value={formData.contact}
+              onChange={(e) =>
+                setFormData({ ...formData, contact: e.target.value })
+              }
+              className="w-full p-2 pl-10 border rounded-lg bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
+          <div className="relative">
+            <FaMapMarkerAlt className="absolute left-3 top-3 text-gray-400" />
+            <select
+              value={formData.district}
+              onChange={(e) =>
+                setFormData({ ...formData, district: e.target.value })
+              }
+              className="w-full p-2 pl-10 border rounded-lg bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            >
+              <option className="text-gray-800" value="">Select District</option>
+              {districts.map((district) => (
+                <option
+                  key={district}
+                  value={district}
+                  className="text-gray-900"
+                >
+                  {district}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="relative">
+            <FaHome className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Street Address"
+              value={formData.streetAddress}
+              onChange={(e) =>
+                setFormData({ ...formData, streetAddress: e.target.value })
+              }
+              className="w-full p-2 pl-10 border rounded-lg bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
         </div>
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full mt-6 bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition-colors flex items-center justify-center"
+          className="w-full mt-6 bg-purple-700 text-white py-2 rounded-lg transition-all flex items-center justify-center shadow-md transform hover:-translate-y-1 hover:bg-purple-600 active:scale-95"
         >
           {isLoading ? (
             <>
