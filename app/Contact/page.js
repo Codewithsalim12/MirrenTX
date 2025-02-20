@@ -149,7 +149,7 @@ export default function Contact() {
         <ToastContainer />
 
         <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-16">
-          <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+          <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg mt-10">
             <h2 className="text-3xl font-bold mb-4 text-gray-800">
               Get in Touch
             </h2>

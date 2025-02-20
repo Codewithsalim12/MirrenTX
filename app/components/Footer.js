@@ -61,7 +61,7 @@ const Footer = () => {
               {[
                 ["Contact", "/Contact"],
                 ["Feedback", "/Feedback"],
-                ["Pricing", "/services"],
+                ["Terms of Service", "/TermsofService"],
               ].map(([title, url]) => (
                 <li key={title}>
                   <Link

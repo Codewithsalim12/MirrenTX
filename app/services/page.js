@@ -50,7 +50,7 @@ export default function Services() {
   }, []);
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 ">
         {/* Hero Section with Slider */}
         <div className="relative w-full h-[500px] overflow-hidden">
           <AnimatePresence mode="wait">
@@ -68,9 +68,11 @@ export default function Services() {
                   {slides[currentIndex].title}
                 </h2>
                 <p className="text-lg">{slides[currentIndex].subtitle}</p>
-                <button className="text-white bg-gradient-to-r from-green-500 to-teal-500 transition-all hover:from-green-600 hover:to-teal-600 px-10 py-4 rounded-lg shadow-md">
-                  Book Now
-                </button>
+                <Link href="/rentals">
+                  <button className="text-white bg-gradient-to-r from-green-500 to-teal-500 transition-all hover:from-green-600 hover:to-teal-600 px-10 py-4 rounded-lg shadow-md">
+                    Book Now
+                  </button>
+                </Link>
               </div>
             </motion.div>
           </AnimatePresence>
