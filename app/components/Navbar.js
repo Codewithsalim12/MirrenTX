@@ -39,9 +39,16 @@ const Navbar = () => {
             className="text-3xl flex justify-center items-center font-extrabold text-white hover:text-green-100 transition-colors duration-300"
           >
             <span>
-              <FaKey className="text-white transition-transform transform hover:rotate-12 hover:scale-110 duration-300 mr-1" />
+              <div className="bg-gradient-to-r from-purple-200 to-white rounded-full mr-2 p-0">
+                <img
+                  className="transition-transform transform hover:rotate-12 hover:scale-110 duration-300"
+                  src="/deal.png"
+                  width={50}
+                  alt="Deal Icon"
+                />
+              </div>
             </span>
-            <p className="logo text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-50 to-white hover:text-transparent transition-colors duration-300">
+            <p className="logo text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white hover:text-transparent transition-colors duration-300">
               MirRenTX
             </p>
           </Link>
@@ -132,7 +139,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center text-[17px] font-medium  text-blue-50 hover:text-blue-100 transition-colors duration-300"
+                className="flex items-center text-[17px] font-medium text-blue-50 hover:text-blue-100 transition-colors duration-300"
               >
                 <span>{session.user?.name}</span>
                 <Avatar className="ml-2">
@@ -149,7 +156,7 @@ const Navbar = () => {
                 <div className="absolute right-0 mt-2 w-48 bg-gradient-to-r from-green-500 to-teal-500 rounded-md shadow-lg transition-all duration-300 outline outline-1">
                   <button
                     onClick={handleSignOut}
-                    className=" flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500    hover:from-green-500 hover:to-teal-500  transition-all duration-300 rounded-full"
+                    className="flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-500 hover:to-teal-500 transition-all duration-300 rounded-full"
                   >
                     {" "}
                     <FaSignOutAlt className="text-lg mt-1" />
@@ -160,18 +167,21 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Button className="bg-green-600 outline outline-2 outline-gray-800 shadow-xl hover:bg-green-700 transition-all duration-300 rounded-xl px-6">
+              <Button className="relative overflow-hidden bg-green-600 text-white shadow-lg rounded-xl px-6 py-2 transition-all duration-300 hover:bg-green-700 hover:shadow-xl focus:ring-4 focus:ring-green-400">
                 <Link
-                  className="font-semibold flex justify-center items-center gap-1"
+                  className="font-semibold flex items-center gap-2"
                   href="/sign-in"
                 >
-                  {/* <FaUser className="text-lg" /> */}
-                  Sign In
+                  <span>Sign In</span>
                 </Link>
               </Button>
-              <Button className="bg-purple-800 hover:bg-purple-900 transition-all duration-300 shadow-lg rounded-xl px-5">
-                <Link className="font-semibold" href="/sign-up">
-                  Sign Up
+
+              <Button className="relative overflow-hidden bg-purple-800 text-white shadow-lg rounded-xl px-6 py-2 transition-all duration-300 hover:bg-purple-900 hover:shadow-xl focus:ring-4 focus:ring-purple-500">
+                <Link
+                  className="font-semibold flex items-center gap-2"
+                  href="/sign-up"
+                >
+                  <span>Sign Up</span>
                 </Link>
               </Button>
             </>
@@ -189,86 +199,105 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 shadow-lg p-6 flex flex-col space-y-6">
-          <Link
-            href="/"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Home
-          </Link>
-          <Link
-            href="/rentals"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Rentals
-          </Link>
-          <Link
-            href="/services"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Services
-          </Link>
-          <Link
-            href="/WebDevelopment"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Web Development
-          </Link>
-          <Link
-            href="/About"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            About Us
-          </Link>
-          <Link
-            href="/Contact"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Contact Us
-          </Link>
-          <Link
-            href="/Gallery"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Gallery
-          </Link>
-          <Link
-            href="/Feedback"
-            className="block hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
-          >
-            Feedback
-          </Link>
-          {session ? (
+        <div className="md:hidden fixed inset-0 bg-black bg-opacity-75 z-40">
+          <div className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-green-500 to-teal-500 shadow-lg p-6 flex flex-col space-y-6 transform transition-transform duration-300 ease-in-out">
             <button
-              onClick={handleSignOut}
-              className=" flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500    hover:from-green-500 hover:to-teal-500 outline outline-1 transition-all duration-300 rounded-full"
+              onClick={() => setMenuOpen(false)}
+              className="self-end text-white"
             >
-              {" "}
-              <FaSignOutAlt className="text-lg mt-1" />
-              <span>Logout</span>
+              <X size={30} />
             </button>
-          ) : (
-            <>
-              <Button className="w-full rounded-xl bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-lg">
-                <Link className="font-semibold" href="/sign-in">
-                  Sign In
-                </Link>
-              </Button>
-              <Button className="w-full bg-purple-800 hover:bg-purple-900 transition-all duration-300 rounded-xl shadow-lg">
-                <Link className="font-semibold" href="/sign-up">
-                  Sign Up
-                </Link>
-              </Button>
-            </>
-          )}
+            <Link
+              href="/"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Home
+            </Link>
+            <Link
+              href="/rentals"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Rentals
+            </Link>
+            <Link
+              href="/services"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Services
+            </Link>
+            <Link
+              href="/WebDevelopment"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Web Development
+            </Link>
+            <Link
+              href="/About"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/Contact"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/Gallery"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Gallery
+            </Link>
+            <Link
+              href="/Feedback"
+              className="block hover:text-green-100 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              Feedback
+            </Link>
+            {session ? (
+              <button
+                onClick={handleSignOut}
+                className="flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-500 hover:to-teal-500 outline outline-1 transition-all duration-300 rounded-full"
+              >
+                {" "}
+                <FaSignOutAlt className="text-lg mt-1" />
+                <span>Logout</span>
+              </button>
+            ) : (
+              <>
+                <Button
+                  onClick={handleLinkClick}
+                  className="w-full rounded-xl bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-lg"
+                >
+                  <Link className="font-semibold" href="/sign-in">
+                    Sign In
+                  </Link>
+                </Button>
+                <Button
+                  onClick={handleLinkClick}
+                  className="w-full bg-purple-800 hover:bg-purple-900 transition-all duration-300 rounded-xl shadow-lg"
+                >
+                  <Link className="font-semibold" href="/sign-up">
+                    Sign Up
+                  </Link>
+                </Button>
+              </>
+            )}
+          </div>
+          {/* Mobile Footer */}
+          <div className="md:hidden fixed right-0 bottom-0 w-64 bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 text-center shadow-lg">
+            <p className="text-sm">© 2025 MirRenTX. All rights reserved.</p>
+          </div>
+          ;
         </div>
       )}
     </nav>
