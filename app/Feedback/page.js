@@ -60,7 +60,7 @@ export default function FeedbackPage() {
         </p>
       </div> */}
         {/* Section 1: Intro */}
-        <section className="max-w-3xl mx-auto text-center mt-16 mb-12">
+        <section className="max-w-3xl mx-auto text-center mt-28 mb-12">
           <h1 className="text-4xl font-bold text-gray-900">
             We Appreciate Your Feedback
           </h1>

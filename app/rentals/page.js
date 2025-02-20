@@ -70,10 +70,10 @@ export default function RentalsPage() {
           {/* Gradient & Dark Overlay for Text Visibility */}
 
           <div className="relative z-10">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mt-10 drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mt-16 drop-shadow-lg">
               Available Rentals
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-800 max-w-3xl mx-auto mb-6 sm:mb-8 opacity-90">
+            <p className="text-base sm:text-lg md:text-xl text-gray-800 max-w-3xl mx-auto sm:mb-8 opacity-90">
               Rent everything you need for your events—from cameras to
               generators.
             </p>
