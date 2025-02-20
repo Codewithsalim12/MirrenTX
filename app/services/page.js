@@ -17,81 +17,75 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
-import Slider from "react-slick";
+import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProtectedRoute from "../components/ProtectedRoute";
-const sliderImages = [
-  "/hero-mg.avif",
-  "/slider2.avif",
-  "/camping-img-slider.avif",
+import Slider from "react-slick";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+const slides = [
+  {
+    id: 1,
+    title: "Our Services",
+    subtitle: "High-quality services tailored for you.",
+    image: "/slider2.avif",
+  },
+  {
+    id: 2,
+    title: "Pricing Plans",
+    subtitle: "Affordable plans for every budget.",
+    image: "/slider1.avif",
+  },
 ];
 
 export default function Services() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    fade: true,
-    arrows: false,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
-  };
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section with Slider */}
-        <div className="relative h-[70vh] overflow-hidden mx-5 rounded-lg">
-          <Slider {...settings} className="h-full">
-            {sliderImages.map((img, index) => (
-              <div key={index} className="h-[70vh] relative group">
-                {/* Background Image with Zoom Effect */}
-                <img
-                  src={img}
-                  alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover transform transition duration-700 ease-in-out group-hover:scale-105"
-                />
-
-                {/* Subtle Dark Overlay for Better Readability */}
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-0"></div>
-
-                {/* Text Container with Enhanced Styling */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-50 tracking-tight leading-tight mt-10 drop-shadow-2xl">
-                    Premium Rental Services
-                  </h1>
-                  <p className="text-lg mt-3 mb-6 max-w-2xl text-gray-200">
-                    From professional event setups to top-notch logistics, we
-                    ensure a hassle-free experience.
-                  </p>
-
-                  {/* Call to Action Button with 3D Hover Effect */}
-                  <Link href="/rentals">
-                    <button className="flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-700 px-6 py-3 rounded-xl text-lg font-semibold text-white shadow-lg hover:from-green-600 hover:to-green-800 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                      <FaShoppingCart className="text-xl" />
-                      Book Now
-                    </button>
-                  </Link>
-                </div>
+        <div className="relative w-full h-[500px] overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slides[currentIndex].id}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 flex items-center justify-center bg-cover bg-center text-white"
+              style={{ backgroundImage: `url(${slides[currentIndex].image})` }}
+            >
+              <div className="bg-gray-800 bg-opacity-50 p-8 rounded-lg text-center">
+                <h2 className="text-3xl font-bold">
+                  {slides[currentIndex].title}
+                </h2>
+                <p className="text-lg">{slides[currentIndex].subtitle}</p>
+                <button className="text-white bg-gradient-to-r from-green-500 to-teal-500 transition-all hover:from-green-600 hover:to-teal-600 px-10 py-4 rounded-lg shadow-md">
+                  Book Now
+                </button>
               </div>
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-3">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`w-4 h-4 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-purple-800" : "bg-gray-400"
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              />
             ))}
-          </Slider>
-
-          {/* Custom Navigation Arrows */}
-          {/* <button className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full shadow-md hover:bg-white/40 transition">
-            <FaChevronLeft className="text-white text-2xl" />
-          </button>
-          <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 p-3 rounded-full shadow-md hover:bg-white/40 transition">
-            <FaChevronRight className="text-white text-2xl" />
-          </button> */}
+          </div>
         </div>
-
         {/* Services Section */}
         <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service) => (
