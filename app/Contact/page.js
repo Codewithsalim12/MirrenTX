@@ -149,15 +149,15 @@ export default function Contact() {
         <ToastContainer />
 
         <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-16">
-          <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg mt-10">
+          <div className="w-full h-[80vh] md:w-1/2 bg-white p-6 rounded-lg shadow-lg mt-10">
             <h2 className="text-3xl font-bold mb-4 text-gray-800">
               Get in Touch
             </h2>
             <p className="text-gray-700 font-medium mb-4">
               We’d love to hear from you! Whether you have questions, feedback,
-              or just want to connect, feel free to reach out. Our team is here
-              to assist you and ensure you have a great experience. Don’t
-              hesitate to get in touch!
+              or want to connect, we’re here to assist you and ensure you have
+              the best experience possible. Feel free to reach out, and we’ll be
+              happy to help!
             </p>
             <div className="space-y-4">
               <p className="flex items-center gap-2 text-gray-700">
