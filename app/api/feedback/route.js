@@ -18,7 +18,7 @@ export async function POST(req) {
       );
     }
 
-    if (feedback.length > 300) {
+    if (feedback.length > 500) {
       return Response.json(
         { success: false, message: "Feedback must be under 300 characters." },
         { status: 400 }

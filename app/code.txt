@@ -471,4 +471,160 @@ export default function Navbar() {
     </nav>
   );
 }
+// Feedback 
+"use client";
 
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { FaStar } from "react-icons/fa";
+import ProtectedRoute from "../components/ProtectedRoute";
+
+export default function FeedbackPage() {
+  const [form, setForm] = useState({ name: "", email: "", feedback: "" });
+  const [loading, setLoading] = useState(false);
+  const [rating, setRating] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.name || !form.email || !form.feedback) {
+      toast.error("All fields are required.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      toast.error("Invalid email address.");
+      return;
+    }
+
+    if (form.feedback.length > 300) {
+      toast.error("Feedback must be under 300 characters.");
+      return;
+    }
+
+    setLoading(true);
+
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+    setLoading(false);
+
+    if (data.success) {
+      toast.success(data.message);
+      setForm({ name: "", email: "", feedback: "" });
+    } else {
+      toast.error(data.message);
+    }
+  };
+
+  const handleStarClick = async (starValue) => {
+    setRating(starValue);
+    setShowMessage(true);
+
+    const starFeedback = {
+      1: "😢 We're sorry you had a bad experience.",
+      2: "🙁 We appreciate your feedback.",
+      3: "😐 Thanks for your input!",
+      4: "😊 Glad you liked it!",
+      5: "🤩 Thank you for your amazing feedback!",
+    };
+
+    toast.success(starFeedback[starValue]);
+
+    await fetch("/api/sendStarFeedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rating: starValue }),
+    });
+  };
+
+  return (
+    <ProtectedRoute>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-white p-6">
+        <section className="max-w-3xl mx-auto text-center mt-28 mb-12">
+          <h1 className="text-4xl font-bold text-gray-900">
+            We Appreciate Your Feedback
+          </h1>
+          <p className="text-lg text-gray-600 mt-4">
+            Help us improve by sharing your experience with our services.
+          </p>
+        </section>
+
+        {!showMessage ? (
+          <div className="flex justify-center gap-2 text-yellow-400 text-3xl mb-4">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                className="cursor-pointer"
+                onClick={() => handleStarClick(star)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-2xl font-semibold mt-4">
+            {rating === 1 && "😢 We're sorry you had a bad experience."}
+            {rating === 2 && "🙁 We appreciate your feedback."}
+            {rating === 3 && "😐 Thanks for your input!"}
+            {rating === 4 && "😊 Glad you liked it!"}
+            {rating === 5 && "🤩 Thank you for your amazing feedback!"}
+          </div>
+        )}
+
+        <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-lg w-full border border-gray-200">
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            Share Your Feedback
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full text-gray-800 p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full p-3 text-gray-800 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+              required
+            />
+            <textarea
+              name="feedback"
+              placeholder="Your Feedback (Max 300 characters)"
+              value={form.feedback}
+              onChange={handleChange}
+              maxLength="300"
+              className="w-full p-3 text-gray-800 border rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400"
+              required
+            />
+            <p className="text-gray-500 text-sm">Max 300 characters allowed.</p>
+            <p className="text-gray-600 text-center font-semibold text-sm">
+              Kindly take a moment to tell us what you think
+            </p>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-indigo-600 text-white p-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-md"
+            >
+              {loading ? "Submitting..." : "Share My Feedback"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
+}

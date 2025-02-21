@@ -164,6 +164,13 @@ const Navbar = () => {
                   </button>
                 </div>
               )}
+              {/* <Link
+                href="/AdminPannel"
+                className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
+                onClick={handleLinkClick}
+              >
+                Feedback
+              </Link> */}
             </div>
           ) : (
             <>
