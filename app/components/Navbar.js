@@ -48,8 +48,8 @@ const Navbar = () => {
                 />
               </div>
             </span>
-            <p className="logo text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white hover:text-transparent transition-colors duration-300">
-              MirRenTX
+            <p className="logo text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white hover:text-transparent transition-colors duration-300">
+             MIRRENTX
             </p>
           </Link>
         </div>
