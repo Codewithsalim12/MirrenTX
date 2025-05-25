@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 const slides = [
   {
-    image: "/readmore-img.avif",
+    image: "/Readmore-img.avif",
     title: "Who We Are",
     description: "Discover our journey and passion for excellence.",
   },
