@@ -26,77 +26,76 @@ const Navbar = () => {
   };
 
   const handleLinkClick = () => {
-    setMenuOpen(false); // Close menu when a link is clicked
+    setMenuOpen(false);
   };
 
   return (
-    <nav className="bg-gradient-to-r from-green-500 to-teal-500 text-white fixed w-full shadow-lg z-50">
-      <div className="container mx-auto flex justify-between px-6 py-4 items-center">
+    <nav className="bg-gradient-to-r from-green-600 to-teal-600 text-white fixed w-full shadow-xl z-50">
+      <div className="container mx-auto flex justify-between px-6 py-3 items-center">
         {/* Logo Section */}
         <div className="flex items-center gap-2">
-          <Link
-            href="/"
-            className="text-3xl flex justify-center items-center font-extrabold text-white hover:text-green-100 transition-colors duration-300"
-          >
-            <span>
-              <div className="bg-gradient-to-r from-purple-200 to-white rounded-full mr-2 p-0">
-                <img
-                  className="transition-transform transform hover:rotate-12 hover:scale-110 duration-300"
-                  src="/deal.png"
-                  width={50}
-                  alt="Deal Icon"
-                />
-              </div>
+          <Link href="/" className="flex items-center group">
+            <div className="bg-gradient-to-r from-purple-200 to-white rounded-full p-1 mr-2 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110">
+              <img
+                className="w-10 h-10 object-contain"
+                src="/deal.png"
+                alt="Deal Icon"
+              />
+            </div>
+            <span className="text-3xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-white group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:to-white transition-all duration-500">
+              MIRRENTX
             </span>
-            <p className="logo text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white hover:text-transparent transition-colors duration-300">
-             MIRRENTX
-            </p>
           </Link>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-6 items-center">
           <Link
             href="/"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             Home
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/rentals"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             Rentals
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
           {/* Services Dropdown */}
           <div className="relative">
             <button
               onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-              className="flex items-center text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
+              className="flex items-center px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
             >
-              Services{" "}
+              Services
               <ChevronDown
-                className="ml-1 transition-transform transform hover:rotate-180 duration-300"
+                className={`ml-1 transition-transform duration-200 ${
+                  servicesDropdownOpen ? "rotate-180" : ""
+                }`}
                 size={16}
               />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
             </button>
             {servicesDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-gradient-to-r from-green-500 to-teal-500 rounded-md shadow-lg transition-all duration-300 outline outline-1">
+              <div className="absolute left-0 mt-2 w-56 bg-gradient-to-br from-green-600 to-teal-600 rounded-lg shadow-2xl py-2 z-50 border border-white/10 backdrop-blur-sm">
                 <Link
                   href="/services"
-                  className="block px-4 py-2 text-white hover:bg-green-700 transition-all duration-300"
+                  className="block px-4 py-3 text-white hover:bg-white/10 transition-all duration-200 flex items-center gap-2"
                   onClick={() => setServicesDropdownOpen(false)}
                 >
-                  Services
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                  All Services
                 </Link>
                 <Link
                   href="/WebDevelopment"
-                  className="block px-4 py-2 text-white hover:bg-green-700 transition-all duration-300"
+                  className="block px-4 py-3 text-white hover:bg-white/10 transition-all duration-200 flex items-center gap-2"
                   onClick={() => setServicesDropdownOpen(false)}
                 >
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
                   Web Development
                 </Link>
               </div>
@@ -105,31 +104,31 @@ const Navbar = () => {
 
           <Link
             href="/About"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             About Us
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/Contact"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             Contact Us
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/Gallery"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             Gallery
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/Feedback"
-            className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-            onClick={handleLinkClick}
+            className="relative px-3 py-2 text-base font-medium text-white hover:text-green-100 transition-colors duration-300 group"
           >
             Feedback
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </div>
 
@@ -139,56 +138,52 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center text-[17px] font-medium text-blue-50 hover:text-blue-100 transition-colors duration-300"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 group"
               >
-                <span>{session.user?.name}</span>
-                <Avatar className="ml-2">
+                <span className="font-medium text-white">
+                  {session.user?.name}
+                </span>
+                <Avatar className="w-9 h-9 border-2 border-white/30 group-hover:border-white/50 transition-all duration-300">
                   <AvatarImage
-                    className="w-8 h-8 rounded-full ring-2 ring-teal-600"
                     src={session.user?.image || undefined}
+                    className="object-cover"
                   />
-                  <AvatarFallback className="bg-sky-900 text-white">
+                  <AvatarFallback className="bg-gradient-to-br from-green-500 to-teal-500 text-white font-bold">
                     {avatarFallback}
                   </AvatarFallback>
                 </Avatar>
               </button>
               {profileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-gradient-to-r from-green-500 to-teal-500 rounded-md shadow-lg transition-all duration-300 outline outline-1">
+                <div className="absolute right-0 mt-2 w-56 bg-gradient-to-br from-green-600 to-teal-600 rounded-lg shadow-2xl py-2 z-50 border border-white/10 backdrop-blur-sm">
                   <button
                     onClick={handleSignOut}
-                    className="flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-500 hover:to-teal-500 transition-all duration-300 rounded-full"
+                    className="flex justify-center items-center gap-2 w-full px-4 py-3 text-white hover:bg-white/10 transition-all duration-200"
                   >
-                    {" "}
-                    <FaSignOutAlt className="text-lg mt-1" />
+                    <FaSignOutAlt className="text-lg" />
                     <span>Logout</span>
                   </button>
                 </div>
               )}
-              {/* <Link
-                href="/AdminPannel"
-                className="text-base font-medium text-white hover:text-green-100 transition-colors duration-300"
-                onClick={handleLinkClick}
-              >
-                Feedback
-              </Link> */}
             </div>
           ) : (
             <>
-              <Button className="relative overflow-hidden bg-green-600 text-white shadow-lg rounded-xl px-6 py-2 transition-all duration-300 hover:bg-green-700 hover:shadow-xl focus:ring-4 focus:ring-green-400">
-                <Link
-                  className="font-semibold flex items-center gap-2"
-                  href="/sign-in"
-                >
-                  <span>Sign In</span>
+              <Button
+                asChild
+                className="relative overflow-hidden bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg rounded-lg px-6 py-2 transition-all duration-300 hover:from-green-600 hover:to-green-700 hover:shadow-xl group"
+              >
+                <Link href="/sign-in">
+                  <span className="relative z-10 font-semibold">Sign In</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </Link>
               </Button>
 
-              <Button className="relative overflow-hidden bg-purple-800 text-white shadow-lg rounded-xl px-6 py-2 transition-all duration-300 hover:bg-purple-900 hover:shadow-xl focus:ring-4 focus:ring-purple-500">
-                <Link
-                  className="font-semibold flex items-center gap-2"
-                  href="/sign-up"
-                >
-                  <span>Sign Up</span>
+              <Button
+                asChild
+                className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg rounded-lg px-6 py-2 transition-all duration-300 hover:from-purple-700 hover:to-purple-800 hover:shadow-xl group"
+              >
+                <Link href="/sign-up">
+                  <span className="relative z-10 font-semibold">Sign Up</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </Link>
               </Button>
             </>
@@ -198,113 +193,147 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white"
+          className="md:hidden text-white p-2 rounded-lg hover:bg-white/20 transition-all duration-300"
         >
-          {menuOpen ? <X size={35} /> : <Menu size={35} />}
+          {menuOpen ? (
+            <X size={28} className="text-white" />
+          ) : (
+            <Menu size={28} className="text-white" />
+          )}
         </button>
       </div>
 
       {/* Mobile Navigation Menu */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black bg-opacity-75 z-40">
-          <div className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-green-500 to-teal-500 shadow-lg p-6 flex flex-col space-y-6 transform transition-transform duration-300 ease-in-out">
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="self-end text-white"
-            >
-              <X size={30} />
-            </button>
-            <Link
-              href="/"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Home
-            </Link>
-            <Link
-              href="/rentals"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Rentals
-            </Link>
-            <Link
-              href="/services"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Services
-            </Link>
-            <Link
-              href="/WebDevelopment"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Web Development
-            </Link>
-            <Link
-              href="/About"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/Contact"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/Gallery"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Gallery
-            </Link>
-            <Link
-              href="/Feedback"
-              className="block hover:text-green-100 transition-colors duration-300"
-              onClick={handleLinkClick}
-            >
-              Feedback
-            </Link>
-            {session ? (
-              <button
-                onClick={handleSignOut}
-                className="flex justify-center items-center gap-1 w-full px-4 py-2 text-left bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-500 hover:to-teal-500 outline outline-1 transition-all duration-300 rounded-full"
+        <div className="md:hidden fixed inset-0 bg-black/80 z-40 backdrop-blur-sm">
+          <div className="fixed top-0 right-0 h-full w-72 bg-gradient-to-b from-green-600 to-teal-600 shadow-2xl p-6 flex flex-col space-y-4 transform transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div className="flex justify-between items-center mb-8">
+              <Link
+                href="/"
+                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-white"
+                onClick={handleLinkClick}
               >
-                {" "}
-                <FaSignOutAlt className="text-lg mt-1" />
-                <span>Logout</span>
+                MIRRENTX
+              </Link>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="p-2 rounded-full hover:bg-white/10 transition-all duration-300"
+              >
+                <X size={24} />
               </button>
-            ) : (
-              <>
-                <Button
-                  onClick={handleLinkClick}
-                  className="w-full rounded-xl bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-lg"
-                >
-                  <Link className="font-semibold" href="/sign-in">
-                    Sign In
-                  </Link>
-                </Button>
-                <Button
-                  onClick={handleLinkClick}
-                  className="w-full bg-purple-800 hover:bg-purple-900 transition-all duration-300 rounded-xl shadow-lg"
-                >
-                  <Link className="font-semibold" href="/sign-up">
-                    Sign Up
-                  </Link>
-                </Button>
-              </>
-            )}
+            </div>
+
+            <div className="space-y-2">
+              <Link
+                href="/"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Home
+              </Link>
+              <Link
+                href="/rentals"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Rentals
+              </Link>
+              <Link
+                href="/services"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Services
+              </Link>
+              <Link
+                href="/WebDevelopment"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Web Development
+              </Link>
+              <Link
+                href="/About"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                About Us
+              </Link>
+              <Link
+                href="/Contact"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Contact Us
+              </Link>
+              <Link
+                href="/Gallery"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Gallery
+              </Link>
+              <Link
+                href="/Feedback"
+                className="block px-4 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 text-white font-medium"
+                onClick={handleLinkClick}
+              >
+                Feedback
+              </Link>
+            </div>
+
+            <div className="mt-auto pt-6 space-y-4">
+              {session ? (
+                <div className="flex items-center gap-3 px-4 py-3">
+                  <Avatar className="w-10 h-10 border-2 border-white/30">
+                    <AvatarImage
+                      src={session.user?.image || undefined}
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="bg-gradient-to-br from-green-500 to-teal-500 text-white font-bold">
+                      {avatarFallback}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-medium text-white">
+                      {session.user?.name}
+                    </p>
+                    <button
+                      onClick={handleSignOut}
+                      className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors duration-300"
+                    >
+                      <FaSignOutAlt className="text-sm" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg py-3 shadow-lg transition-all duration-300"
+                  >
+                    <Link href="/sign-in" onClick={handleLinkClick}>
+                      Sign In
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white rounded-lg py-3 shadow-lg transition-all duration-300"
+                  >
+                    <Link href="/sign-up" onClick={handleLinkClick}>
+                      Sign Up
+                    </Link>
+                  </Button>
+                </>
+              )}
+            </div>
+
+            {/* Mobile Footer */}
+            <div className="text-center text-white/80 text-sm mt-8">
+              <p>© 2025 MirRenTX. All rights reserved.</p>
+            </div>
           </div>
-          {/* Mobile Footer */}
-          <div className="md:hidden fixed right-0 bottom-0 w-64 bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 text-center shadow-lg">
-            <p className="text-sm">© 2025 MirRenTX. All rights reserved.</p>
-          </div>
-          ;
         </div>
       )}
     </nav>

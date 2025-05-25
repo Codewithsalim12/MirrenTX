@@ -56,7 +56,7 @@ const OwnersPage = () => {
           </div>
           <div className="p-6 mt-16 text-center">
             <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-              Abdul Sameer Mir
+              Ehmad Sameer
             </h3>
             <p className="text-gray-600 mb-4">Founder & Manager</p>
             <p className="text-gray-500 text-sm mb-4">

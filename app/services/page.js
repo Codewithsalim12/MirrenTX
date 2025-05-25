@@ -132,7 +132,7 @@ export default function Services() {
                 title: "Lighting & Generator",
                 description:
                   "Enhance your event with beautiful lighting setups and reliable generator.",
-                price: "$150",
+                price: "$30",
                 icon: <FaLightbulb className="w-14 h-14 text-blue-600" />,
                 subTitle: "Lighting with Generator",
               },
@@ -141,7 +141,7 @@ export default function Services() {
                 title: "DSLR Camera Rental",
                 description:
                   "Capture your special moments with top-quality DSLR cameras for your event.",
-                price: "$200",
+                price: "$6",
                 icon: <FaCamera className="w-14 h-14 text-blue-600" />,
                 subTitle: "High-Resolution Photography",
               },
@@ -150,7 +150,7 @@ export default function Services() {
                 title: "Tents & Camping Gear",
                 description:
                   "Perfect for outdoor events, offering tents and camping equipment for all sizes.",
-                price: "$300",
+                price: "$20",
                 icon: <FaCampground className="w-14 h-14 text-blue-600" />,
                 subTitle: "Comfortable Outdoor Setup",
               },

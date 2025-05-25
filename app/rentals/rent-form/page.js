@@ -23,7 +23,7 @@ export default function RentForm() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const districts = ["Kupwara", "Handwara", "Baramulla", "Sopore"];
+  const districts = ["Kupwara"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
