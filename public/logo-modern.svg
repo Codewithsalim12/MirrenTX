@@ -1,0 +1,77 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient Definitions -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow Filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="4" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main Circle Background -->
+  <circle cx="100" cy="100" r="90" fill="url(#mainGradient)" filter="url(#shadow)">
+    <animate attributeName="r" values="88;92;88" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Inner Circle -->
+  <circle cx="100" cy="100" r="70" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <!-- Company Initials - Modern Design -->
+  <g fill="url(#textGradient)" filter="url(#glow)">
+    <!-- Letter M -->
+    <path d="M50 60 L50 130 L60 130 L60 85 L70 105 L80 85 L80 130 L90 130 L90 60 L80 60 L70 90 L60 60 Z" />
+    
+    <!-- Letter R -->
+    <path d="M110 60 L110 130 L120 130 L120 100 L130 100 L140 130 L150 130 L138 95 Q150 90 150 75 Q150 60 135 60 Z M120 70 L135 70 Q140 70 140 75 Q140 80 135 80 L120 80 Z" />
+  </g>
+  
+  <!-- Decorative Elements -->
+  <g fill="rgba(255,255,255,0.6)">
+    <circle cx="40" cy="40" r="3">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="160" cy="40" r="3">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="40" cy="160" r="3">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="160" cy="160" r="3">
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Accent Ring -->
+  <circle cx="100" cy="100" r="75" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.5">
+    <animate attributeName="stroke-dasharray" values="0,471;235,235;0,471" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Central Highlight -->
+  <circle cx="85" cy="85" r="8" fill="rgba(255,255,255,0.3)" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
+  </circle>
+</svg>

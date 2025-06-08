@@ -1,131 +1,223 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  FaShieldAlt,
+  FaDatabase,
+  FaUserShield,
+  FaLock,
+  FaCookie,
+  FaUserCog,
+  FaLink,
+  FaEdit,
+  FaEnvelope,
+  FaCheckCircle,
+} from "react-icons/fa";
+
 export default function PrivacyPolicy() {
   return (
-    <div className="max-w-4xl mx-auto p-8 space-y-8 bg-white shadow-lg rounded-lg border border-gray-200">
-      <h1 className="text-4xl font-bold text-gray-800 mb-4 mt-16">
-        Privacy Policy
-      </h1>
-      <p className="text-gray-500 mb-8">Effective Date: [20-February-2025]</p>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 relative overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-teal-400 to-cyan-400 rounded-full opacity-10 blur-3xl"></div>
+      </div>
 
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          1. Information We Collect
-        </h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600">
-          <li>
-            <strong className="text-gray-800">Personal Information:</strong>{" "}
-            Name, email, phone number, and booking details.
-          </li>
-          <li>
-            <strong className="text-gray-800">Usage Data:</strong> IP address,
-            browser type, and pages visited.
-          </li>
-          <li>
-            <strong className="text-gray-800">Payment Information:</strong> We
-            do not store payment details; transactions are processed securely.
-          </li>
-        </ul>
-      </section>
+      <div className="relative z-10 max-w-6xl mx-auto p-6 pt-24">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center">
+              <FaShieldAlt className="text-white text-2xl" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+              Privacy Policy
+            </h1>
+          </div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Your privacy is important to us. This policy explains how we
+            collect, use, and protect your personal information.
+          </p>
+          <div className="mt-6 inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full border border-white/40">
+            <FaCheckCircle className="text-green-600" />
+            <span className="text-gray-700 font-semibold">
+              Effective Date: February 20, 2025
+            </span>
+          </div>
+        </motion.div>
 
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          2. How We Use Your Information
-        </h2>
-        <p className="text-gray-600">
-          Your information is used to process bookings, communicate with you,
-          improve our services, and ensure security.
-        </p>
-      </section>
+        {/* Privacy Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {[
+            {
+              icon: FaDatabase,
+              title: "1. Information We Collect",
+              content:
+                "We collect personal information (name, email, phone), usage data (IP address, browser type), and booking details. Payment information is processed securely and not stored on our servers.",
+              gradient: "from-blue-500 to-cyan-500",
+              details: [
+                "Personal Information",
+                "Usage Data",
+                "Booking Details",
+                "Secure Payment Processing",
+              ],
+            },
+            {
+              icon: FaUserShield,
+              title: "2. How We Use Your Information",
+              content:
+                "Your information is used to process bookings, communicate with you, improve our services, ensure security, and provide customer support.",
+              gradient: "from-green-500 to-emerald-500",
+              details: [
+                "Process Bookings",
+                "Customer Communication",
+                "Service Improvement",
+                "Security & Support",
+              ],
+            },
+            {
+              icon: FaShieldAlt,
+              title: "3. Sharing of Information",
+              content:
+                "We do not sell your data. Information is shared only when required by law or with trusted service providers who help us operate our business.",
+              gradient: "from-purple-500 to-pink-500",
+              details: [
+                "No Data Selling",
+                "Legal Requirements Only",
+                "Trusted Partners",
+                "Business Operations",
+              ],
+            },
+            {
+              icon: FaLock,
+              title: "4. Data Security",
+              content:
+                "We implement industry-standard security measures including encryption, secure servers, and regular security audits, though no online transmission is 100% secure.",
+              gradient: "from-orange-500 to-red-500",
+              details: [
+                "Encryption",
+                "Secure Servers",
+                "Regular Audits",
+                "Industry Standards",
+              ],
+            },
+            {
+              icon: FaCookie,
+              title: "5. Cookies and Tracking",
+              content:
+                "We use cookies to improve your experience, remember preferences, and analyze site usage. You can manage cookie settings through your browser.",
+              gradient: "from-yellow-500 to-orange-500",
+              details: [
+                "Experience Enhancement",
+                "Preference Storage",
+                "Usage Analytics",
+                "Browser Control",
+              ],
+            },
+            {
+              icon: FaUserCog,
+              title: "6. Your Rights",
+              content:
+                "You can access, update, delete your data, opt out of marketing communications, and request data portability under applicable privacy laws.",
+              gradient: "from-teal-500 to-cyan-500",
+              details: [
+                "Data Access",
+                "Update Information",
+                "Delete Data",
+                "Marketing Opt-out",
+              ],
+            },
+            {
+              icon: FaLink,
+              title: "7. Third-Party Links",
+              content:
+                "Our website may link to third-party sites. We are not responsible for their privacy practices. Please review their policies before sharing information.",
+              gradient: "from-indigo-500 to-purple-500",
+              details: [
+                "External Links",
+                "Third-party Sites",
+                "Independent Policies",
+                "User Responsibility",
+              ],
+            },
+            {
+              icon: FaEdit,
+              title: "8. Changes to This Policy",
+              content:
+                "We may update this Privacy Policy periodically. Significant changes will be communicated via email or website notification. Continued use implies acceptance.",
+              gradient: "from-pink-500 to-rose-500",
+              details: [
+                "Periodic Updates",
+                "Email Notifications",
+                "Website Alerts",
+                "Continued Use Agreement",
+              ],
+            },
+          ].map((section, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/40 hover:shadow-3xl transition-all duration-500 group"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div
+                  className={`w-14 h-14 bg-gradient-to-r ${section.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <section.icon className="text-white text-xl" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                  {section.title}
+                </h2>
+              </div>
+              <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                {section.content}
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {section.details.map((detail, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2 text-sm text-gray-500"
+                  >
+                    <div className="w-2 h-2 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full"></div>
+                    <span>{detail}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          3. Sharing of Information
-        </h2>
-        <p className="text-gray-600">
-          We do not sell your data. Information is shared only when required by
-          law or with trusted service providers.
-        </p>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          4. Data Security
-        </h2>
-        <p className="text-gray-600">
-          We implement industry-standard security measures, though no online
-          transmission is 100% secure.
-        </p>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          5. Cookies and Tracking
-        </h2>
-        <p className="text-gray-600">
-          We use cookies to improve your experience. You can manage them via
-          browser settings.
-        </p>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          6. Your Rights
-        </h2>
-        <p className="text-gray-600">
-          You can access, update, delete your data, or opt out of marketing
-          communications.
-        </p>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          7. Third-Party Links
-        </h2>
-        <p className="text-gray-600">
-          Our website may link to third-party sites. We are not responsible for
-          their privacy practices.
-        </p>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          8. Changes to This Policy
-        </h2>
-        <p className="text-gray-600">
-          We may update this Privacy Policy. Any changes will be posted on this
-          page.
-        </p>
-      </section>
-
-      <section className="space-y-6 text-left">
-        <h2 className="text-2xl font-semibold text-gray-800 border-b-2 pb-2">
-          9. Contact Us
-        </h2>
-        <p className="text-gray-600">
-          If you have questions, contact us at{" "}
+        {/* Contact Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-12 text-center text-white shadow-2xl"
+        >
+          <h3 className="text-3xl font-bold mb-6">
+            Questions About Your Privacy?
+          </h3>
+          <p className="text-xl mb-8 opacity-90">
+            We're committed to transparency. Contact us if you have any
+            questions about how we handle your data.
+          </p>
           <a
             href="mailto:mirrentx@gmail.com"
-            className="text-blue-500 hover:underline"
+            className="inline-flex items-center gap-3 bg-white text-purple-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            <button
-              type="button"
-              class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              <svg
-                class="w-3 h-3 text-white me-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 16"
-              >
-                <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
-                <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
-              </svg>
-              Email Us
-            </button>
+            <FaEnvelope />
+            Contact Privacy Team
           </a>
-          .
-        </p>
-      </section>
+        </motion.div>
+      </div>
     </div>
   );
 }
