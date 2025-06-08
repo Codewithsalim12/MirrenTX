@@ -31,12 +31,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-all duration-300 overflow-hidden">
+    <nav className="fixed w-screen top-0 z-50 transition-all duration-300">
       {/* Enhanced Glassmorphism Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-blue-900/90 to-indigo-900/90 backdrop-blur-2xl border-b border-white/20 shadow-2xl"></div>
 
       {/* Dynamic Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/40 via-purple-600/40 to-indigo-600/40 animate-gradient-x"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)] animate-pulse"></div>
       </div>
@@ -57,8 +57,8 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative z-10 w-full px-2 sm:px-4 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20 max-w-full min-w-0">
+      <div className="relative z-10 w-full px-3 sm:px-4 lg:px-8 overflow-hidden">
+        <div className="flex justify-between items-center h-16 lg:h-20 w-full overflow-hidden">
           {/* Logo Section */}
           <div className="flex items-center flex-shrink-0 min-w-0">
             <Link
@@ -66,18 +66,11 @@ const Navbar = () => {
               className="group transition-all duration-500 hover:scale-105"
             >
               <Logo
-                size="small"
-                showText={true}
-                textColor="default"
-                animate={true}
-                className="drop-shadow-lg md:hidden"
-              />
-              <Logo
                 size="default"
                 showText={true}
                 textColor="default"
                 animate={true}
-                className="drop-shadow-lg hidden md:block"
+                className="drop-shadow-lg"
               />
             </Link>
           </div>
