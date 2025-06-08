@@ -117,7 +117,7 @@ const Navbar = () => {
                 <div className="absolute inset-0 border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
               </button>
               {servicesDropdownOpen && (
-                <div className="absolute left-0 mt-4 w-72 bg-white/5 backdrop-blur-2xl border border-white/30 rounded-3xl shadow-2xl py-4 z-[9999] animate-in slide-in-from-top-4 duration-300">
+                <div className="fixed top-16 left-8 w-72 bg-white/5 backdrop-blur-2xl border border-white/30 rounded-3xl shadow-2xl py-4 z-[9999] animate-in slide-in-from-top-4 duration-300">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-purple-900/90 rounded-3xl"></div>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(120,119,198,0.3),transparent_70%)] rounded-3xl"></div>
                   <div className="relative z-10">
@@ -289,7 +289,7 @@ const Navbar = () => {
                   />
                 </button>
                 {profileDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-44 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl py-2 z-[9999] animate-in slide-in-from-top-2 duration-200">
+                  <div className="fixed top-16 right-8 w-44 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl py-2 z-[9999] animate-in slide-in-from-top-2 duration-200">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-blue-900/90 rounded-xl"></div>
                     <div className="relative z-10">
                       {/* User Info */}
