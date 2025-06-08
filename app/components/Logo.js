@@ -120,7 +120,7 @@ const Logo = ({
             className={`${animate ? "transition-all duration-500" : ""} ${
               isHovered && animate ? "scale-110" : ""
             }`}
-            transform-origin="50 50"
+            style={{ transformOrigin: "50 50" }}
           >
             {/* Tent/Event Structure */}
             <path
