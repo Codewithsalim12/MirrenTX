@@ -148,7 +148,7 @@ export default function EventPage({ params }) {
           <p className="text-gray-600 mb-8">
             The event you are looking for does not exist.
           </p>
-          <Link href="/gallery">
+          <Link href="/Gallery">
             <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
               Back to Gallery
             </button>

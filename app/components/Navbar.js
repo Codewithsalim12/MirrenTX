@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
@@ -15,6 +15,11 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [servicesButtonPosition, setServicesButtonPosition] = useState({
+    left: 0,
+    top: 0,
+  });
+  const servicesButtonRef = useRef(null);
   const router = useRouter();
 
   const avatarFallback = session?.user?.name?.charAt(0).toUpperCase();
@@ -28,6 +33,17 @@ const Navbar = () => {
 
   const handleLinkClick = () => {
     setMenuOpen(false);
+  };
+
+  const handleServicesDropdownToggle = () => {
+    if (!servicesDropdownOpen && servicesButtonRef.current) {
+      const rect = servicesButtonRef.current.getBoundingClientRect();
+      setServicesButtonPosition({
+        left: rect.left,
+        top: rect.bottom + 4, // 4px gap below the button
+      });
+    }
+    setServicesDropdownOpen(!servicesDropdownOpen);
   };
 
   return (
@@ -99,7 +115,8 @@ const Navbar = () => {
             {/* Enhanced Services Dropdown */}
             <div className="relative">
               <button
-                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                ref={servicesButtonRef}
+                onClick={handleServicesDropdownToggle}
                 className="relative flex items-center px-3 py-2 text-white/90 hover:text-white font-semibold transition-all duration-500 group rounded-xl hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/20"
               >
                 <span className="relative z-10 tracking-wide text-sm">
@@ -117,7 +134,13 @@ const Navbar = () => {
                 <div className="absolute inset-0 border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
               </button>
               {servicesDropdownOpen && (
-                <div className="fixed top-16 left-8 w-72 bg-white/5 backdrop-blur-2xl border border-white/30 rounded-3xl shadow-2xl py-4 z-[9999] animate-in slide-in-from-top-4 duration-300">
+                <div
+                  className="fixed w-72 bg-white/5 backdrop-blur-2xl border border-white/30 rounded-3xl shadow-2xl py-4 z-[9999] animate-in slide-in-from-top-4 duration-300"
+                  style={{
+                    left: `${servicesButtonPosition.left}px`,
+                    top: `${servicesButtonPosition.top}px`,
+                  }}
+                >
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-purple-900/90 rounded-3xl"></div>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(120,119,198,0.3),transparent_70%)] rounded-3xl"></div>
                   <div className="relative z-10">
@@ -268,33 +291,33 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                  className="flex items-center gap-1 px-2 py-1.5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-all duration-300 group"
                 >
-                  <Avatar className="w-7 h-7 border-2 border-white/30 group-hover:border-white/50 transition-all duration-300">
+                  <Avatar className="w-8 h-8 border-2 border-white/30 group-hover:border-white/50 transition-all duration-300">
                     <AvatarImage
                       src={session.user?.image || undefined}
                       className="object-cover"
                     />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white font-bold text-xs">
+                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white font-bold text-sm">
                       {avatarFallback}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden xl:block font-medium text-white text-xs max-w-20 truncate">
+                  <span className="hidden xl:block font-medium text-white text-sm max-w-24 truncate">
                     {session.user?.name}
                   </span>
                   <ChevronDown
-                    className={`w-3 h-3 text-white/70 transition-all duration-200 ${
+                    className={`w-4 h-4 text-white/70 transition-all duration-200 ${
                       profileDropdownOpen ? "rotate-180 text-white" : ""
                     }`}
                   />
                 </button>
                 {profileDropdownOpen && (
-                  <div className="fixed top-16 right-8 w-44 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl py-2 z-[9999] animate-in slide-in-from-top-2 duration-200">
+                  <div className="fixed top-16 right-8 w-52 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl py-3 z-[9999] animate-in slide-in-from-top-2 duration-200">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-blue-900/90 rounded-xl"></div>
                     <div className="relative z-10">
                       {/* User Info */}
-                      <div className="px-3 py-2 border-b border-white/10">
-                        <p className="text-white font-medium text-xs truncate">
+                      <div className="px-4 py-3 border-b border-white/10">
+                        <p className="text-white font-medium text-sm truncate">
                           {session.user?.name}
                         </p>
                         <p className="text-white/60 text-xs truncate">
@@ -304,10 +327,10 @@ const Navbar = () => {
                       {/* Logout Button */}
                       <button
                         onClick={handleSignOut}
-                        className="flex items-center gap-2 w-full px-3 py-2 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 group"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 group"
                       >
-                        <FaSignOutAlt className="text-red-400 text-xs group-hover:scale-110 transition-transform duration-200" />
-                        <span className="font-medium text-xs">Sign Out</span>
+                        <FaSignOutAlt className="text-red-400 text-sm group-hover:scale-110 transition-transform duration-200" />
+                        <span className="font-medium text-sm">Sign Out</span>
                       </button>
                     </div>
                   </div>
