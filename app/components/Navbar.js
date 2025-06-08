@@ -66,11 +66,18 @@ const Navbar = () => {
               className="group transition-all duration-500 hover:scale-105"
             >
               <Logo
+                size="small"
+                showText={true}
+                textColor="default"
+                animate={true}
+                className="drop-shadow-lg md:hidden"
+              />
+              <Logo
                 size="default"
                 showText={true}
                 textColor="default"
                 animate={true}
-                className="drop-shadow-lg"
+                className="drop-shadow-lg hidden md:block"
               />
             </Link>
           </div>
