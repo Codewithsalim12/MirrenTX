@@ -179,7 +179,7 @@ export default function EventPage({ params }) {
           animate={{ opacity: 1, x: 0 }}
           className="absolute top-24 left-8 z-20"
         >
-          <Link href="/gallery">
+          <Link href="/Gallery">
             <button className="group bg-white/10 backdrop-blur-xl border border-white/20 text-white p-4 rounded-2xl hover:bg-white/20 transition-all duration-300 shadow-2xl hover:shadow-white/10">
               <FaArrowLeft className="text-lg group-hover:-translate-x-1 transition-transform duration-300" />
             </button>
