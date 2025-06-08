@@ -28,16 +28,11 @@ export default function RootLayout({ children }) {
           name="description"
           content="Rent top-quality equipment and services for your events. From cameras and lighting to tents and generators, we provide everything you need for a seamless experience"
         />
-        {/* ✅ Enhanced Favicon Configuration */}
+        {/* ✅ Logo-based Favicon Configuration */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/Favicon.png" type="image/png" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/Logo.png" />
-        <link rel="icon" href="/Logo.png" sizes="192x192" type="image/png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" href="/logo-modern.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/logo-modern.svg" />
         <meta name="theme-color" content="#3B82F6" />
-        <meta name="msapplication-TileColor" content="#3B82F6" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
