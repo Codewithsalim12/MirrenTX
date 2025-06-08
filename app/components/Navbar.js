@@ -57,8 +57,8 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+      <div className="relative z-10 container mx-auto px-3 sm:px-4 lg:px-8 max-w-full">
+        <div className="flex justify-between items-center h-16 lg:h-20 w-full">
           {/* Logo Section */}
           <div className="flex items-center">
             <Link
@@ -346,17 +346,17 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative p-2 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-500 group hover:shadow-2xl hover:shadow-blue-500/30"
+              className="relative p-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-500 group hover:shadow-2xl hover:shadow-blue-500/30"
             >
-              <div className="relative w-4 h-4 flex items-center justify-center">
+              <div className="relative w-6 h-6 flex items-center justify-center">
                 {menuOpen ? (
                   <X
-                    size={16}
+                    size={20}
                     className="text-white transition-all duration-500 group-hover:rotate-180 group-hover:scale-110"
                   />
                 ) : (
                   <Menu
-                    size={16}
+                    size={20}
                     className="text-white transition-all duration-500 group-hover:scale-125 group-hover:rotate-12"
                   />
                 )}
@@ -371,7 +371,7 @@ const Navbar = () => {
       {/* Mobile Navigation Menu */}
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in duration-300">
-          <div className="fixed top-0 right-0 h-full w-64 sm:w-72 bg-gradient-to-br from-blue-900/95 via-purple-900/95 to-teal-900/95 backdrop-blur-xl border-l border-white/10 shadow-2xl transform transition-transform duration-500 ease-out flex flex-col">
+          <div className="fixed top-0 right-0 h-full w-64 max-w-[80vw] sm:w-72 sm:max-w-[75vw] bg-gradient-to-br from-blue-900/95 via-purple-900/95 to-teal-900/95 backdrop-blur-xl border-l border-white/10 shadow-2xl transform transition-transform duration-500 ease-out flex flex-col">
             {/* Mobile Header */}
             <div className="flex justify-between items-center p-4 border-b border-white/10">
               <Link
@@ -389,10 +389,10 @@ const Navbar = () => {
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 group"
+                className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 group"
               >
                 <X
-                  size={16}
+                  size={20}
                   className="text-white group-hover:rotate-90 transition-transform duration-300"
                 />
               </button>
