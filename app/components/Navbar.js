@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-all duration-300">
+    <nav className="fixed w-full top-0 z-50 transition-all duration-300 overflow-hidden">
       {/* Enhanced Glassmorphism Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-blue-900/90 to-indigo-900/90 backdrop-blur-2xl border-b border-white/20 shadow-2xl"></div>
 
@@ -57,10 +57,10 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-3 sm:px-4 lg:px-8 max-w-full">
-        <div className="flex justify-between items-center h-16 lg:h-20 w-full">
+      <div className="relative z-10 w-full px-2 sm:px-4 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20 max-w-full min-w-0">
           {/* Logo Section */}
-          <div className="flex items-center">
+          <div className="flex items-center flex-shrink-0 min-w-0">
             <Link
               href="/"
               className="group transition-all duration-500 hover:scale-105"
@@ -343,10 +343,10 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button Only */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center flex-shrink-0">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative p-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-500 group hover:shadow-2xl hover:shadow-blue-500/30"
+              className="relative p-2.5 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-500 group hover:shadow-2xl hover:shadow-blue-500/30"
             >
               <div className="relative w-6 h-6 flex items-center justify-center">
                 {menuOpen ? (
