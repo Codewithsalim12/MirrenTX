@@ -12,16 +12,21 @@ import {
   FaEdit,
   FaShieldAlt,
   FaClock,
+  FaBuilding,
 } from "react-icons/fa";
 
 export default function ConfirmDetails() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     contact: "",
     district: "",
+    tehsilVillage: "",
     streetAddress: "",
+    rentDuration: "",
+    customDuration: "",
+    equipmentName: "",
+    dates: "",
   });
 
   useEffect(() => {
@@ -48,8 +53,8 @@ export default function ConfirmDetails() {
             </span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Please review your information before proceeding to payment. You can
-            edit any details if needed.
+            Please review your information before finalizing your booking request.
+            You can edit any details if needed.
           </p>
 
           {/* Progress Indicator */}
@@ -77,7 +82,7 @@ export default function ConfirmDetails() {
                 3
               </div>
               <span className="ml-2 text-sm font-medium text-gray-500">
-                Payment
+                Finalize
               </span>
             </div>
           </div>
@@ -114,7 +119,7 @@ export default function ConfirmDetails() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-4">
                     <div className="space-y-1">
                       <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         Full Name
@@ -127,10 +132,45 @@ export default function ConfirmDetails() {
                       <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         Email Address
                       </label>
-                      <p className="text-gray-900 font-medium">
+                      <p className="text-gray-900 font-medium flex items-center">
+                        <FaEnvelope className="mr-2 text-blue-600 text-xs" />
                         {formData.email || "Not provided"}
                       </p>
                     </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                        Selected Equipment
+                      </label>
+                      <p className="text-blue-600 font-bold text-lg">
+                        {formData.equipmentName || "Not provided"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rental Details Card */}
+                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 flex items-center mb-4">
+                    <FaClock className="mr-3 text-orange-600" />
+                    Rental Duration
+                  </h3>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                      Selected Date
+                    </label>
+                    <p className="text-blue-600 font-bold">
+                      {formData.dates || "Not provided"}
+                    </p>
+                  </div>
+                  <div className="space-y-1 mt-4">
+                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                      Selected duration
+                    </label>
+                    <p className="text-gray-900 font-medium">
+                      {formData.rentDuration === "Custom"
+                        ? formData.customDuration
+                        : formData.rentDuration || "Not provided"}
+                    </p>
                   </div>
                 </div>
 
@@ -169,6 +209,15 @@ export default function ConfirmDetails() {
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                        Tehsil / Village
+                      </label>
+                      <p className="text-gray-900 font-medium flex items-center">
+                        <FaBuilding className="mr-2 text-gray-400 text-xs" />
+                        {formData.tehsilVillage || "Not provided"}
+                      </p>
+                    </div>
+                    <div className="col-span-1 md:col-span-2 space-y-1">
+                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         Street Address
                       </label>
                       <p className="text-gray-900 font-medium">
@@ -192,7 +241,7 @@ export default function ConfirmDetails() {
                   onClick={handleConfirm}
                   className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
-                  Proceed to Payment
+                  Finalize Booking
                   <FaCheck className="ml-2" />
                 </button>
               </div>

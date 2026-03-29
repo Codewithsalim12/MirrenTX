@@ -32,7 +32,7 @@ import {
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ProtectedRoute from "../components/ProtectedRoute";
+
 import { motion } from "framer-motion";
 
 const slides = [
@@ -105,7 +105,6 @@ export default function Gallery() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Clean Modern Slider Section */}
         <section className="relative w-full h-[60vh] overflow-hidden bg-gradient-to-r from-indigo-50 via-white to-purple-50">
@@ -658,6 +657,5 @@ export default function Gallery() {
           </div>
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

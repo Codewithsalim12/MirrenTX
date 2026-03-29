@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   FaSpinner,
   FaUser,
@@ -11,20 +12,60 @@ import {
   FaArrowRight,
   FaCheckCircle,
   FaShieldAlt,
+  FaClock,
+  FaBuilding,
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function RentForm() {
+function RentFormContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { data: session } = useSession();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     contact: "",
-    district: "",
+    district: "Kupwara",
+    tehsilVillage: "",
     streetAddress: "",
+    rentDuration: "",
+    customDuration: "",
+    equipmentName: "",
+    dates: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Load saved data from localStorage if it exists
+    const savedData = localStorage.getItem("rentFormData");
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      setFormData((prev) => ({ ...prev, email: session.user.email }));
+    }
+  }, [session]);
+
+  const rentalsData = [
+    { id: 1, title: "Generator" },
+    { id: 2, title: "Tents" },
+    { id: 3, title: "Lighting System" },
+    { id: 4, title: "DSLR Camera" },
+  ];
+
+  useEffect(() => {
+    const itemId = searchParams.get("item");
+    if (itemId) {
+      const item = rentalsData.find((r) => r.id === parseInt(itemId));
+      if (item) {
+        setFormData((prev) => ({ ...prev, equipmentName: item.title }));
+      }
+    }
+  }, [searchParams]);
 
   const districts = ["Kupwara"];
 
@@ -98,7 +139,7 @@ export default function RentForm() {
                 3
               </div>
               <span className="ml-2 text-sm font-medium text-gray-500">
-                Payment
+                Finalize
               </span>
             </div>
           </div>
@@ -139,25 +180,7 @@ export default function RentForm() {
                   </div>
                 </div>
 
-                {/* Email Field */}
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700">
-                    Email Address
-                  </label>
-                  <div className="relative">
-                    <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                      required
-                    />
-                  </div>
-                </div>
+
 
                 {/* Contact Field */}
                 <div className="space-y-2">
@@ -185,7 +208,7 @@ export default function RentForm() {
                     District
                   </label>
                   <div className="relative">
-                    <FaMapMarkerAlt className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <FaMapMarkerAlt className="absolute left-4 top-[42%] transform -translate-y-1/2 text-gray-400" />
                     <select
                       value={formData.district}
                       onChange={(e) =>
@@ -201,6 +224,29 @@ export default function RentForm() {
                         </option>
                       ))}
                     </select>
+                    <p className="text-[11px] text-blue-600 font-medium mt-2 italic px-1">
+                      * Currently we are only providing services in Kupwara district only.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tehsil / Village Field */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">
+                    Tehsil / Village
+                  </label>
+                  <div className="relative">
+                    <FaBuilding className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Enter your Tehsil or Village name"
+                      value={formData.tehsilVillage}
+                      onChange={(e) =>
+                        setFormData({ ...formData, tehsilVillage: e.target.value })
+                      }
+                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      required
+                    />
                   </div>
                 </div>
 
@@ -222,6 +268,74 @@ export default function RentForm() {
                         })
                       }
                       className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Rent Duration Field */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">
+                    Rent Duration
+                  </label>
+                  <div className="relative">
+                    <FaClock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <select
+                      value={formData.rentDuration}
+                      onChange={(e) =>
+                        setFormData({ ...formData, rentDuration: e.target.value })
+                      }
+                      className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 appearance-none"
+                      required
+                    >
+                      <option value="">Select duration</option>
+                      <option value="Half Day">Half Day</option>
+                      <option value="One Day">One Day</option>
+                      <option value="One Night">One Night</option>
+                      <option value="2 Days">2 Days</option>
+                      <option value="3 Days">3 Days</option>
+                      <option value="1 Week">1 Week</option>
+                      <option value="Custom">Custom (Contact Support)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Custom Duration Field (Conditional) */}
+                {formData.rentDuration === "Custom" && (
+                  <div className="space-y-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <label className="text-sm font-semibold text-gray-700">
+                      Specify Duration
+                    </label>
+                    <div className="relative">
+                      <FaClock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="e.g. 5 days, 1 month, etc."
+                        value={formData.customDuration}
+                        onChange={(e) =>
+                          setFormData({ ...formData, customDuration: e.target.value })
+                        }
+                        className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Preferred Date Field */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">
+                    Preferred Date
+                  </label>
+                  <div className="relative">
+                    <FaHome className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 opacity-0" />
+                    <input
+                      type="date"
+                      value={formData.dates}
+                      onChange={(e) =>
+                        setFormData({ ...formData, dates: e.target.value })
+                      }
+                      className="w-full pl-6 pr-4 py-4 border border-gray-200 rounded-xl bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       required
                     />
                   </div>
@@ -298,7 +412,7 @@ export default function RentForm() {
                 <div className="mt-8 p-4 bg-white/10 rounded-xl border border-white/20">
                   <p className="text-sm text-white/90">
                     <strong>Need help?</strong> Contact our support team at{" "}
-                    <span className="font-semibold">support@mirrentx.com</span>
+                    <span className="font-semibold text-white">mirrentx@gmail.com</span>
                   </p>
                 </div>
               </div>
@@ -320,5 +434,20 @@ export default function RentForm() {
         theme="light"
       />
     </div>
+  );
+}
+
+export default function RentForm() {
+  return (
+    <Suspense 
+      fallback={
+        <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+          <FaSpinner className="animate-spin text-blue-600 text-3xl mb-4" />
+          <p className="text-gray-500 font-medium">Loading booking form...</p>
+        </div>
+      }
+    >
+      <RentFormContent />
+    </Suspense>
   );
 }

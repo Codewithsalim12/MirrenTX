@@ -21,7 +21,6 @@ import {
   FaStar,
 } from "react-icons/fa";
 import Image from "next/image";
-import ProtectedRoute from "../components/ProtectedRoute";
 import { motion } from "framer-motion";
 import Link from "next/link";
 const projects = [
@@ -62,7 +61,6 @@ const projects = [
 
 export default function WebDevServices() {
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 pt-16 lg:pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
@@ -621,6 +619,5 @@ export default function WebDevServices() {
           </div>
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

@@ -37,18 +37,18 @@ export default function PaymentDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-50 py-12 px-4 shadow-inner">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 pt-20">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Complete Payment
+              Secure Your Booking
             </span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Scan the QR code or use UPI ID to complete your rental booking
-            payment.
+            Pay a small advance to lock your dates. The remaining balance will
+            be settled once the final quote is confirmed.
           </p>
 
           {/* Progress Indicator */}
@@ -72,11 +72,11 @@ export default function PaymentDetails() {
             </div>
             <div className="w-12 h-0.5 bg-green-600"></div>
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                <FaCheck />
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                3
               </div>
-              <span className="ml-2 text-sm font-medium text-green-600">
-                Payment
+              <span className="ml-2 text-sm font-medium text-blue-600">
+                Finalize
               </span>
             </div>
           </div>

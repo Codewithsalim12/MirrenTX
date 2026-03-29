@@ -20,10 +20,15 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import ProtectedRoute from "../components/ProtectedRoute";
+import { useRouter, usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
+import Logo from "../components/Logo";
 
 export default function Contact() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { status } = useSession();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -59,6 +64,11 @@ export default function Contact() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
+
+    if (status !== "authenticated") {
+      router.push("/sign-in?callbackUrl=" + encodeURIComponent(pathname));
+      return;
+    }
 
     if (
       !formData.firstName ||
@@ -117,6 +127,11 @@ export default function Contact() {
   const subscribe = async (e) => {
     e.preventDefault();
 
+    if (status !== "authenticated") {
+      router.push("/sign-in?callbackUrl=" + encodeURIComponent(pathname));
+      return;
+    }
+
     if (!validateEmail(email)) {
       toast.error("Please enter a valid email address.", {
         position: "top-right",
@@ -146,7 +161,6 @@ export default function Contact() {
   };
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <ToastContainer
           position="top-right"
@@ -162,7 +176,7 @@ export default function Contact() {
         />
 
         {/* Modern Hero Section */}
-        <section className="relative overflow-hidden py-20">
+        <section className="relative overflow-hidden pt-20 pb-8">
           {/* Floating Background Elements */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -191,8 +205,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl md:text-7xl font-black leading-tight mb-6"
             >
-              <span className="text-gray-900">Contact</span>
-              <br />
+              <span className="text-gray-900">Contact</span>{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 MirRenTX
               </span>
@@ -203,7 +216,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12"
+              className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6"
             >
               We'd love to hear from you! Whether you have questions, feedback,
               or want to connect,
@@ -217,137 +230,12 @@ export default function Contact() {
 
         {/* Main Contact Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="flex flex-col lg:flex-row items-start gap-12">
-            {" "}
-            {/* Modern Contact Info Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="w-full lg:w-2/5 space-y-8"
-            >
-              {/* Contact Information Card */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full px-6 py-3 mb-4">
-                    <FaUser className="text-indigo-600" />
-                    <span className="text-indigo-700 font-semibold">
-                      Contact Info
-                    </span>
-                  </div>
-
-                  <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                    Get in Touch
-                  </h2>
-                </div>
-
-                <div className="space-y-6">
-                  {[
-                    {
-                      icon: FaMapMarkerAlt,
-                      title: "Our Location",
-                      content: "Awathkulla, Kralpora",
-                      subtitle:
-                        "Kupwara, Jammu & Kashmir, India\nStreet: MirComputers",
-                      color: "from-red-500 to-pink-500",
-                      bgColor: "from-red-50 to-pink-50",
-                    },
-                    {
-                      icon: FaPhone,
-                      title: "Phone Number",
-                      content: "+91-8082815863",
-                      subtitle: "Available 24/7 for your convenience",
-                      color: "from-green-500 to-emerald-500",
-                      bgColor: "from-green-50 to-emerald-50",
-                      href: "tel:+91-8082815863",
-                    },
-                    {
-                      icon: FaEnvelope,
-                      title: "Email Address",
-                      content: "mirrentx@gmail.com",
-                      subtitle: "We'll respond within 24 hours",
-                      color: "from-blue-500 to-cyan-500",
-                      bgColor: "from-blue-50 to-cyan-50",
-                      href: "mailto:mirrentx@gmail.com",
-                    },
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`group p-6 rounded-2xl bg-gradient-to-r ${item.bgColor} border border-white/50 hover:shadow-lg transition-all duration-300`}
-                    >
-                      <div className="flex items-start gap-4">
-                        <div
-                          className={`w-14 h-14 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          <item.icon className="text-white text-xl" />
-                        </div>
-
-                        <div className="flex-1">
-                          <h3 className="font-bold text-gray-900 text-lg mb-1">
-                            {item.title}
-                          </h3>
-                          {item.href ? (
-                            <Link
-                              href={item.href}
-                              className="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-semibold text-lg"
-                            >
-                              {item.content}
-                            </Link>
-                          ) : (
-                            <p className="text-gray-700 font-semibold text-lg">
-                              {item.content}
-                            </p>
-                          )}
-                          <p className="text-gray-500 text-sm mt-1 whitespace-pre-line">
-                            {item.subtitle}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Stats Card */}
-              <div className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-6 text-center">
-                  Why Choose Us?
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: FaClock, label: "24/7 Support", value: "Always" },
-                    { icon: FaShieldAlt, label: "Trusted", value: "100%" },
-                    { icon: FaRocket, label: "Fast Response", value: "< 1hr" },
-                    {
-                      icon: FaHeart,
-                      label: "Satisfaction",
-                      value: "Guaranteed",
-                    },
-                  ].map((stat, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-2xl"
-                    >
-                      <stat.icon className="text-2xl mx-auto mb-2" />
-                      <div className="text-lg font-bold">{stat.value}</div>
-                      <div className="text-sm opacity-90">{stat.label}</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
             {/* Modern Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full lg:w-3/5"
+              className="w-full max-w-4xl mx-auto"
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
                 <div className="text-center mb-8">
@@ -500,7 +388,6 @@ export default function Contact() {
                 </form>
               </div>
             </motion.div>
-          </div>
         </section>
         {/* Modern Map Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -529,7 +416,7 @@ export default function Contact() {
 
             <div className="relative h-96 w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.041567423084!2d74.2665783152159!3d34.10479998059084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1b0b8e8a6a6a9%3A0x8a6a6a9e1b0b8e8a!2sKupwara%2C%20Jammu%20and%20Kashmir!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d74.0770615!3d34.5472003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e0dd5b7f2e2b91%3A0xb8c9927825eadd0e!2sMir%20Computers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -541,12 +428,12 @@ export default function Contact() {
               {/* Map overlay with contact info */}
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                    <FaMapMarkerAlt className="text-white" />
-                  </div>
+                  <Logo size="small" showText={false} animate={false} />
                   <div>
-                    <h3 className="font-bold text-gray-900">MirRenTX</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="font-bold text-gray-900 text-base">
+                      MirRenTX <span className="text-gray-500 font-normal text-sm block sm:inline">| Mir Computers</span>
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">
                       Awathkulla, Kralpora
                     </p>
                   </div>
@@ -634,6 +521,5 @@ export default function Contact() {
           </div>
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { useEffect } from "react";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,17 +10,26 @@ import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Font Imports
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
 });
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    // Only track once per browser session to avoid duplicate counts on route changes
+    if (!sessionStorage.getItem("visitTracked")) {
+      fetch("/api/track-visit", { method: "POST" })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            sessionStorage.setItem("visitTracked", "true");
+          }
+        })
+        .catch((err) => console.error("Tracking error:", err));
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -35,7 +45,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#3B82F6" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interTight.variable} ${interTight.className} antialiased`}
       >
         <SessionProvider>
           <Navbar />

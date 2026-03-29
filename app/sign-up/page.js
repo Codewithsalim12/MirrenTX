@@ -51,6 +51,25 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (form.name.trim().length < 2) {
+      toast.error("Name must be at least 2 characters long.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    if (form.password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
+    if (form.password !== form.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
     setPending(true);
 
     const res = await fetch("/api/auth/signup", {
@@ -104,18 +123,18 @@ const SignUp = () => {
       <div className="relative z-10 w-full max-w-lg mx-4">
         <Card className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
           {/* Glassmorphism Header */}
-          <div className="relative p-8 text-center">
+          <div className="relative p-6 px-8 text-center pb-3">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10"></div>
             <div className="relative z-10">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-600 shadow-lg">
-                  <UserPlus className="w-8 h-8 text-white" />
+              <div className="flex justify-center mb-3">
+                <div className="p-2.5 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-600 shadow-lg">
+                  <UserPlus className="w-6 h-6 text-white" />
                 </div>
               </div>
-              <CardTitle className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              <CardTitle className="text-2xl font-bold text-white mb-1 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                 Create Account
               </CardTitle>
-              <CardDescription className="text-white/70 text-base">
+              <CardDescription className="text-white/70 text-sm">
                 Join us and start your journey today
               </CardDescription>
             </div>
@@ -131,13 +150,13 @@ const SignUp = () => {
             </div>
           )}
 
-          <CardContent className="p-6 space-y-6">
+          <CardContent className="p-6 pt-4 space-y-4">
             {/* Sign Up Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name Input */}
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaUser className="w-5 h-5 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+                  <FaUser className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
                 </div>
                 <Input
                   type="text"
@@ -146,14 +165,14 @@ const SignUp = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
-                  className="pl-12 h-14 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                  className="pl-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
                 />
               </div>
 
               {/* Email Input */}
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaEnvelope className="w-5 h-5 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+                  <FaEnvelope className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
                 </div>
                 <Input
                   type="email"
@@ -162,14 +181,14 @@ const SignUp = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   required
-                  className="pl-12 h-14 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                  className="pl-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
                 />
               </div>
 
               {/* Password Input */}
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaLock className="w-5 h-5 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+                  <FaLock className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
                 </div>
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -180,7 +199,7 @@ const SignUp = () => {
                     setForm({ ...form, password: e.target.value })
                   }
                   required
-                  className="pl-12 pr-12 h-14 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                  className="pl-11 pr-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
                 />
                 <button
                   type="button"
@@ -188,9 +207,9 @@ const SignUp = () => {
                   className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/50 hover:text-white transition-colors duration-200"
                 >
                   {showPassword ? (
-                    <FaEyeSlash className="w-5 h-5" />
+                    <FaEyeSlash className="w-4 h-4" />
                   ) : (
-                    <FaEye className="w-5 h-5" />
+                    <FaEye className="w-4 h-4" />
                   )}
                 </button>
               </div>
@@ -198,7 +217,7 @@ const SignUp = () => {
               {/* Confirm Password Input */}
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaLock className="w-5 h-5 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+                  <FaLock className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
                 </div>
                 <Input
                   type={showConfirmPassword ? "text" : "password"}
@@ -209,7 +228,7 @@ const SignUp = () => {
                     setForm({ ...form, confirmPassword: e.target.value })
                   }
                   required
-                  className="pl-12 pr-12 h-14 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                  className="pl-11 pr-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
                 />
                 <button
                   type="button"
@@ -217,9 +236,9 @@ const SignUp = () => {
                   className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/50 hover:text-white transition-colors duration-200"
                 >
                   {showConfirmPassword ? (
-                    <FaEyeSlash className="w-5 h-5" />
+                    <FaEyeSlash className="w-4 h-4" />
                   ) : (
-                    <FaEye className="w-5 h-5" />
+                    <FaEye className="w-4 h-4" />
                   )}
                 </button>
               </div>
@@ -228,18 +247,18 @@ const SignUp = () => {
               <Button
                 type="submit"
                 disabled={pending}
-                className="w-full h-14 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full h-12 mt-1 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-[0_4px_16px_0_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 <span className="flex items-center justify-center gap-2">
                   {pending ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       Creating Account...
                     </>
                   ) : (
                     <>
                       Create Account
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                     </>
                   )}
                 </span>
@@ -251,7 +270,7 @@ const SignUp = () => {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-white/20"></div>
               </div>
-              <div className="relative flex justify-center text-sm">
+              <div className="relative flex justify-center text-xs">
                 <span className="px-4 bg-transparent text-white/70 font-medium">
                   Or continue with
                 </span>
@@ -259,20 +278,14 @@ const SignUp = () => {
             </div>
 
             {/* Social Login Buttons */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="w-full">
               <Button
                 onClick={(e) => handleProvider(e, "google")}
                 variant="outline"
-                className="h-12 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-xl transition-all duration-200 hover:scale-105"
+                className="w-full h-11 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-xl transition-all duration-200 hover:scale-[1.02]"
               >
-                <FcGoogle className="w-6 h-6" />
-              </Button>
-              <Button
-                onClick={(e) => handleProvider(e, "github")}
-                variant="outline"
-                className="h-12 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-xl transition-all duration-200 hover:scale-105"
-              >
-                <FaGithub className="w-6 h-6" />
+                <FcGoogle className="w-5 h-5 mr-2" />
+                Google
               </Button>
             </div>
 

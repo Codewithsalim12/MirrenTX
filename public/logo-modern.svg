@@ -1,77 +1,37 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Gradient Definitions -->
-    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#22c55e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="30%" stop-color="#8B5CF6" />
+      <stop offset="60%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#06B6D4" />
     </linearGradient>
-    
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
     </linearGradient>
-    
-    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-    </linearGradient>
-    
-    <!-- Shadow Filter -->
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="4" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
-    </filter>
-    
-    <!-- Glow Filter -->
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
   
-  <!-- Main Circle Background -->
-  <circle cx="100" cy="100" r="90" fill="url(#mainGradient)" filter="url(#shadow)">
-    <animate attributeName="r" values="88;92;88" dur="4s" repeatCount="indefinite"/>
-  </circle>
+  <!-- Main Background Circle -->
+  <circle cx="50" cy="50" r="47" fill="url(#bgGradient)" />
   
-  <!-- Inner Circle -->
-  <circle cx="100" cy="100" r="70" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-  
-  <!-- Company Initials - Modern Design -->
-  <g fill="url(#textGradient)" filter="url(#glow)">
-    <!-- Letter M -->
-    <path d="M50 60 L50 130 L60 130 L60 85 L70 105 L80 85 L80 130 L90 130 L90 60 L80 60 L70 90 L60 60 Z" />
+  <!-- Event/Rental Icon (Tent) -->
+  <g fill="url(#iconGradient)">
+    <path d="M25 70 L50 25 L75 70 Z" opacity="0.9" />
+    <path d="M25 70 L50 25 L75 70 L70 70 L50 35 L30 70 Z" fill="rgba(255,255,240,0.4)" />
     
-    <!-- Letter R -->
-    <path d="M110 60 L110 130 L120 130 L120 100 L130 100 L140 130 L150 130 L138 95 Q150 90 150 75 Q150 60 135 60 Z M120 70 L135 70 Q140 70 140 75 Q140 80 135 80 L120 80 Z" />
+    <!-- Center Pole -->
+    <path d="M48.5 25 L51.5 25 L51.5 70 L48.5 70 Z" fill="rgba(255,255,255,0.7)" />
+    
+    <!-- Base -->
+    <ellipse cx="50" cy="70" rx="25" ry="3" fill="rgba(255,255,255,0.6)" />
+    
+    <!-- Decorative Accents -->
+    <circle cx="35" cy="48" r="1.5" fill="rgba(255,255,255,0.8)" />
+    <circle cx="65" cy="48" r="1.5" fill="rgba(255,255,255,0.8)" />
+    
+    <!-- Top Flag -->
+    <path d="M50 25 L58 20 L66 25 L58 30 Z" fill="#10B981" opacity="0.9" />
+    <circle cx="50" cy="25" r="2.5" fill="#ffffff" />
   </g>
-  
-  <!-- Decorative Elements -->
-  <g fill="rgba(255,255,255,0.6)">
-    <circle cx="40" cy="40" r="3">
-      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="160" cy="40" r="3">
-      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="40" cy="160" r="3">
-      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="160" cy="160" r="3">
-      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.2s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  
-  <!-- Accent Ring -->
-  <circle cx="100" cy="100" r="75" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.5">
-    <animate attributeName="stroke-dasharray" values="0,471;235,235;0,471" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  
-  <!-- Central Highlight -->
-  <circle cx="85" cy="85" r="8" fill="rgba(255,255,255,0.3)" opacity="0.7">
-    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
-  </circle>
 </svg>

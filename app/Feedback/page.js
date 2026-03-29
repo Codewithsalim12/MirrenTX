@@ -11,9 +11,13 @@ import {
   FaMagic,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import ProtectedRoute from "../components/ProtectedRoute";
+import { usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function FeedbackPage() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { status } = useSession();
   const [form, setForm] = useState({ name: "", email: "", feedback: "" });
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
@@ -26,6 +30,11 @@ export default function FeedbackPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (status !== "authenticated") {
+      router.push("/sign-in?callbackUrl=" + encodeURIComponent(pathname));
+      return;
+    }
 
     if (!form.name || !form.email || !form.feedback) {
       toast.error("All fields are required.");
@@ -62,7 +71,6 @@ export default function FeedbackPage() {
   };
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
         {/* Background Decorations */}
         <div className="absolute inset-0 overflow-hidden">
@@ -483,6 +491,5 @@ export default function FeedbackPage() {
           </motion.div>
         </div>
       </div>
-    </ProtectedRoute>
   );
 }

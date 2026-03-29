@@ -29,7 +29,6 @@ import {
 import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ProtectedRoute from "../components/ProtectedRoute";
 import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -58,7 +57,6 @@ export default function Services() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
         {/* Modern Hero Section with Slider */}
         <div className="relative w-full bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 mt-16 lg:mt-20 overflow-hidden">
@@ -654,6 +652,5 @@ export default function Services() {
           </div>
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

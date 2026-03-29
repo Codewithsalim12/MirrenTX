@@ -12,7 +12,12 @@ import {
   FaMobile,
   FaGlobe,
   FaHeadset,
+  FaInfoCircle,
+  FaHistory,
+  FaFileInvoiceDollar,
+  FaPhoneAlt,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function PaymentOptions() {
   const router = useRouter();
@@ -20,31 +25,60 @@ export default function PaymentOptions() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/918082815863?text=Can%20I%20get%20more%20info%20about%20the%20rentals%3F",
+      "https://wa.me/918082815863?text=I%20just%20submitted%20a%20rental%20request.%20Can%20we%20finalize%20the%20quote%3F",
       "_blank"
     );
   };
 
+  const handleCall = () => {
+    window.open("tel:+918082815863");
+  };
+
+  const handleCallback = async () => {
+    setIsLoading(true);
+    try {
+      // Get rental data from localStorage
+      const savedData = localStorage.getItem("rentalFormState");
+      const rentalData = savedData ? JSON.parse(savedData) : {};
+
+      const response = await fetch("/api/callback-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(rentalData),
+      });
+
+      if (!response.ok) throw new Error("Failed to send request");
+
+      toast.success("Callback request sent successfully!");
+      router.push("/rentals/request-success");
+    } catch (error) {
+      console.error("Callback error:", error);
+      toast.error("Failed to send request. Please try again or use WhatsApp.");
+      setIsLoading(false);
+    }
+  };
+
   const handlePayOnline = () => {
     setIsLoading(true);
+    // For now, this still leads to payment details, but we'll frame it as a deposit/advance
     setTimeout(() => {
       router.push("/rentals/payment-details");
-    }, 5000);
+    }, 2000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-50 py-12 px-4 shadow-inner">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 pt-20">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Choose Payment Method
+              Finalize Your Quote
             </span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Select your preferred payment option to complete your rental booking
-            securely.
+            Because every rental is unique (location, duration, and setup), we
+            provide custom quotes to ensure you get the best deal.
           </p>
 
           {/* Progress Indicator */}
@@ -72,7 +106,7 @@ export default function PaymentOptions() {
                 3
               </div>
               <span className="ml-2 text-sm font-medium text-blue-600">
-                Payment
+                Finalize
               </span>
             </div>
           </div>
@@ -93,122 +127,149 @@ export default function PaymentOptions() {
                 </button>
 
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Payment Options
+                  Booking Personalization
                 </h2>
                 <p className="text-gray-600">
-                  Choose your preferred payment method to complete the booking.
+                  Select how you would like to finalize your rental price and
+                  secure the dates.
                 </p>
               </div>
 
+              {/* Pricing Context Note */}
+              <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100 mb-8">
+                <div className="flex items-start">
+                  <FaInfoCircle className="text-purple-600 mt-1 mr-4 text-xl flex-shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-purple-900 mb-1">
+                      Why are rates not fixed?
+                    </h4>
+                    <p className="text-purple-700 text-sm leading-relaxed">
+                      To ensure you don&apos;t overpay, we calculate delivery
+                      charges based on your exact location and provide discounts
+                      for longer rental durations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-6">
-                {/* Online Payment Option */}
-                <div className="group border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 transition-all duration-300 cursor-pointer">
+                {/* WhatsApp Option - Recommended */}
+                <div className="group border-2 border-purple-200 bg-purple-50/30 rounded-2xl p-6 hover:border-green-500 transition-all duration-300 cursor-pointer relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                    Recommended
+                  </div>
+                  <div className="w-full text-left">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center">
+                        <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <FaWhatsapp className="text-white text-2xl" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-gray-900">
+                            Instant Quote via Call or WhatsApp
+                          </h3>
+                          <p className="text-gray-600 text-sm">
+                            Call us or message for immediate, personalized pricing
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                      <div className="bg-white/80 rounded-lg p-3 text-center border border-purple-100">
+                        <FaHeadset className="text-green-600 mx-auto mb-1" />
+                        <span className="text-xs text-gray-600">Live Support</span>
+                      </div>
+                      <div className="bg-white/80 rounded-lg p-3 text-center border border-purple-100">
+                        <FaFileInvoiceDollar className="text-blue-600 mx-auto mb-1" />
+                        <span className="text-xs text-gray-600">Final Price</span>
+                      </div>
+                      <div className="bg-white/80 rounded-lg p-3 text-center border border-purple-100">
+                        <FaCheck className="text-purple-600 mx-auto mb-1" />
+                        <span className="text-xs text-gray-600">Easy Chat</span>
+                      </div>
+                      <div className="bg-white/80 rounded-lg p-3 text-center border border-purple-100">
+                        <FaHistory className="text-orange-600 mx-auto mb-1" />
+                        <span className="text-xs text-gray-600">Fast Reply</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); handleWhatsApp(); }}
+                        className="flex-1 bg-green-600 text-white rounded-xl p-4 text-center font-bold hover:bg-green-700 transition-colors shadow-md flex items-center justify-center"
+                      >
+                        <FaWhatsapp className="mr-2 text-xl" />
+                        Chat on WhatsApp
+                      </button>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); handleCall(); }}
+                        className="flex-1 bg-blue-600 text-white rounded-xl p-4 text-center font-bold hover:bg-blue-700 transition-colors shadow-md flex items-center justify-center"
+                      >
+                        <FaPhoneAlt className="mr-2 text-xl" />
+                        Call Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Callback Option - Commented out as per user request
+                <div className="group border-2 border-gray-100 rounded-2xl p-6 hover:border-blue-500 transition-all duration-300 cursor-pointer">
+                  <button onClick={handleCallback} className="w-full text-left">
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-blue-600 transition-colors duration-300">
+                        <FaHeadset className="text-blue-600 group-hover:text-white text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900">
+                          Request a Call Back
+                        </h3>
+                        <p className="text-gray-600 text-sm">
+                          Our team will call you to finalize the rate
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                */}
+
+                {/* Online Payment Option - For Advance */}
+                <div className="group border-2 border-gray-100 rounded-2xl p-6 hover:border-purple-400 transition-all duration-300 cursor-pointer opacity-80 hover:opacity-100">
                   <button
                     onClick={handlePayOnline}
                     disabled={isLoading}
                     className="w-full text-left"
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                          <FaCreditCard className="text-white text-xl" />
-                        </div>
-                        <div>
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-purple-600 transition-colors duration-300">
+                        <FaCreditCard className="text-gray-600 group-hover:text-white text-xl" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
                           <h3 className="text-lg font-bold text-gray-900">
-                            Pay Online
+                            Secure Booking Advance
                           </h3>
-                          <p className="text-gray-600 text-sm">
-                            Secure online payment with cards
-                          </p>
+                          <span className="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">
+                            Adjustable
+                          </span>
                         </div>
+                        <p className="text-gray-600 text-sm">
+                          Pay ₹500 token amount to lock your dates. 
+                          <span className="block mt-1 text-[11px] italic text-purple-600 font-medium">
+                            *This amount will be deducted from your final bill.
+                          </span>
+                        </p>
                       </div>
-                      {isLoading && (
-                        <FaSpinner className="animate-spin text-blue-600" />
-                      )}
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaLock className="text-green-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Secure</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaMobile className="text-blue-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Mobile</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaGlobe className="text-purple-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Global</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaCheck className="text-green-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Instant</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <p className="text-blue-800 text-sm font-medium">
-                        {isLoading
-                          ? "Processing your request..."
-                          : "Supports all major credit/debit cards and digital wallets"}
-                      </p>
-                    </div>
-                  </button>
-                </div>
-
-                {/* WhatsApp Option */}
-                <div className="group border-2 border-gray-200 rounded-2xl p-6 hover:border-green-500 transition-all duration-300 cursor-pointer">
-                  <button onClick={handleWhatsApp} className="w-full text-left">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4">
-                          <FaWhatsapp className="text-white text-xl" />
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">
-                            Chat on WhatsApp
-                          </h3>
-                          <p className="text-gray-600 text-sm">
-                            Get personalized assistance
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaHeadset className="text-green-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Support</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaMobile className="text-blue-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Mobile</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaCheck className="text-purple-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Quick</span>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 text-center">
-                        <FaWhatsapp className="text-green-600 mx-auto mb-1" />
-                        <span className="text-xs text-gray-600">Direct</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-green-50 rounded-lg p-4">
-                      <p className="text-green-800 text-sm font-medium">
-                        Connect directly with our team for custom pricing and
-                        flexible payment options
-                      </p>
                     </div>
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Right Side - Security Info */}
+            {/* Right Side - Coordination Info */}
             <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-8 lg:p-12 text-white">
               <div className="h-full flex flex-col justify-center">
-                <h3 className="text-2xl font-bold mb-6">Secure Payments</h3>
+                <h3 className="text-2xl font-bold mb-6">Direct Coordination</h3>
 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -216,24 +277,23 @@ export default function PaymentOptions() {
                       <FaShieldAlt className="text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">
-                        Bank-Level Security
-                      </h4>
+                      <h4 className="font-semibold mb-1">Professional Review</h4>
                       <p className="text-white/80 text-sm">
-                        All transactions are protected with 256-bit SSL
-                        encryption.
+                        Every request is handled by a specialist to ensure equipment 
+                        compatibility and optimal setup for your project.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-4">
                     <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <FaLock className="text-white" />
+                      <FaFileInvoiceDollar className="text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Data Protection</h4>
+                      <h4 className="font-semibold mb-1">Custom Quoting</h4>
                       <p className="text-white/80 text-sm">
-                        Your payment information is never stored on our servers.
+                        We calculate the best possible rates based on your 
+                        specific location and rental duration.
                       </p>
                     </div>
                   </div>
@@ -243,9 +303,10 @@ export default function PaymentOptions() {
                       <FaHeadset className="text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">24/7 Support</h4>
+                      <h4 className="font-semibold mb-1">Local Support</h4>
                       <p className="text-white/80 text-sm">
-                        Our payment support team is available around the clock.
+                        Our Kupwara-based coordination team provides 24/7 
+                        assistance for all your rental queries.
                       </p>
                     </div>
                   </div>
@@ -253,7 +314,7 @@ export default function PaymentOptions() {
 
                 <div className="mt-8 p-4 bg-white/10 rounded-xl border border-white/20">
                   <p className="text-sm text-white/90">
-                    <strong>Need help?</strong> Contact us at{" "}
+                    <strong>Need help?</strong> Contact our coordination team at{" "}
                     <span className="font-semibold">+91 8082815863</span>
                   </p>
                 </div>

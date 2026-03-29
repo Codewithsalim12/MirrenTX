@@ -21,9 +21,14 @@ import {
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Hide entirely on Admin route
+  if (pathname?.startsWith("/Admin")) return null;
 
   useEffect(() => {
     const handleScroll = () => {

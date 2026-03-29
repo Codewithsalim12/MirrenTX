@@ -31,7 +31,7 @@ import {
   FaGem,
 } from "react-icons/fa";
 import { ArrowRight } from "lucide-react";
-import ProtectedRoute from "../components/ProtectedRoute";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -59,7 +59,6 @@ export default function About() {
   }, []);
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-white">
         {/* SECTION 1: Geometric Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 pt-16 lg:pt-20">
@@ -807,6 +806,5 @@ export default function About() {
           </div>
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

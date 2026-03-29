@@ -20,9 +20,9 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import ProtectedRoute from "../components/ProtectedRoute";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 const rentalsData = [
   {
     id: 1,
@@ -85,12 +85,18 @@ const rentalsData = [
 
 export default function RentalsPage() {
   const router = useRouter();
+  const pathname = usePathname();
+  const { status } = useSession();
   const [favorites, setFavorites] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Add this click handler function
   const handleRentNow = (itemId) => {
-    router.push(`/rentals/rent-form?item=${itemId}`);
+    if (status !== "authenticated") {
+      router.push("/sign-in?callbackUrl=" + encodeURIComponent(pathname));
+    } else {
+      router.push(`/rentals/rent-form?item=${itemId}`);
+    }
   };
 
   const handleNotifyClick = () => {
@@ -120,7 +126,6 @@ export default function RentalsPage() {
       : rentalsData.filter((item) => item.category === selectedCategory);
 
   return (
-    <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
         {/* Hero Section */}
         <section className="pt-32 pb-16">
@@ -441,6 +446,5 @@ export default function RentalsPage() {
           <ToastContainer />
         </section>
       </div>
-    </ProtectedRoute>
   );
 }

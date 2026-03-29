@@ -2,35 +2,21 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, feedback, rating } = await req.json();
-    const emojis = ["😞", "😐", "😊", "😁", "🤩"];
-    const emojiRating = typeof rating === "number" && rating > 0 ? emojis[rating - 1] : "Not rated";
-
-    if (!name || !email || !feedback) {
-      return Response.json(
-        { success: false, message: "All fields are required." },
-        { status: 400 }
-      );
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return Response.json(
-        { success: false, message: "Invalid email format." },
-        { status: 400 }
-      );
-    }
-
-    if (feedback.length > 500) {
-      return Response.json(
-        { success: false, message: "Feedback must be under 300 characters." },
-        { status: 400 }
-      );
-    }
+    const data = await req.json();
+    const {
+      firstName,
+      lastName,
+      phone,
+      district,
+      tehsilVillage,
+      rentDuration,
+      equipmentName,
+    } = data;
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -40,7 +26,7 @@ export async function POST(req) {
     const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
     const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content, badge = "Feedback") => `
+    const getHtmlTemplate = (title, content, badge = "Callback Request") => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -52,7 +38,7 @@ export async function POST(req) {
           body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfaff; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
           .wrapper { background-color: #fdfaff; padding: 40px 20px; }
           .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 32px; overflow: hidden; border: 1px solid #f3e8ff; box-shadow: 0 40px 80px -20px rgba(139, 92, 246, 0.08); }
-          .header { background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%); padding: 60px 40px; text-align: center; position: relative; }
+          .header { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 60px 40px; text-align: center; position: relative; }
           .header-overlay { position: absolute; inset: 0; background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); opacity: 0.05; }
           .logo { width: 85px; height: 85px; margin-bottom: 24px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1)); position: relative; z-index: 1; }
           .badge { background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); color: white; padding: 8px 18px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: inline-block; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.3); }
@@ -66,13 +52,8 @@ export async function POST(req) {
           .data-label { color: #6b7280; font-size: 13px; font-weight: 600; width: 130px; flex-shrink: 0; }
           .data-value { color: #1e1b4b; font-size: 15px; font-weight: 700; }
           
-          .message-box { background: #faf5ff; padding: 32px; border-radius: 24px; border: 1px solid #f3e8ff; font-size: 16px; line-height: 1.8; color: #4b5563; white-space: pre-wrap; position: relative; font-style: italic; }
-          .message-box::before { content: '“'; font-size: 80px; color: rgba(139, 92, 246, 0.1); position: absolute; top: -10px; left: 10px; font-family: serif; line-height: 1; }
-          
           .footer { background: #faf5ff; padding: 45px; text-align: center; border-top: 1px solid #f3e8ff; }
-          .footer-logo { font-size: 22px; font-weight: 900; color: #d8b4fe; letter-spacing: 4px; margin-bottom: 20px; display: block; }
-          .footer-links { margin-bottom: 30px; }
-          .footer-link { color: #8b5cf6; font-size: 14px; text-decoration: none; margin: 0 15px; font-weight: 600; opacity: 0.8; }
+          .footer-logo { font-size: 22px; font-weight: 900; color: #d8b4fe; letter-spacing: 4px; margin-bottom: 20px; display: block; opacity: 0.8; }
           .copyright { color: #a1a1aa; font-size: 12px; font-weight: 600; }
         </style>
       </head>
@@ -90,12 +71,7 @@ export async function POST(req) {
             </div>
             <div class="footer">
               <span class="footer-logo">MIRRENTX</span>
-              <div class="footer-links">
-                <a href="${baseUrl}" class="footer-link">Website</a>
-                <a href="mailto:mirrentx@gmail.com" class="footer-link">Support</a>
-                <a href="${baseUrl}/rentals" class="footer-link">Rentals</a>
-              </div>
-              <p class="copyright">© ${new Date().getFullYear()} MirrenTX. All rights reserved.</p>
+              <p class="copyright">© ${new Date().getFullYear()} MirrenTX. Admin Notification.</p>
             </div>
           </div>
         </div>
@@ -104,48 +80,55 @@ export async function POST(req) {
     `;
 
     const htmlContent = `
-      <span class="section-title">User Impressions</span>
-      <div style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 32px; text-align: center;">
-        <div style="font-size: 12px; color: #10b981; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px;">Rating Indicator</div>
-        <div style="font-size: 64px; line-height: 1;">${emojiRating}</div>
-      </div>
-
-      <span class="section-title">Sender Information</span>
+      <span class="section-title">Customer Details</span>
       <div class="data-card">
         <div class="data-row">
-          <div class="data-label">Full Name</div>
-          <div class="data-value">${name}</div>
+          <div class="data-label">Name</div>
+          <div class="data-value">${firstName} ${lastName}</div>
         </div>
         <div class="data-row">
-          <div class="data-label">Email</div>
-          <div class="data-value">${email}</div>
+          <div class="data-label">Phone</div>
+          <div class="data-value">${phone}</div>
+        </div>
+        <div class="data-row">
+          <div class="data-label">Equipment</div>
+          <div class="data-value">${equipmentName}</div>
         </div>
       </div>
 
       <div style="margin-top: 40px;">
-        <span class="section-title">Feedback Message</span>
-        <div class="message-box">${feedback}</div>
+        <span class="section-title">Location & Duration</span>
+        <div class="data-card">
+          <div class="data-row">
+            <div class="data-label">District</div>
+            <div class="data-value">${district}</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Village</div>
+            <div class="data-value">${tehsilVillage}</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Duration</div>
+            <div class="data-value">${rentDuration}</div>
+          </div>
+        </div>
       </div>
     `;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: `⭐ New Feedback: ${name}`,
-      replyTo: email,
-      html: getHtmlTemplate("User Feedback", htmlContent, "Community Voice"),
+      to: "mirrentx@gmail.com", // Directed to business email as per previous updates
+      subject: `🚨 Callback Requested: ${equipmentName} - ${firstName}`,
+      html: getHtmlTemplate("Quote Finalization Request", htmlContent),
     };
 
     await transporter.sendMail(mailOptions);
 
-    return Response.json({
-      success: true,
-      message: "Feedback submitted successfully!",
-    });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
-    return Response.json(
-      { success: false, message: "Something went wrong. Try again!" },
-      { status: 500 }
-    );
+    console.error("Callback API error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
   }
 }
