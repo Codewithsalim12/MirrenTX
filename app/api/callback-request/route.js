@@ -26,7 +26,7 @@ export async function POST(req) {
     const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
     const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content, badge = "Callback Request") => `
+    const getHtmlTemplate = (title, content) => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -34,44 +34,38 @@ export async function POST(req) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-          
-          body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfaff; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-          .wrapper { background-color: #fdfaff; padding: 40px 20px; }
-          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 32px; overflow: hidden; border: 1px solid #f3e8ff; box-shadow: 0 40px 80px -20px rgba(139, 92, 246, 0.08); }
-          .header { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 60px 40px; text-align: center; position: relative; }
-          .header-overlay { position: absolute; inset: 0; background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); opacity: 0.05; }
-          .logo { width: 85px; height: 85px; margin-bottom: 24px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1)); position: relative; z-index: 1; }
-          .badge { background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); color: white; padding: 8px 18px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: inline-block; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.3); }
-          .header-title { color: white; font-size: 34px; font-weight: 800; margin: 0; letter-spacing: -1.5px; line-height: 1.1; position: relative; z-index: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-          
-          .content { padding: 50px 45px; }
-          .section-title { color: #8b5cf6; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 28px; display: block; opacity: 0.7; }
-          .data-card { background: #faf5ff; border-radius: 24px; padding: 10px; border: 1px solid #f3e8ff; }
-          .data-row { display: flex; padding: 18px 20px; border-bottom: 1px solid #f3e8ff; }
-          .data-row:last-child { border-bottom: none; }
-          .data-label { color: #6b7280; font-size: 13px; font-weight: 600; width: 130px; flex-shrink: 0; }
-          .data-value { color: #1e1b4b; font-size: 15px; font-weight: 700; }
-          
-          .footer { background: #faf5ff; padding: 45px; text-align: center; border-top: 1px solid #f3e8ff; }
-          .footer-logo { font-size: 22px; font-weight: 900; color: #d8b4fe; letter-spacing: 4px; margin-bottom: 20px; display: block; opacity: 0.8; }
-          .copyright { color: #a1a1aa; font-size: 12px; font-weight: 600; }
+          body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+          .wrapper { background-color: #f9fafb; padding: 60px 20px; }
+          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; }
+          .logo { display: block; margin: 0 auto 40px; width: 60px; height: auto; }
+          .header-title { color: #000000; font-size: 32px; font-weight: 800; margin: 0 0 24px; letter-spacing: -1.5px; line-height: 1.1; text-align: left; }
+          .content-text { color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+          .data-block { border-top: 1px solid #f3f4f6; padding-top: 32px; margin-top: 32px; }
+          .data-label { color: #000000; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+          .data-value { color: #4b5563; font-size: 16px; font-weight: 500; margin-bottom: 24px; }
+          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; }
+          .footer-signoff { color: #1a1a1a; font-size: 16px; font-weight: 700; margin-bottom: 32px; }
+          .help-title { color: #000000; font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+          .help-text { color: #6b7280; font-size: 14px; line-height: 1.5; }
+          .help-link { color: #5e4ae3; text-decoration: none; font-weight: 600; }
         </style>
       </head>
       <body>
         <div class="wrapper">
           <div class="container">
-            <div class="header">
-              <div class="header-overlay"></div>
-              <div class="badge">${badge}</div>
-              <img src="${logoUrl}" alt="MirrenTX" class="logo" />
-              <h1 class="header-title">${title}</h1>
-            </div>
+            <img src="${logoUrl}" alt="MirrenTX" class="logo" />
+            <h1 class="header-title">${title}</h1>
             <div class="content">
               ${content}
             </div>
             <div class="footer">
-              <span class="footer-logo">MIRRENTX</span>
-              <p class="copyright">© ${new Date().getFullYear()} MirrenTX. Admin Notification.</p>
+              <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
+              <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
+              <h3 class="help-title">Need help?</h3>
+              <p class="help-text">
+                This is an automated admin notification. For internal support, please contact 
+                <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
+              </p>
             </div>
           </div>
         </div>
@@ -80,38 +74,29 @@ export async function POST(req) {
     `;
 
     const htmlContent = `
-      <span class="section-title">Customer Details</span>
-      <div class="data-card">
-        <div class="data-row">
-          <div class="data-label">Name</div>
-          <div class="data-value">${firstName} ${lastName}</div>
-        </div>
-        <div class="data-row">
-          <div class="data-label">Phone</div>
-          <div class="data-value">${phone}</div>
-        </div>
-        <div class="data-row">
-          <div class="data-label">Equipment</div>
-          <div class="data-value">${equipmentName}</div>
-        </div>
+      <p class="content-text">
+        Urgent: A customer has requested a callback for quote finalization. Please review the details and reach out via phone as prioritized.
+      </p>
+      
+      <div class="data-block">
+        <span class="data-label">Customer Contact</span>
+        <p class="data-value">
+          <strong>Name:</strong> ${firstName} ${lastName}<br/>
+          <strong>Phone:</strong> <span style="color: #5e4ae3; font-weight: 800;">${phone}</span><br/>
+          <strong>Equipment:</strong> ${equipmentName}
+        </p>
+        
+        <span class="data-label">Logistics & Preference</span>
+        <p class="data-value">
+          <strong>Location:</strong> ${district}, ${tehsilVillage}<br/>
+          <strong>Duration:</strong> ${rentDuration}
+        </p>
       </div>
 
-      <div style="margin-top: 40px;">
-        <span class="section-title">Location & Duration</span>
-        <div class="data-card">
-          <div class="data-row">
-            <div class="data-label">District</div>
-            <div class="data-value">${district}</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label">Village</div>
-            <div class="data-value">${tehsilVillage}</div>
-          </div>
-          <div class="data-row">
-            <div class="data-label">Duration</div>
-            <div class="data-value">${rentDuration}</div>
-          </div>
-        </div>
+      <div style="margin-top: 32px; padding: 24px; background: #e0f2fe; border-radius: 12px; border: 1px solid #bae6fd;">
+        <p style="margin: 0; color: #0369a1; font-size: 14px; font-weight: 700; line-height: 1.5; text-align: center; text-transform: uppercase; letter-spacing: 1px;">
+          🚨 Action Required: High Priority Callback
+        </p>
       </div>
     `;
 

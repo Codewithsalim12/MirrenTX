@@ -81,8 +81,21 @@ const SignUp = () => {
 
     if (res.ok) {
       setPending(false);
-      toast.success(data.message);
-      router.push("/sign-in");
+      
+      // Auto-login after successful registration
+      const signInRes = await signIn("credentials", {
+        redirect: false,
+        email: form.email,
+        password: form.password,
+      });
+
+      if (signInRes?.ok) {
+        toast.success("Account created! Welcome to MirRenTX.");
+        router.push("/");
+      } else {
+        toast.success("Account created successfully. Please sign in.");
+        router.push("/sign-in");
+      }
     } else {
       setError(data.message);
       setPending(false);
@@ -95,161 +108,134 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-8">
-      {/* Stunning Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(120,119,198,0.3),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.4),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(59,130,246,0.3),transparent_50%)]"></div>
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-      </div>
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-12 bg-gradient-to-br from-white via-purple-50 to-blue-50 px-4">
+      {/* Subtle Background Decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-lg mx-4">
-        <Card className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
-          {/* Glassmorphism Header */}
-          <div className="relative p-6 px-8 text-center pb-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10"></div>
-            <div className="relative z-10">
-              <div className="flex justify-center mb-3">
-                <div className="p-2.5 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-600 shadow-lg">
-                  <UserPlus className="w-6 h-6 text-white" />
-                </div>
+      <div className="relative z-10 w-full max-w-lg">
+        <Card className="bg-white/80 backdrop-blur-xl border border-purple-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] rounded-[32px] overflow-hidden">
+          {/* Header Section */}
+          <div className="relative p-8 text-center pb-4">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg shadow-purple-200 ring-4 ring-purple-50">
+                <UserPlus className="w-7 h-7 text-white" />
               </div>
-              <CardTitle className="text-2xl font-bold text-white mb-1 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                Create Account
-              </CardTitle>
-              <CardDescription className="text-white/70 text-sm">
-                Join us and start your journey today
-              </CardDescription>
             </div>
+            <CardTitle className="text-3xl font-black text-gray-900 mb-2 tracking-tight">
+              Create Account
+            </CardTitle>
+            <CardDescription className="text-gray-500 text-base font-medium">
+              Join MirRenTX and start renting today
+            </CardDescription>
           </div>
 
           {/* Error Message */}
           {!!error && (
-            <div className="mx-6 mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 backdrop-blur-sm">
-              <div className="flex items-center gap-3 text-red-400">
-                <TriangleAlert className="w-5 h-5" />
-                <p className="font-medium">{error}</p>
+            <div className="mx-8 mb-4 p-4 rounded-2xl bg-red-50 border border-red-100 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex items-center gap-3 text-red-600">
+                <TriangleAlert className="w-5 h-5 flex-shrink-0" />
+                <p className="font-bold text-sm">{error}</p>
               </div>
             </div>
           )}
 
-          <CardContent className="p-6 pt-4 space-y-4">
+          <CardContent className="p-8 pt-4 space-y-5">
             {/* Sign Up Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* Name Input */}
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaUser className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+              <div className="space-y-2">
+                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <FaUser className="w-4 h-4 text-gray-300 group-focus-within:text-purple-600 transition-colors duration-300" />
+                  </div>
+                  <Input
+                    type="text"
+                    disabled={pending}
+                    placeholder="John Doe"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    required
+                    className="pl-11 h-13 bg-gray-50/50 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-400 focus:bg-white focus:ring-4 focus:ring-purple-100 focus:border-purple-200 transition-all duration-300"
+                  />
                 </div>
-                <Input
-                  type="text"
-                  disabled={pending}
-                  placeholder="Enter your full name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  required
-                  className="pl-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-                />
               </div>
 
               {/* Email Input */}
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaEnvelope className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+              <div className="space-y-2">
+                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <FaEnvelope className="w-4 h-4 text-gray-300 group-focus-within:text-purple-600 transition-colors duration-300" />
+                  </div>
+                  <Input
+                    type="email"
+                    disabled={pending}
+                    placeholder="name@example.com"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    required
+                    className="pl-11 h-13 bg-gray-50/50 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-400 focus:bg-white focus:ring-4 focus:ring-purple-100 focus:border-purple-200 transition-all duration-300"
+                  />
                 </div>
-                <Input
-                  type="email"
-                  disabled={pending}
-                  placeholder="Enter your email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  required
-                  className="pl-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-                />
               </div>
 
-              {/* Password Input */}
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaLock className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+              {/* Password Fields Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Password</label>
+                  <div className="relative group">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      disabled={pending}
+                      placeholder="••••••••"
+                      value={form.password}
+                      onChange={(e) => setForm({ ...form, password: e.target.value })}
+                      required
+                      className="pl-4 pr-11 h-13 bg-gray-50/50 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-400 focus:bg-white focus:ring-4 focus:ring-purple-100 focus:border-purple-200 transition-all duration-300"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-300 hover:text-purple-600 transition-colors duration-300"
+                    >
+                      {showPassword ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  disabled={pending}
-                  placeholder="Create a password"
-                  value={form.password}
-                  onChange={(e) =>
-                    setForm({ ...form, password: e.target.value })
-                  }
-                  required
-                  className="pl-11 pr-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/50 hover:text-white transition-colors duration-200"
-                >
-                  {showPassword ? (
-                    <FaEyeSlash className="w-4 h-4" />
-                  ) : (
-                    <FaEye className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
 
-              {/* Confirm Password Input */}
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaLock className="w-4 h-4 text-white/50 group-focus-within:text-purple-400 transition-colors duration-200" />
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Confirm</label>
+                  <div className="relative group">
+                    <Input
+                      type={showConfirmPassword ? "text" : "password"}
+                      disabled={pending}
+                      placeholder="••••••••"
+                      value={form.confirmPassword}
+                      onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+                      required
+                      className="pl-4 pr-11 h-13 bg-gray-50/50 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-400 focus:bg-white focus:ring-4 focus:ring-purple-100 focus:border-purple-200 transition-all duration-300"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-300 hover:text-purple-600 transition-colors duration-300"
+                    >
+                      {showConfirmPassword ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
-                <Input
-                  type={showConfirmPassword ? "text" : "password"}
-                  disabled={pending}
-                  placeholder="Confirm your password"
-                  value={form.confirmPassword}
-                  onChange={(e) =>
-                    setForm({ ...form, confirmPassword: e.target.value })
-                  }
-                  required
-                  className="pl-11 pr-11 h-12 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/50 hover:text-white transition-colors duration-200"
-                >
-                  {showConfirmPassword ? (
-                    <FaEyeSlash className="w-4 h-4" />
-                  ) : (
-                    <FaEye className="w-4 h-4" />
-                  )}
-                </button>
               </div>
 
               {/* Sign Up Button */}
               <Button
                 type="submit"
                 disabled={pending}
-                className="w-full h-12 mt-1 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-[0_4px_16px_0_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full h-14 mt-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-purple-100 border-0 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed group"
               >
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-3">
                   {pending ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -258,7 +244,7 @@ const SignUp = () => {
                   ) : (
                     <>
                       Create Account
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                     </>
                   )}
                 </span>
@@ -266,13 +252,13 @@ const SignUp = () => {
             </form>
 
             {/* Divider */}
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/20"></div>
+            <div className="relative py-4">
+              <div className="absolute inset-0 flex items-center px-2">
+                <div className="w-full border-t border-gray-100"></div>
               </div>
               <div className="relative flex justify-center text-xs">
-                <span className="px-4 bg-transparent text-white/70 font-medium">
-                  Or continue with
+                <span className="px-4 bg-white text-gray-400 font-bold uppercase tracking-widest text-[10px]">
+                  Social Connect
                 </span>
               </div>
             </div>
@@ -282,20 +268,20 @@ const SignUp = () => {
               <Button
                 onClick={(e) => handleProvider(e, "google")}
                 variant="outline"
-                className="w-full h-11 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-xl transition-all duration-200 hover:scale-[1.02]"
+                className="w-full h-13 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl border-0 shadow-lg transition-all duration-300 hover:scale-[1.01]"
               >
-                <FcGoogle className="w-5 h-5 mr-2" />
-                Google
+                <FcGoogle className="w-5 h-5 mr-3" />
+                Sign up with Google
               </Button>
             </div>
 
             {/* Sign In Link */}
             <div className="text-center pt-4">
-              <p className="text-white/70">
+              <p className="text-gray-500 font-medium text-sm">
                 Already have an account?{" "}
                 <Link
                   href="/sign-in"
-                  className="text-purple-400 hover:text-purple-300 font-semibold hover:underline transition-colors duration-200"
+                  className="text-purple-600 hover:text-purple-700 font-black hover:underline transition-all duration-300"
                 >
                   Sign in
                 </Link>
@@ -305,8 +291,8 @@ const SignUp = () => {
         </Card>
 
         {/* Bottom Decoration */}
-        <div className="flex justify-center mt-8">
-          <div className="flex items-center gap-2 text-white/50 text-sm">
+        <div className="flex justify-center mt-10">
+          <div className="flex items-center gap-3 text-gray-400 text-xs font-bold uppercase tracking-[0.15em] opacity-60">
             <Shield className="w-4 h-4" />
             <span>Secure Registration</span>
             <Sparkles className="w-4 h-4 ml-2" />

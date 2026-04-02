@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
   FaArrowLeft,
   FaCheck,
@@ -13,7 +14,10 @@ import {
   FaShieldAlt,
   FaClock,
   FaBuilding,
+  FaSpinner,
 } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ConfirmDetails() {
   const router = useRouter();
@@ -28,18 +32,47 @@ export default function ConfirmDetails() {
     equipmentName: "",
     dates: "",
   });
+  const { data: session } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Retrieve stored data from local storage
-    const storedData = localStorage.getItem("rentFormData");
+    // Determine the user-specific storage key
+    const storageKey = session?.user?.email 
+      ? `rentFormData_${session.user.email}` 
+      : "rentFormData";
+
+    // Retrieve stored data using the scoped key
+    const storedData = localStorage.getItem(storageKey);
     if (storedData) {
       setFormData(JSON.parse(storedData));
     }
-  }, []);
+  }, [session]);
 
-  const handleConfirm = () => {
-    // Proceed to payment options
-    router.push("/rentals/payment-options");
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/rent-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Booking confirmed! Redirecting...");
+        setTimeout(() => {
+          router.push("/rentals/payment-options");
+        }, 1500);
+      } else {
+        throw new Error("Failed to finalize booking");
+      }
+    } catch (error) {
+      toast.error("Submission failed! Please try again.");
+      console.error("Booking error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -239,10 +272,20 @@ export default function ConfirmDetails() {
                 </button>
                 <button
                   onClick={handleConfirm}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
+                  disabled={isLoading}
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Finalize Booking
-                  <FaCheck className="ml-2" />
+                  {isLoading ? (
+                    <>
+                      <FaSpinner className="animate-spin mr-2" />
+                      Finalizing...
+                    </>
+                  ) : (
+                    <>
+                      Finalize Booking
+                      <FaCheck className="ml-2" />
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -303,6 +346,18 @@ export default function ConfirmDetails() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

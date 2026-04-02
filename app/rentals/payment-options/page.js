@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
   FaWhatsapp,
   FaCreditCard,
@@ -21,6 +22,7 @@ import { toast } from "react-toastify";
 
 export default function PaymentOptions() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleWhatsApp = () => {
@@ -37,8 +39,13 @@ export default function PaymentOptions() {
   const handleCallback = async () => {
     setIsLoading(true);
     try {
-      // Get rental data from localStorage
-      const savedData = localStorage.getItem("rentalFormState");
+      // Determine the user-specific storage key to retrieve the correct data
+      const storageKey = session?.user?.email 
+        ? `rentFormData_${session.user.email}` 
+        : "rentFormData";
+
+      // Get standardized rental data from user-scoped storage
+      const savedData = localStorage.getItem(storageKey);
       const rentalData = savedData ? JSON.parse(savedData) : {};
 
       const response = await fetch("/api/callback-request", {
@@ -261,6 +268,20 @@ export default function PaymentOptions() {
                         </p>
                       </div>
                     </div>
+                  </button>
+                </div>
+
+                {/* Final Closure Section */}
+                <div className="mt-12 pt-8 border-t border-gray-100 text-center">
+                  <p className="text-sm text-gray-500 mb-6 font-medium italic">
+                    * Your details are already securely saved. Finalize now to exit the process.
+                  </p>
+                  <button
+                    onClick={() => router.push("/rentals/request-success")}
+                    className="w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-gray-900 to-slate-800 hover:from-black hover:to-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
+                  >
+                    Complete Booking & Finish
+                    <FaCheck className="ml-4 text-green-400" />
                   </button>
                 </div>
               </div>

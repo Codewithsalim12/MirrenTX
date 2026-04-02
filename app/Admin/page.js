@@ -60,6 +60,9 @@ export default function AdminPanel() {
     recentRentals: [],
     recentUsers: []
   });
+  
+  // Email Loading State
+  const [sendingEmailId, setSendingEmailId] = useState(null);
 
   useEffect(() => {
     const authStatus = sessionStorage.getItem("adminAuth");
@@ -155,6 +158,29 @@ export default function AdminPanel() {
       toast.error("Failed to update amount");
     }
   };
+
+  const handleSendEmail = async (rentalId) => {
+    setSendingEmailId(rentalId);
+    try {
+      const res = await fetch("/api/admin/send-placed-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rentalId }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast.success("Order confirmation email sent successfully!");
+      } else {
+        toast.error(json.error || "Failed to send email. Please try again.");
+      }
+    } catch (err) {
+      console.error("Email error:", err);
+      toast.error("Internal connection error while sending email.");
+    } finally {
+      setSendingEmailId(null);
+    }
+  };
+
 
   // ---------------------------------------------------------------------------
   // RENDER LOGIN SCREEN (Auth Guard)
@@ -663,7 +689,28 @@ export default function AdminPanel() {
                                   <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200 text-emerald-600 shadow-inner">
                                     <Check className="w-4 h-4" />
                                   </div>
-                                  <span className="text-[10px] font-bold mt-1 uppercase tracking-tighter text-emerald-700">On Rent</span>
+                                  <span className="text-[10px] font-bold mt-1 uppercase tracking-tighter text-emerald-700 mb-3">On Rent</span>
+                                  
+                                  {rental.price > 0 && (
+                                    <Button 
+                                      onClick={() => handleSendEmail(rental._id)}
+                                      disabled={sendingEmailId === rental._id}
+                                      size="sm"
+                                      className="h-7 px-3 text-[9px] font-black uppercase tracking-wider bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-100 transition-all duration-300 rounded-lg group/email"
+                                    >
+                                      {sendingEmailId === rental._id ? (
+                                        <>
+                                          <Loader2 className="w-3 h-3 mr-1.5 animate-spin" />
+                                          Sending...
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Mail className="w-3 h-3 mr-1.5 group-hover/email:scale-110 transition-transform" />
+                                          Send Order Placed Email
+                                        </>
+                                      )}
+                                    </Button>
+                                  )}
                                 </div>
                               )}
                             </div>

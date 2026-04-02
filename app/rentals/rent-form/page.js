@@ -21,7 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 function RentFormContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,18 +37,52 @@ function RentFormContent() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Load saved data from localStorage if it exists
-    const savedData = localStorage.getItem("rentFormData");
-    if (savedData) {
-      setFormData(JSON.parse(savedData));
+    // Migration: Remove the old, unscoped key to prevent legacy leakage
+    if (localStorage.getItem("rentFormData")) {
+      localStorage.removeItem("rentFormData");
     }
-  }, []);
 
-  useEffect(() => {
+    // Determine the scoped key if a user is authenticated
+    const storageKey = session?.user?.email ? `rentFormData_${session.user.email}` : "rentFormData";
+
     if (session?.user?.email) {
-      setFormData((prev) => ({ ...prev, email: session.user.email }));
+      // Load saved data for THIS specific user
+      const savedData = localStorage.getItem(storageKey);
+      if (savedData) {
+        setFormData(JSON.parse(savedData));
+      } else {
+        // No saved data for this user, clean the form except for the email
+        setFormData((prev) => ({
+          ...prev,
+          name: "",
+          contact: "",
+          tehsilVillage: "",
+          streetAddress: "",
+          rentDuration: "",
+          customDuration: "",
+          dates: "",
+          email: session.user.email,
+        }));
+      }
+    } else if (status === "unauthenticated") {
+      // No user, reset form to default
+      setFormData({
+        name: "",
+        email: "",
+        contact: "",
+        district: "Kupwara",
+        tehsilVillage: "",
+        streetAddress: "",
+        rentDuration: "",
+        customDuration: "",
+        equipmentName: "",
+        dates: "",
+      });
     }
-  }, [session]);
+  }, [session, status]);
+
+  // Standardized helper for fetching the correct user-scoped storage key
+  const getScopedKey = () => (session?.user?.email ? `rentFormData_${session.user.email}` : "rentFormData");
 
   const rentalsData = [
     { id: 1, title: "Generator" },
@@ -69,32 +103,20 @@ function RentFormContent() {
 
   const districts = ["Kupwara"];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/rent-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Store form data to a user-scoped key to prevent cross-account leakage
+      localStorage.setItem(getScopedKey(), JSON.stringify(formData));
+      toast.info("Saving details... Redirecting to confirmation");
 
-      if (response.ok) {
-        toast.info("Please wait... Redirecting");
-        localStorage.setItem("rentFormData", JSON.stringify(formData));
-
-        setTimeout(() => {
-          router.push("/rentals/confirm-details");
-        }, 2000);
-      } else {
-        throw new Error("Failed to send form");
-      }
+      setTimeout(() => {
+        router.push("/rentals/confirm-details");
+      }, 1000);
     } catch (error) {
-      toast.error("Submission failed! Please try again.");
-    } finally {
+      toast.error("An error occurred. Please try again.");
       setIsLoading(false);
     }
   };

@@ -27,6 +27,11 @@ const Footer = () => {
   const pathname = usePathname();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Hide entirely on Admin route
   if (pathname?.startsWith("/Admin")) return null;
 
@@ -51,49 +56,53 @@ const Footer = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/30 to-teal-900/20"></div>
 
         {/* Animated Grid */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 h-full">
-            {[...Array(144)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="border border-white/5"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.3, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 8,
-                }}
-              />
-            ))}
+        {mounted && (
+          <div className="absolute inset-0 opacity-10">
+            <div className="grid grid-cols-12 h-full">
+              {[...Array(144)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="border border-white/5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: Math.random() * 8,
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Floating Geometric Shapes */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [-20, 20, -20],
-                rotate: [0, 180, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <div className="w-4 h-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rotate-45"></div>
-            </motion.div>
-          ))}
-        </div>
+        {mounted && (
+          <div className="absolute inset-0">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [-20, 20, -20],
+                  rotate: [0, 180, 360],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: Math.random() * 10 + 10,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="w-4 h-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rotate-45"></div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Main Footer Content */}

@@ -4,67 +4,67 @@ import { FaCheckCircle, FaPhoneAlt, FaHome, FaArrowRight, FaClock, FaHeadset } f
 
 export default function RequestSuccess() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-50 flex items-center justify-center py-20 px-4">
-      <div className="max-w-xl w-full">
-        <div className="bg-white rounded-[40px] shadow-2xl border border-purple-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
+    <div className="h-[calc(100vh-80px)] mt-20 bg-gradient-to-br from-white via-purple-50 to-blue-50 flex items-center justify-center px-4 overflow-hidden">
+      <div className="max-w-md w-full">
+        <div className="bg-white rounded-[28px] shadow-2xl border border-purple-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
           {/* Success Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-12 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
             <div className="relative z-10">
-              <div className="w-24 h-24 bg-white/20 backdrop-blur-xl rounded-3xl flex items-center justify-center mx-auto mb-6 border border-white/30 animate-bounce">
-                <FaCheckCircle className="text-white text-5xl" />
+              <div className="w-16 h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30 animate-bounce">
+                <FaCheckCircle className="text-white text-3xl" />
               </div>
-              <h1 className="text-4xl font-extrabold text-white mb-2 tracking-tight">
+              <h1 className="text-2xl font-extrabold text-white mb-1 tracking-tight">
                 Request Received!
               </h1>
-              <p className="text-white/80 text-lg font-medium">
-                Your booking details have been successfully shared with our team.
+              <p className="text-white/80 text-sm font-medium">
+                Your booking details have been shared with our team.
               </p>
             </div>
           </div>
 
-          <div className="p-10 lg:p-14">
+          <div className="p-6 lg:p-8">
             {/* Next Steps Section */}
-            <div className="mb-10">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center uppercase tracking-wider text-sm opacity-60">
+            <div className="mb-6">
+              <h2 className="text-[10px] font-bold text-gray-400 mb-4 flex items-center uppercase tracking-[0.2em] opacity-80">
                 What happens next?
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mr-5 flex-shrink-0">
-                    <FaClock className="text-blue-600" />
+                  <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                    <FaClock className="text-blue-600 text-xs" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Detailed Review</h3>
-                    <p className="text-gray-600">Our experts are reviewing your equipment needs and location logistics right now.</p>
+                    <h3 className="font-bold text-gray-900 text-sm">Detailed Review</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">Experts are reviewing your request and logistics now.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mr-5 flex-shrink-0">
-                    <FaHeadset className="text-purple-600" />
+                  <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                    <FaHeadset className="text-purple-600 text-xs" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Personal Callback</h3>
-                    <p className="text-gray-600">You will receive a call within 30 minutes to finalize the best possible rate for you.</p>
+                    <h3 className="font-bold text-gray-900 text-sm">Personal Callback</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">You'll receive a call within 30 mins to finalize the rate.</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <Link 
                 href="/"
-                className="flex items-center justify-center px-8 py-5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-bold transition-all duration-300 group"
+                className="flex items-center justify-center px-4 py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-xl font-bold transition-all duration-300 group text-xs"
               >
-                <FaHome className="mr-3 text-lg opacity-50 group-hover:opacity-100" />
+                <FaHome className="mr-2 text-sm opacity-40 group-hover:opacity-100" />
                 Back to Home
               </Link>
               <button 
                 onClick={() => window.open("tel:+918082815863")}
-                className="flex items-center justify-center px-8 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-200 transform hover:scale-105"
+                className="flex items-center justify-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-50 transform hover:scale-105 text-xs"
               >
-                <FaPhoneAlt className="mr-3 text-xl" />
+                <FaPhoneAlt className="mr-2 text-sm" />
                 Call Now
               </button>
             </div>

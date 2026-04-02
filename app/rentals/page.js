@@ -23,65 +23,9 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-const rentalsData = [
-  {
-    id: 1,
-    title: "Generator",
-    icon: <FaBolt className="w-6 h-6 text-white" />,
-    description: "Power up your events with our reliable generators.",
-    image: "/generator.webp",
-    category: "Power Solutions",
-    rating: 4.9,
-    reviews: 45,
-    price: "₹2,500/day",
-    features: ["Silent Operation", "Fuel Efficient", "24/7 Support"],
-    popular: true,
-    gradient: "from-yellow-400 to-orange-500",
-  },
-  {
-    id: 2,
-    title: "Tents",
-    icon: <FaCampground className="w-6 h-6 text-white" />,
-    description: "Spacious and durable tents for all your outdoor needs.",
-    image: "/Tent-img.jpg",
-    category: "Shelter & Comfort",
-    rating: 4.8,
-    reviews: 62,
-    price: "₹3,000/day",
-    features: ["Weather Resistant", "Easy Setup", "Multiple Sizes"],
-    popular: false,
-    gradient: "from-green-400 to-emerald-500",
-  },
-  {
-    id: 3,
-    title: "Lighting System",
-    icon: <FaLightbulb className="w-6 h-6 text-white" />,
-    description:
-      "Brighten up your events with our professional lighting systems.",
-    image: "/Lighting Decoration.jpg",
-    category: "Ambiance & Decor",
-    rating: 4.9,
-    reviews: 38,
-    price: "₹1,800/day",
-    features: ["LED Technology", "Color Shift", "Remote Control"],
-    popular: true,
-    gradient: "from-purple-400 to-pink-500",
-  },
-  {
-    id: 4,
-    title: "DSLR Camera",
-    icon: <FaCamera className="w-6 h-6 text-white" />,
-    description: "Capture every moment with our high-quality DSLR cameras.",
-    image: "/Dslr.avif",
-    category: "Photography",
-    rating: 4.7,
-    reviews: 29,
-    price: "₹2,200/day",
-    features: ["4K Video", "Professional Lens", "Memory Card Included"],
-    popular: false,
-    gradient: "from-blue-400 to-cyan-500",
-  },
-];
+import { rentalsData } from "./data";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 export default function RentalsPage() {
   const router = useRouter();
@@ -126,325 +70,223 @@ export default function RentalsPage() {
       : rentalsData.filter((item) => item.category === selectedCategory);
 
   return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
-        {/* Hero Section */}
-        <section className="pt-32 pb-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-transparent">
-                    Premium Equipment
-                  </span>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                </span>
-                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent animate-pulse">
-                  Rentals
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl -z-10"></div>
-              </h1>
+    <div className="min-h-screen bg-[#fafcff] selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+      {/* Compact Modern Hero with Mesh Gradient */}
+      <section className="relative pt-24 pb-12 overflow-hidden border-b border-slate-50">
+        {/* Animated Background Mesh - More subtle for smaller height */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-[100px] animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_transparent_0%,_#fafcff_100%)]"></div>
+        </div>
 
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Everything you need for your perfect event. Professional
-                equipment, competitive prices, and exceptional service.
-              </p>
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-6 shadow-sm">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+              </span>
+              Premium Fleet
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight leading-[1] text-slate-900">
+              Rent the <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Future</span> of Events
+            </h1>
 
-              {/* Quick Stats */}
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-12">
-                <div className="flex items-center gap-2">
-                  <FaCheckCircle className="text-green-500" />
-                  <span>50+ Happy Customers</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FaStar className="text-yellow-500" />
-                  <span>4.9 Rating</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FaThumbsUp className="text-blue-500" />
-                  <span>Quality Guaranteed</span>
-                </div>
+            <p className="text-base text-slate-500 mb-8 max-w-xl mx-auto font-medium leading-relaxed">
+              Professional equipment delivered to your venue in Kupwara.
+            </p>
+
+            {/* Compact Micro Stats Bar */}
+            <div className="flex justify-center gap-8 md:gap-16 text-slate-400 font-black uppercase tracking-tighter text-[9px]">
+              <div className="flex flex-col items-center">
+                <span className="text-lg text-slate-900 leading-none mb-1">500+</span>
+                <span>Events</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-lg text-slate-900 leading-none mb-1">4.9/5</span>
+                <span>Rating</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-lg text-slate-900 leading-none mb-1">100%</span>
+                <span>Reliable</span>
               </div>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Category Filter */}
-        <section className="container mx-auto px-4 mb-12">
-          <div className="flex flex-wrap justify-center gap-4">
+      {/* Modern High-End Filtering Section */}
+      <section className="sticky top-20 z-40  py-6 backdrop-blur-xl bg-white/60 border-y border-slate-100 shadow-sm">
+        <div className="container mx-auto px-6 overflow-x-auto no-scrollbar">
+          <div className="flex justify-center items-center gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
+                className={`relative px-8 py-3 rounded-2xl text-sm font-bold transition-all duration-500 whitespace-nowrap overflow-hidden group ${
                   selectedCategory === category
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105"
-                    : "bg-white/80 text-gray-700 hover:bg-white hover:shadow-md"
+                    ? "text-white shadow-xl shadow-blue-200"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
-                {category}
+                {selectedCategory === category && (
+                  <motion.div 
+                    layoutId="activeCategory"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 z-0"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">{category}</span>
               </button>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Rental Cards Section */}
-        <section className="container mx-auto px-4 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {filteredData.map((item, index) => (
-              <div
+      {/* Main Product Showcase - The Master-Class Grid */}
+      <section className="container mx-auto px-6 py-24 mb-12">
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredData.map((item) => (
+              <motion.div
+                layout
                 key={item.id}
-                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 hover:border-blue-200"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+                className="group relative bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 border border-slate-100 hover:border-blue-200/50"
               >
-                {/* Image Container */}
-                <div className="relative overflow-hidden rounded-t-3xl">
+                {/* Visual Impact Container */}
+                <div className="relative h-72 overflow-hidden rounded-[2.2rem] m-3 shadow-inner">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
+                  
+                  {/* High-End Overlay Strategy */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Popular Badge */}
-                  {item.popular && (
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                      <FaFire className="text-xs animate-pulse" />
-                      Popular
+                  {/* Top Floating Controls */}
+                  <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+                    <div className="flex gap-2">
+                      {item.popular && (
+                        <div className="bg-white/90 backdrop-blur-md text-orange-600 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl border border-white/20">
+                          <FaFire className="animate-bounce" />
+                          Featured
+                        </div>
+                      )}
                     </div>
-                  )}
+                    
+                    <button
+                      onClick={() => toggleFavorite(item.id)}
+                      className="w-10 h-10 bg-white/95 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 border border-slate-50 group/fav"
+                    >
+                      <FaHeart
+                        className={`text-lg transition-colors duration-300 ${
+                          favorites.includes(item.id)
+                            ? "text-red-500"
+                            : "text-slate-300 group-hover/fav:text-red-400"
+                        }`}
+                      />
+                    </button>
+                  </div>
 
-                  {/* Favorite Button */}
-                  <button
-                    onClick={() => toggleFavorite(item.id)}
-                    className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 hover:bg-white"
-                  >
-                    <FaHeart
-                      className={`text-lg transition-colors duration-300 ${
-                        favorites.includes(item.id)
-                          ? "text-red-500"
-                          : "text-gray-400 hover:text-red-400"
-                      }`}
-                    />
-                  </button>
-
-                  {/* Rating Badge */}
-                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
-                    <FaStar className="text-yellow-400 text-sm" />
-                    <span className="text-sm font-bold text-gray-800">
-                      {item.rating}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                      ({item.reviews})
-                    </span>
+                  {/* Quick Rating Pill */}
+                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-100 flex items-center gap-2 shadow-lg">
+                    <FaStar className="text-yellow-400 text-xs" />
+                    <span className="text-xs font-black text-slate-800 tracking-tight">{item.rating}</span>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  {/* Category & Icon */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full uppercase tracking-wide">
-                      {item.category}
-                    </span>
-                    <div
-                      className={`p-2 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg`}
-                    >
+                {/* Content Precision */}
+                <div className="p-8 pt-4">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`p-2.5 rounded-2xl bg-gradient-to-br ${item.gradient} text-white shadow-lg ring-4 ring-slate-50`}>
                       {item.icon}
                     </div>
+                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">
+                      {item.category}
+                    </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                     {item.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  <p className="text-slate-500 text-sm mb-8 leading-relaxed font-medium line-clamp-2 h-10">
                     {item.description}
                   </p>
 
-                  {/* Features */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {item.features.map((feature, idx) => (
-                        <span
-                          key={idx}
-                          className="text-xs bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full font-medium hover:bg-gray-200 transition-colors duration-200"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Button */}
-                  <div className="pt-4 border-t border-gray-100">
+                  {/* Modern Action Bar */}
+                  <div className="flex items-center gap-3">
+                    <Link href={`/rentals/${item.id}`} className="flex-1">
+                      <button className="w-full h-14 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-slate-100 flex items-center justify-center gap-2 group/btn">
+                        <FaEye className="text-slate-400 group-hover/btn:text-slate-900 transition-colors" />
+                        Explore
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleRentNow(item.id)}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      className="h-14 w-14 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black transition-all duration-500 flex items-center justify-center shadow-xl shadow-slate-200 hover:shadow-blue-200 active:scale-95"
                     >
-                      <FaShoppingCart className="text-sm" />
-                      Rent Now
+                      <FaShoppingCart className="text-lg" />
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </AnimatePresence>
+        </motion.div>
+      </section>
 
-        {/* New Services Section */}
-        <section className="relative bg-gradient-to-b from-green-50 to-white py-20 flex justify-center items-center min-h-screen">
-          {/* Decorative Wave */}
-          <div className="absolute top-0 left-0 w-full">
-            <svg
-              viewBox="0 0 1440 320"
-              className="w-full h-20 text-green-200"
-              fill="currentColor"
-            >
-              <path
-                fillOpacity="1"
-                d="M0,160L60,138.7C120,117,240,75,360,64C480,53,600,75,720,106.7C840,139,960,181,1080,181.3C1200,181,1320,139,1380,117.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-              ></path>
-            </svg>
-          </div>
 
-          {/* Content */}
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl font-bold mb-4 text-gray-800 relative inline-block">
-              New Services
-              <span className="block w-20 h-1 bg-green-500 mx-auto mt-2 rounded-full"></span>
-            </h2>
-
-            <p className="text-gray-600 mb-12 max-w-lg mx-auto">
-              We’re introducing new services to elevate your events. Stay tuned
-              for more!
-            </p>
-
-            <div className="relative flex justify-center">
-              <div className="absolute w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30"></div>
-              <div className="relative bg-white p-8 rounded-lg shadow-lg text-center w-96 border-t-4 border-green-500 transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
-                <div className="absolute top-3 right-3 animate-spin-slow">
-                  <FaStar className="w-6 h-6 text-yellow-400" />
-                </div>
-                <FaPalette className="w-14 h-14 mb-4 text-green-500 mx-auto" />
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900">
-                  Event Decoration
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Transform your events with our elegant and creative decoration
-                  services.
-                </p>
-                <button
-                  onClick={handleNotifyClick}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Notify Me When Available
-                </button>
+      {/* Final Call to Action Refinement */}
+      <section className="container mx-auto px-6 pb-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {[
+            { icon: FaCamera, title: "Drone Cinema", tags: ["4K", "Aerial"], color: "blue" },
+            { icon: FaChair, title: "Elite Furniture", tags: ["Velvet", "Modern"], color: "purple" }
+          ].map((item, i) => (
+            <div key={i} className="group bg-white p-12 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-700 text-center relative overflow-hidden">
+              <div className={`absolute -top-10 -right-10 w-40 h-40 bg-${item.color}-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+              <div className={`w-20 h-20 bg-${item.color}-50 text-${item.color}-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ring-8 ring-${item.color}-50/50`}>
+                <item.icon className="text-3xl" />
               </div>
-            </div>
-
-            <p className="text-gray-500 mt-8 text-sm">
-              More exciting services coming soon... Stay updated!
-            </p>
-          </div>
-        </section>
-
-        {/* Upcoming Rentals Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Upcoming Rentals
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Exciting new rental options are coming soon. Be the first to
-                know when they're available!
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FaCamera className="text-2xl text-blue-600" />
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Drone Rentals
-                </h3>
-
-                <p className="text-gray-600 mb-6">
-                  Capture stunning aerial footage and photography with our
-                  professional-grade drones.
-                </p>
-
-                <div className="flex flex-wrap justify-center gap-2 mb-6">
-                  {["4K Recording", "GPS Enabled", "Professional Grade"].map(
-                    (feature, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full"
-                      >
-                        {feature}
-                      </span>
-                    )
-                  )}
-                </div>
-
-                <button
-                  onClick={handleNotifyClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Notify Me
-                </button>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">{item.title}</h3>
+              <div className="flex justify-center gap-2 mb-8">
+                {item.tags.map(tag => (
+                  <span key={tag} className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    {tag}
+                  </span>
+                ))}
               </div>
-
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FaChair className="text-2xl text-purple-600" />
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Tables & Chairs
-                </h3>
-
-                <p className="text-gray-600 mb-6">
-                  Elegant and comfortable furniture sets perfect for weddings,
-                  parties, and corporate events.
-                </p>
-
-                <div className="flex flex-wrap justify-center gap-2 mb-6">
-                  {["Premium Quality", "Various Styles", "Event Ready"].map(
-                    (feature, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs bg-purple-50 text-purple-700 px-3 py-1 rounded-full"
-                      >
-                        {feature}
-                      </span>
-                    )
-                  )}
-                </div>
-
-                <button
-                  onClick={handleNotifyClick}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Notify Me
-                </button>
-              </div>
+              <button 
+                onClick={handleNotifyClick}
+                className={`w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300 border mb-2 ${
+                  i === 0 
+                  ? "bg-slate-900 text-white border-slate-900 hover:bg-blue-600 hover:border-blue-600" 
+                  : "bg-white text-slate-900 border-slate-200 hover:border-purple-600 hover:text-purple-600"
+                }`}
+              >
+                Coming Soon
+              </button>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="text-center mt-12">
-              <p className="text-gray-500">
-                Stay tuned for more exciting rental options!
-              </p>
-            </div>
-          </div>
-
-          <ToastContainer />
-        </section>
-      </div>
+      <ToastContainer />
+    </div>
   );
 }

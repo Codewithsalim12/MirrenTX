@@ -1,0 +1,114 @@
+import nodemailer from "nodemailer";
+import connectToDatabase from "@/lib/mongodb";
+import Rental from "@/models/Rental";
+import { NextResponse } from "next/server";
+
+export async function POST(request) {
+  try {
+    const { rentalId } = await request.json();
+
+    if (!rentalId) {
+      return NextResponse.json({ error: "Rental ID is required" }, { status: 400 });
+    }
+
+    await connectToDatabase();
+    const rental = await Rental.findById(rentalId);
+
+    if (!rental) {
+      return NextResponse.json({ error: "Rental order not found" }, { status: 404 });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, 
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
+    const logoUrl = `${baseUrl}/logo-modern.svg`;
+
+    const getHtmlTemplate = (title, content) => `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+          body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+          .wrapper { background-color: #f9fafb; padding: 60px 20px; }
+          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; }
+          .logo { display: block; margin: 0 auto 40px; width: 60px; height: auto; }
+          .header-title { color: #000000; font-size: 32px; font-weight: 800; margin: 0 0 24px; letter-spacing: -1.5px; line-height: 1.1; text-align: left; }
+          .content-text { color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+          .data-block { border-top: 1px solid #f3f4f6; padding-top: 32px; margin-top: 32px; }
+          .data-label { color: #000000; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+          .data-value { color: #4b5563; font-size: 16px; font-weight: 500; margin-bottom: 24px; }
+          .item-featured { background: #f9fafb; border-left: 4px solid #5e4ae3; padding: 24px; border-radius: 12px; margin-bottom: 32px; }
+          .item-name { color: #1a1a1a; font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; }
+          .footer-signoff { color: #1a1a1a; font-size: 16px; font-weight: 700; margin-bottom: 32px; }
+          .price-badge { display: inline-block; padding: 8px 16px; background: #ecfdf5; color: #059669; border-radius: 99px; font-weight: 800; font-size: 18px; margin-top: 12px; }
+        </style>
+      </head>
+      <body>
+        <div class="wrapper">
+          <div class="container">
+            <img src="${logoUrl}" alt="MirrenTX" class="logo" />
+            <h1 class="header-title">Order Confirmed</h1>
+            <p class="content-text">
+              Great news! Your rental order has been finalized and placed successfully. Our team is now preparing your equipment for delivery.
+            </p>
+            
+            <div class="item-featured">
+              <span class="data-label" style="color: #5e4ae3; opacity: 1;">Finalized Item</span>
+              <div class="item-name">${rental.equipmentName}</div>
+              <div class="price-badge">Total Price: ₹${rental.price || rental.totalAmount || 0}</div>
+            </div>
+
+            <div class="data-block">
+              <span class="data-label">Booking Details</span>
+              <p class="data-value">
+                <strong>Customer:</strong> ${rental.name}<br/>
+                <strong>Duration:</strong> ${rental.rentDuration}<br/>
+                <strong>Booking Date:</strong> ${rental.dates}
+              </p>
+              
+              <span class="data-label">Delivery Logistics</span>
+              <p class="data-value">
+                <strong>Address:</strong> ${rental.streetAddress}<br/>
+                <strong>Location:</strong> ${rental.tehsilVillage}, ${rental.district}
+              </p>
+            </div>
+
+            <div class="footer">
+              <p class="footer-signoff">Regards,<br/>The MirrenTX Team</p>
+              <div style="text-align: center; margin-top: 40px;">
+                <a href="${baseUrl}/rentals" style="display: inline-block; padding: 16px 32px; background-color: #1a1a1a; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">View All Rentals</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: rental.email,
+      subject: `Order Placed: ${rental.equipmentName} Confirmed!`,
+      html: getHtmlTemplate("Order Placed Successfully", ""),
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return NextResponse.json({ success: true, message: "Order placed email sent successfully" });
+  } catch (error) {
+    console.error("Admin Email Error:", error);
+    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+  }
+}
