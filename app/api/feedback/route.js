@@ -53,7 +53,7 @@ export async function POST(req) {
     const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
     const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content) => `
+    const getHtmlTemplate = (title, content, isAdmin = false) => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -88,13 +88,21 @@ export async function POST(req) {
               ${content}
             </div>
             <div class="footer">
-              <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
-              <div class="w-full h-px bg-gray-100 my-8"></div>
-              <h3 class="help-title">Need help?</h3>
-              <p class="help-text">
-                If you have any questions, please contact our support team at 
-                <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
-              </p>
+              ${isAdmin ? `
+                <div style="height: 1px; background-color: #fde68a; margin: 32px 0;"></div>
+                <h3 class="help-title" style="color: #b45309;">Administrative Update</h3>
+                <p class="help-text" style="color: #92400e; font-weight: 600;">
+                  Customer feedback has been recorded in the platform database.
+                </p>
+              ` : `
+                <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
+                <div class="w-full h-px bg-gray-100 my-8"></div>
+                <h3 class="help-title">Need help?</h3>
+                <p class="help-text">
+                  If you have any questions, please contact our support team at 
+                  <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
+                </p>
+              `}
             </div>
           </div>
         </div>
@@ -126,7 +134,7 @@ export async function POST(req) {
       to: process.env.EMAIL_USER,
       subject: `⭐ New Feedback: ${name}`,
       replyTo: email,
-      html: getHtmlTemplate("User Feedback", htmlContent),
+      html: getHtmlTemplate("User Feedback", htmlContent, true),
     };
 
     await transporter.sendMail(mailOptions);

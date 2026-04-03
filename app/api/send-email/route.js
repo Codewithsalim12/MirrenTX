@@ -19,7 +19,7 @@ export async function POST(req) {
   const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
   const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content) => `
+    const getHtmlTemplate = (title, content, isAdmin = false) => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -54,13 +54,21 @@ export async function POST(req) {
               ${content}
             </div>
             <div class="footer">
-              <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
-              <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
-              <h3 class="help-title">Need help?</h3>
-              <p class="help-text">
-                If you have any questions, please contact our support team at 
-                <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
-              </p>
+              ${isAdmin ? `
+                <div style="height: 1px; background-color: #fde68a; margin: 32px 0;"></div>
+                <h3 class="help-title" style="color: #b45309;">Admin Notification</h3>
+                <p class="help-text" style="color: #92400e; font-weight: 600;">
+                  This is an automated notification from the MirrenTX platform.
+                </p>
+              ` : `
+                <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
+                <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
+                <h3 class="help-title">Need help?</h3>
+                <p class="help-text">
+                  If you have any questions, please contact our support team at 
+                  <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
+                </p>
+              `}
             </div>
           </div>
         </div>
@@ -86,7 +94,7 @@ export async function POST(req) {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: `✨ New Subscriber: ${subscribeEmail}`,
-      html: getHtmlTemplate("Newsletter Growth", htmlContent),
+      html: getHtmlTemplate("Newsletter Growth", htmlContent, true),
     };
   } else {
     const htmlContent = `
@@ -114,7 +122,7 @@ export async function POST(req) {
       to: process.env.EMAIL_USER,
       subject: `📬 New Contact: ${firstName} ${lastName}`,
       replyTo: email,
-      html: getHtmlTemplate("Inbound Inquiry", htmlContent),
+      html: getHtmlTemplate("Inbound Inquiry", htmlContent, true),
     };
   }
 
