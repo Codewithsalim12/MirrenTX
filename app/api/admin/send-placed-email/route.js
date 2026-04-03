@@ -31,7 +31,7 @@ export async function POST(request) {
     const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
     const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content) => `
+    const getHtmlTemplate = (title, content, isAdmin = false) => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -52,6 +52,9 @@ export async function POST(request) {
           .item-name { color: #1a1a1a; font-size: 20px; font-weight: 800; margin-bottom: 4px; }
           .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; }
           .footer-signoff { color: #1a1a1a; font-size: 16px; font-weight: 700; margin-bottom: 32px; }
+          .help-title { color: #000000; font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+          .help-text { color: #6b7280; font-size: 14px; line-height: 1.5; }
+          .help-link { color: #5e4ae3; text-decoration: none; font-weight: 600; }
           .price-badge { display: inline-block; padding: 8px 16px; background: #ecfdf5; color: #059669; border-radius: 99px; font-weight: 800; font-size: 18px; margin-top: 12px; }
         </style>
       </head>
@@ -59,37 +62,29 @@ export async function POST(request) {
         <div class="wrapper">
           <div class="container">
             <img src="${logoUrl}" alt="MirrenTX" class="logo" />
-            <h1 class="header-title">Order Confirmed</h1>
-            <p class="content-text">
-              Great news! Your rental order has been finalized and placed successfully. Our team is now preparing your equipment for delivery.
-            </p>
-            
-            <div class="item-featured">
-              <span class="data-label" style="color: #5e4ae3; opacity: 1;">Finalized Item</span>
-              <div class="item-name">${rental.equipmentName}</div>
-              <div class="price-badge">Total Price: ₹${rental.price || rental.totalAmount || 0}</div>
+            <h1 class="header-title">${title}</h1>
+            <div class="content">
+              ${content}
             </div>
-
-            <div class="data-block">
-              <span class="data-label">Booking Details</span>
-              <p class="data-value">
-                <strong>Customer:</strong> ${rental.name}<br/>
-                <strong>Duration:</strong> ${rental.rentDuration}<br/>
-                <strong>Booking Date:</strong> ${rental.dates}
-              </p>
-              
-              <span class="data-label">Delivery Logistics</span>
-              <p class="data-value">
-                <strong>Address:</strong> ${rental.streetAddress}<br/>
-                <strong>Location:</strong> ${rental.tehsilVillage}, ${rental.district}
-              </p>
-            </div>
-
             <div class="footer">
-              <p class="footer-signoff">Regards,<br/>The MirrenTX Team</p>
-              <div style="text-align: center; margin-top: 40px;">
-                <a href="${baseUrl}/rentals" style="display: inline-block; padding: 16px 32px; background-color: #1a1a1a; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">View All Rentals</a>
-              </div>
+              ${isAdmin ? `
+                <div style="height: 1px; background-color: #fde68a; margin: 32px 0;"></div>
+                <h3 class="help-title" style="color: #b45309;">Administrative Log</h3>
+                <p class="help-text" style="color: #92400e; font-weight: 600;">
+                  This is a record of a confirmed client booking.
+                </p>
+              ` : `
+                <p class="footer-signoff">Regards,<br/>The MirrenTX Team</p>
+                <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
+                <h3 class="help-title">Need help?</h3>
+                <p class="help-text">
+                  If you have any questions, please contact our support team at 
+                  <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
+                </p>
+                <div style="text-align: center; margin-top: 40px;">
+                  <a href="${baseUrl}/rentals" style="display: inline-block; padding: 16px 32px; background-color: #1a1a1a; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">View All Rentals</a>
+                </div>
+              `}
             </div>
           </div>
         </div>
@@ -97,11 +92,38 @@ export async function POST(request) {
       </html>
     `;
 
+    const htmlContent = `
+      <p class="content-text">
+        Great news! Your rental order has been finalized and placed successfully. Our team is now preparing your equipment for delivery.
+      </p>
+      
+      <div class="item-featured">
+        <span class="data-label" style="color: #5e4ae3; opacity: 1;">Finalized Item</span>
+        <div class="item-name">${rental.equipmentName}</div>
+        <div class="price-badge">Total Price: ₹${rental.price || rental.totalAmount || 0}</div>
+      </div>
+
+      <div class="data-block">
+        <span class="data-label">Booking Details</span>
+        <p class="data-value">
+          <strong>Customer:</strong> ${rental.name}<br/>
+          <strong>Duration:</strong> ${rental.rentDuration}<br/>
+          <strong>Booking Date:</strong> ${rental.dates}
+        </p>
+        
+        <span class="data-label">Delivery Logistics</span>
+        <p class="data-value">
+          <strong>Address:</strong> ${rental.streetAddress}<br/>
+          <strong>Location:</strong> ${rental.tehsilVillage}, ${rental.district}
+        </p>
+      </div>
+    `;
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: rental.email,
       subject: `Order Placed: ${rental.equipmentName} Confirmed!`,
-      html: getHtmlTemplate("Order Placed Successfully", ""),
+      html: getHtmlTemplate("Order Placed Successfully", htmlContent, false),
     };
 
     await transporter.sendMail(mailOptions);

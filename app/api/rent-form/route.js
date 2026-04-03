@@ -129,10 +129,6 @@ export async function POST(request) {
         </p>
       </div>
 
-      <div style="margin-top: 32px; padding: 24px; background: #fffbeb; border-radius: 12px; border: 1px solid #fde68a;">
-        <p style="margin: 0; color: #92400e; font-size: 14px; font-weight: 700; line-height: 1.5; text-align: center;">
-          ⚡ Admin Review Required: Reach out to the customer within 15 to 30 minutes to finalize the request.
-        </p>
       </div>
     `;
 
@@ -168,10 +164,6 @@ export async function POST(request) {
         </div>
       </div>
 
-      <div style="margin-top: 48px; text-align: center; border-top: 1px solid #f3f4f6; padding-top: 32px;">
-        <p style="color: #6b7280; font-size: 14px; margin-bottom: 0;">
-          Contact us at: <a href="mailto:mirrentx@gmail.com" style="color: #5e4ae3; text-decoration: none; font-weight: 600;">mirrentx@gmail.com</a> | <strong>+91 8082815863</strong>
-        </p>
       </div>
     `;
 

@@ -125,14 +125,6 @@ export default function PaymentOptions() {
             {/* Left Side - Payment Options */}
             <div className="lg:col-span-2 p-6 sm:p-8 lg:p-12">
               <div className="mb-8">
-                <button
-                  onClick={() => router.back()}
-                  className="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200 mb-6"
-                >
-                  <FaArrowLeft className="mr-2" />
-                  Back to Confirmation
-                </button>
-
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Booking Personalization
                 </h2>

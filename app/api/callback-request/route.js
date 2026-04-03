@@ -101,10 +101,6 @@ export async function POST(req) {
         </p>
       </div>
 
-      <div style="margin-top: 32px; padding: 24px; background: #e0f2fe; border-radius: 12px; border: 1px solid #bae6fd;">
-        <p style="margin: 0; color: #0369a1; font-size: 14px; font-weight: 700; line-height: 1.5; text-align: center; text-transform: uppercase; letter-spacing: 1px;">
-          🚨 Action Required: High Priority Callback
-        </p>
       </div>
     `;
 
