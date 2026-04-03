@@ -50,12 +50,24 @@ const slides = [
 
 export default function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/feedback?limit=4")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setTestimonials(data.testimonials);
+        }
+      })
+      .catch((err) => console.error("Failed to load testimonials", err));
   }, []);
 
   return (
@@ -480,34 +492,9 @@ export default function About() {
 
             {/* Testimonials Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  quote:
-                    "MirRenTX made our wedding stress-free with their top-notch service and high-quality rentals. Highly recommended!",
-                  author: "SHEIKH BROTHERS",
-                  icon: FaHeart,
-                },
-                {
-                  quote:
-                    "Professional, reliable, and affordable. The best rental service we have ever used!",
-                  author: "MANZOOR PANDOW",
-                  icon: FaAward,
-                },
-                {
-                  quote:
-                    "MirRenTX provided exceptional rentals and seamless service, making our wedding day absolutely stress-free!",
-                  author: "RAFIQ AHMAD",
-                  icon: FaCheckCircle,
-                },
-                {
-                  quote:
-                    "Thanks to MirRenTX, our wedding was hassle-free with top-quality rentals and outstanding service. Truly a great experience!",
-                  author: "IFLAQ AHMAD",
-                  icon: FaStar,
-                },
-              ].map((testimonial, index) => (
+              {testimonials.map((t, index) => (
                 <motion.div
-                  key={index}
+                  key={t._id || index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -517,29 +504,45 @@ export default function About() {
                     className="bg-white p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 h-full flex flex-col justify-between"
                   >
                     <div>
-                      <testimonial.icon className="text-3xl text-blue-100 group-hover:text-blue-500 transition-colors duration-300 mb-6" />
+                      <div className="flex text-yellow-400 text-lg gap-1 mb-6">
+                        {[...Array(5)].map((_, starI) => (
+                          <FaStar key={starI} className={starI < t.rating ? "text-yellow-400" : "text-slate-100"} />
+                        ))}
+                      </div>
                       <FaQuoteLeft className="text-2xl text-slate-200 mb-4" />
                       <p className="text-lg text-slate-600 font-medium leading-relaxed mb-8">
-                        "{testimonial.quote}"
+                        "{t.feedback}"
                       </p>
                     </div>
                     
                     <div className="flex items-center gap-4 mt-auto border-t border-slate-50 pt-6">
-                      <div className="w-12 h-12 bg-[#fafcff] rounded-2xl flex items-center justify-center border border-slate-100 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                        <FaUsers className="text-blue-600" />
+                      <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-slate-50 shadow-sm flex items-center justify-center">
+                        {t.userImage ? (
+                          <img src={t.userImage} alt={t.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-blue-600 text-white font-black text-sm uppercase">
+                            {t.name.charAt(0)}
+                          </div>
+                        )}
                       </div>
                       <div>
                         <h3 className="font-black text-slate-900 tracking-tight">
-                          {testimonial.author}
+                          {t.name}
                         </h3>
                         <p className="text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">
-                          Satisfied Customer
+                          Verified User
                         </p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
+              {testimonials.length === 0 && (
+                <div className="col-span-full text-center py-12 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-center items-center h-48">
+                  <div className="w-8 h-8 border-4 border-slate-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+                  <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Loading voices...</p>
+                </div>
+              )}
             </div>
           </div>
         </section>

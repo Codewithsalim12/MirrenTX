@@ -426,8 +426,8 @@ export default function Services() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <div className="relative group p-4 bg-white rounded-[3rem] border border-slate-100 shadow-2xl">
-                  <div className="overflow-hidden rounded-[2.2rem]">
+                <div className="relative group p-2 sm:p-4 bg-white rounded-[2rem] sm:rounded-[3rem] border border-slate-100 shadow-2xl">
+                  <div className="overflow-hidden rounded-[1.8rem] sm:rounded-[2.2rem]">
                     <img
                       src="/services-img.avif"
                       alt="Elite Service Delivery"
@@ -435,15 +435,15 @@ export default function Services() {
                     />
                   </div>
                   
-                  {/* Floating Stat Piece */}
-                  <div className="absolute -bottom-6 -right-6 bg-white rounded-[1.8rem] p-6 shadow-2xl border border-slate-50">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
-                        <FaAward className="text-2xl" />
+                  {/* Floating Stat Piece - Mobile Responsive */}
+                  <div className="absolute bottom-2 right-2 sm:-bottom-6 sm:-right-6 bg-white rounded-2xl sm:rounded-[1.8rem] p-3 sm:p-6 shadow-2xl border border-slate-50">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center text-white shadow-lg shrink-0">
+                        <FaAward className="text-lg sm:text-2xl" />
                       </div>
                       <div>
-                        <div className="text-2xl font-black text-slate-900 leading-none">99%</div>
-                        <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">Uptime Success</div>
+                        <div className="text-lg sm:text-2xl font-black text-slate-900 leading-none">99%</div>
+                        <div className="text-slate-500 text-[8px] sm:text-[10px] font-black uppercase tracking-widest mt-0.5 sm:mt-1">Uptime Success</div>
                       </div>
                     </div>
                   </div>
