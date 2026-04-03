@@ -11,12 +11,6 @@ export default function RequestSuccess() {
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
             <div className="relative z-10">
-              <div className="flex justify-center mb-4">
-                <span className="bg-white/10 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-bold px-4 py-1.5 rounded-full border border-white/20 flex items-center tracking-widest uppercase">
-                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 shadow-[0_0_8px_rgba(74,222,128,0.8)] animate-pulse"></div>
-                  Securely Saved & Safe to Navigate
-                </span>
-              </div>
               <div className="w-16 h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30 animate-bounce">
                 <FaCheckCircle className="text-white text-3xl" />
               </div>
