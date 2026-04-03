@@ -51,11 +51,11 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-[100] transition-all duration-500 ${
         scrolled 
           ? "bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-slate-100 py-2" 
-          : "bg-transparent py-4"
+          : "bg-transparent py-2"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className={`flex items-center justify-between lg:justify-center gap-12 h-20 transition-all duration-500 ${menuOpen ? "opacity-0 invisible scale-95" : "opacity-100 visible scale-100"}`}>
+        <div className={`flex items-center justify-between lg:justify-center gap-12 h-16 lg:h-18 transition-all duration-500 ${menuOpen ? "opacity-0 invisible scale-95" : "opacity-100 visible scale-100"}`}>
           {/* Logo Section */}
           <div className="flex items-center flex-shrink-0">
             <Link
@@ -251,7 +251,7 @@ const Navbar = () => {
       >
         <div className="flex flex-col h-full w-full">
           {/* Mobile Header with Close Button */}
-          <div className="flex justify-between items-center px-6 h-20 border-b border-gray-100">
+          <div className="flex justify-between items-center px-6 h-16 border-b border-gray-100">
             <Link
               href="/"
               className="flex items-center transform transition-transform active:scale-95"
@@ -288,15 +288,15 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`group py-5 border-b border-gray-50 flex items-center justify-between transition-all duration-300 ${
+                  className={`group py-4 border-b border-gray-50 flex items-center justify-between transition-all duration-300 ${
                     pathname === item.href ? "text-purple-600" : "text-slate-900"
                   }`}
                   onClick={handleLinkClick}
                 >
-                  <span className="text-2xl font-black tracking-tighter uppercase">
+                  <span className="text-lg font-black tracking-tighter uppercase whitespace-nowrap">
                     {item.label}
                   </span>
-                  <ChevronDown className="-rotate-90 text-gray-300 group-hover:text-purple-600 transition-colors" size={20} />
+                  <ChevronDown className="-rotate-90 text-gray-300 group-hover:text-purple-600 transition-colors" size={18} />
                 </Link>
               ))}
             </div>

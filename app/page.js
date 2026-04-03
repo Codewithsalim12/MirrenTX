@@ -62,15 +62,15 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-6xl mx-auto text-center">
           {/* Elite Trust Badge */}
           <div
-            className="inline-flex items-center gap-3 bg-white/60 backdrop-blur-xl border border-purple-100/50 rounded-full px-6 py-2.5 mb-10 text-xs font-black uppercase tracking-[0.2em] text-purple-600 shadow-sm"
+            className="inline-flex items-center justify-center gap-3 bg-white/60 backdrop-blur-xl border border-purple-100/50 rounded-full px-5 sm:px-6 py-2 sm:py-2.5 mb-10 text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-purple-600 shadow-sm transition-all duration-300 hover:bg-white/80"
             data-aos="fade-down"
             data-aos-delay="100"
           >
-            <span className="flex h-2 w-2 relative">
+            <span className="flex h-2 w-2 relative flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
             </span>
-            Premium Equipment & Event Services
+            <span className="text-center">Premium Equipment & Event Services</span>
           </div>
 
           <h1
