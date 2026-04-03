@@ -29,11 +29,9 @@ export default function Contact() {
   const router = useRouter();
   const { status } = useSession();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
-    company: "",
     address: "",
     message: "",
   });
@@ -74,13 +72,12 @@ export default function Contact() {
     }
 
     if (
-      !formData.firstName ||
-      !formData.lastName ||
+      !formData.name ||
       !formData.email ||
       !formData.phone ||
       !formData.message
     ) {
-      toast.warning("Please fill in all the fields.", {
+      toast.warning("Please fill in all the required fields.", {
         position: "top-right",
       });
       return;
@@ -93,7 +90,7 @@ export default function Contact() {
       return;
     }
     if (!validatePhone(formData.phone)) {
-      toast.error("Please enter a valid phone number.", {
+      toast.error("Please enter a valid 10-digit phone number.", {
         position: "top-right",
       });
       return;
@@ -101,36 +98,47 @@ export default function Contact() {
 
     setLoading(true);
     try {
+      const payload = {
+        firstName: formData.name,
+        lastName: "",
+        email: formData.email,
+        phone: formData.phone,
+        company: "",
+        address: formData.address,
+        message: formData.message
+      };
+
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
-      if (result.success) {
-        toast.success("Message sent successfully!", {
+      
+      if (!response.ok || !result.success) {
+        toast.error(result.message || "Failed to send message. Please try again later.", {
           position: "top-right",
         });
-
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          company: "",
-          address: "",
-          message: "",
-        });
-      } else {
-        toast.error("Failed to send message. Please try again later.", {
-          position: "top-right",
-        });
+        return;
       }
+
+      toast.success("Message sent successfully!", {
+        position: "top-right",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        message: "",
+      });
     } catch (error) {
-      toast.error("An error occurred. Please try again.", {
+      console.error("Email send error:", error);
+      toast.error(error.message || "An error occurred. Please try again.", {
         position: "top-right",
       });
     } finally {
@@ -266,31 +274,18 @@ export default function Contact() {
               </div>
 
               <form onSubmit={sendMessage} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
                   <div>
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-4 text-left">Full Name</label>
                     <div className="relative">
                       <input
                         type="text"
-                        name="firstName"
-                        placeholder="Your name"
-                        value={formData.firstName}
+                        name="name"
+                        placeholder="Your full name"
+                        value={formData.name}
                         onChange={handleFormChange}
                         className="w-full bg-slate-50 border border-transparent p-4 rounded-2xl focus:bg-white focus:border-indigo-200 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-300"
                         required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-4 text-left">Company</label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        name="company"
-                        placeholder="Company name"
-                        value={formData.company}
-                        onChange={handleFormChange}
-                        className="w-full bg-slate-50 border border-transparent p-4 rounded-2xl focus:bg-white focus:border-indigo-200 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-300"
                       />
                     </div>
                   </div>
