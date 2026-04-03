@@ -122,17 +122,17 @@ export default function RentalsPage() {
       </section>
 
       {/* Modern High-End Filtering Section */}
-      <section className="sticky top-20 z-40  py-6 backdrop-blur-xl bg-white/60 border-y border-slate-100 shadow-sm">
-        <div className="container mx-auto px-6 overflow-x-auto no-scrollbar">
-          <div className="flex justify-center items-center gap-3">
+      <section className="sticky top-20 z-40 py-6 sm:py-8 backdrop-blur-xl bg-white/60 border-y border-slate-100 shadow-sm">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 max-w-5xl mx-auto">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`relative px-8 py-3 rounded-2xl text-sm font-bold transition-all duration-500 whitespace-nowrap overflow-hidden group ${
+                className={`relative px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl text-sm font-bold transition-all duration-500 overflow-hidden group border ${
                   selectedCategory === category
-                    ? "text-white shadow-xl shadow-blue-200"
-                    : "text-slate-500 hover:text-slate-900"
+                    ? "text-white border-blue-600 shadow-xl shadow-blue-100"
+                    : "text-slate-500 hover:text-slate-900 bg-white hover:bg-slate-50 border-slate-200/70 shadow-sm"
                 }`}
               >
                 {selectedCategory === category && (
@@ -153,7 +153,7 @@ export default function RentalsPage() {
       <section className="container mx-auto px-6 py-24 mb-12">
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12"
         >
           <AnimatePresence mode="popLayout">
             {filteredData.map((item) => (
@@ -231,7 +231,7 @@ export default function RentalsPage() {
                   {/* Modern Action Bar */}
                   <div className="flex items-center gap-3">
                     <Link href={`/rentals/${item.id}`} className="flex-1">
-                      <button className="w-full h-14 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-slate-100 flex items-center justify-center gap-2 group/btn">
+                      <button className="w-full h-14 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-slate-200 shadow-sm flex items-center justify-center gap-2 group/btn">
                         <FaEye className="text-slate-400 group-hover/btn:text-slate-900 transition-colors" />
                         Explore
                       </button>

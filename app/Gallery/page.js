@@ -113,106 +113,130 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-[#fafcff] selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
-      {/* Immersive Modern Slider Section */}
-      <section className="relative w-full h-[75vh] overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slides[currentSlide].image}
-              alt={slides[currentSlide].title}
-              fill
-              className="object-cover"
-              priority
-              quality={100}
-            />
-            {/* Multi-Layered Overlay Strategy */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-slate-900/60"></div>
-            <div className="absolute inset-0 backdrop-blur-[2px] bg-slate-900/10"></div>
-          </motion.div>
-        </AnimatePresence>
+      {/* Premium Light-Themed Slider Section */}
+      <section className="relative pt-32 pb-24 overflow-hidden border-b border-slate-50 bg-[#fafcff]">
+        {/* Floating Mesh Background Elements */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-[0%] left-[-10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-[0%] right-[-10%] w-[600px] h-[600px] bg-purple-100/30 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+        </div>
 
-        {/* Dynamic Content Overlay */}
-        <div className="relative z-10 h-full flex items-center justify-center container mx-auto px-6">
-          <div className="text-center max-w-4xl">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-white text-[10px] font-black uppercase tracking-widest mb-6 border border-white/30 shadow-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-8">
+                <FaImages className="animate-pulse" />
                 Visual Portfolio
-              </span>
-              <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.9]">
-                {slides[currentSlide].title}
+              </div>
+              <h1 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6">
+                Captured
+                <br />
+                <span className="text-blue-600">
+                  Moments
+                </span>
               </h1>
-              <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-lg">
-                {slides[currentSlide].description}
+              <p className="text-lg sm:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto text-balance">
+                Explore our collection of the most memorable operations. Every
+                frame tells a story of quality, dedication, and unforgettable
+                experiences.
               </p>
 
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
                 <button
                   onClick={() => document.getElementById("gallery-items").scrollIntoView({ behavior: "smooth" })}
-                  className="bg-white text-slate-900 px-10 py-5 rounded-3xl font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all duration-500 shadow-2xl hover:shadow-blue-500/20 active:scale-95 flex items-center gap-3"
+                  className="h-16 px-10 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 shadow-xl shadow-slate-200 hover:shadow-blue-200 active:scale-95 flex items-center justify-center gap-3 group"
                 >
-                  <FaImages />
-                  Explore Moments
+                  <FaEye className="group-hover:scale-110 transition-transform duration-300" />
+                  Explore Gallery
                 </button>
                 <button 
                    onClick={() => document.getElementById("Video-Section").scrollIntoView({ behavior: "smooth" })}
-                   className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-10 py-5 rounded-3xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all duration-500 flex items-center gap-3"
+                   className="h-16 px-10 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 border border-slate-200 shadow-sm flex items-center justify-center gap-3 group"
                 >
-                  <FaPlayCircle className="text-lg" />
+                  <FaPlayCircle className="text-blue-600 text-lg group-hover:scale-110 transition-transform duration-300" />
                   Watch Highlights
                 </button>
               </div>
             </motion.div>
           </div>
-        </div>
 
-        {/* Minimalist Indicators */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className="group relative w-12 h-1 overflow-hidden rounded-full bg-white/20"
-            >
-              <div 
-                className={`absolute inset-0 bg-white transition-transform duration-500 ${
-                  currentSlide === index ? "translate-x-0" : "-translate-x-full"
-                }`}
-              />
-            </button>
-          ))}
+          {/* Floating Slider Container */}
+          <motion.div
+             initial={{ opacity: 0, y: 50 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 1, delay: 0.3 }}
+             className="relative w-full h-[600px] rounded-[3rem] overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 group"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={slides[currentSlide].image}
+                  alt={slides[currentSlide].title}
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={100}
+                />
+                {/* Beautiful clean overlay rather than muddy black */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* In-Slider indicators */}
+            <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20 bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/30">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-500 shadow-sm ${
+                    currentSlide === index ? "w-6 sm:w-8 bg-white" : "bg-white/50 hover:bg-white/80"
+                  }`}
+                />
+              ))}
+            </div>
+            
+            {/* Title display overlay */}
+            <div className="absolute bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 sm:-translate-x-0 sm:left-10 z-20 w-max max-w-[90%]">
+               <span className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 text-slate-900 text-[10px] font-black uppercase tracking-widest shadow-xl">
+                 <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
+                 {slides[currentSlide].title}
+               </span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Modern Hover Card Grid */}
-      <section id="gallery-items" className="py-32 container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-6 translate-y-1">
-              <FaCamera />
+      {/* Premium Gallery Grid Section */}
+      <section id="gallery-items" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-16 gap-8 text-center md:text-left">
+          <div className="max-w-2xl flex flex-col items-center md:items-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-6">
+              <FaCamera className="animate-pulse" />
               Our Capture
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1] mb-6">
-              Memorable <br />
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Highlights</span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
+              Memorable <br className="hidden md:block" />
+              <span className="text-blue-600">Highlights</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-lg max-w-sm mb-2 font-medium leading-relaxed">
-            Every frame tells a story of quality, dedication, and unforgettable experiences in the heart of Kashmir.
+          <p className="text-slate-500 text-lg max-w-sm mb-2 font-medium leading-relaxed md:text-right">
+            Every frame tells a story of quality, dedication, and unforgettable
+            experiences in the heart of Kashmir.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((image, i) => (
             <motion.div
               key={image.id}
@@ -221,121 +245,110 @@ export default function Gallery() {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               onMouseEnter={() => setHoveredId(image.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative h-[500px] rounded-[3rem] overflow-hidden bg-slate-200 shadow-2xl shadow-slate-200/50 hover:shadow-blue-200/50 transition-all duration-700 cursor-pointer"
+              className="bg-white rounded-[2.5rem] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col group"
             >
-              <motion.div
-                animate={{ scale: hoveredId === image.id ? 1.05 : 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full"
-              >
+              {/* Top Image Box */}
+              <div className="relative h-64 rounded-[2rem] overflow-hidden mb-6 bg-slate-100">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   quality={100}
                 />
-              </motion.div>
+                
+                {/* Embedded Badge */}
+                <div className="absolute top-4 left-4 z-10 hidden group-hover:block">
+                  <div className="px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm border border-slate-100 transition-all">
+                    {image.category}
+                  </div>
+                </div>
 
-              {/* Elegant Glass Overlay */}
-              <div className={`absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/40 transition-colors duration-700`}></div>
-              
-              {/* Category Badge */}
-              <div className="absolute top-8 left-8 z-10">
-                <div className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-2xl text-[10px] font-black uppercase tracking-widest text-blue-600 shadow-xl border border-white/20">
-                  {image.category}
+                {/* Interaction Row (Heart/Share) */}
+                <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
+                  <button className="w-10 h-10 bg-white/95 backdrop-blur-md rounded-xl flex items-center justify-center text-slate-600 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                    <FaHeart className="text-sm" />
+                  </button>
+                  <button className="w-10 h-10 bg-white/95 backdrop-blur-md rounded-xl flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                    <FaShare className="text-sm" />
+                  </button>
                 </div>
               </div>
 
-              {/* Bottom Content revealed on hover */}
-              <div className="absolute inset-x-0 bottom-0 p-10 z-20">
-                <motion.div
-                   animate={{ y: hoveredId === image.id ? 0 : 20, opacity: hoveredId === image.id ? 1 : 0.8 }}
-                   transition={{ duration: 0.5 }}
-                >
-                  <h3 className="text-2xl font-black text-white mb-3 tracking-tight drop-shadow-md">
-                    {image.title}
-                  </h3>
-                  <AnimatePresence>
-                    {hoveredId === image.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="text-white/80 text-sm mb-8 leading-relaxed font-medium">
-                          {image.description}
-                        </p>
-                        <Link href={`/Gallery/${image.id}`}>
-                           <button className="flex items-center gap-3 text-white font-black text-[10px] uppercase tracking-widest group/btn border-b-2 border-white/30 pb-2 hover:border-white transition-all">
-                              View Project 
-                              <FaArrowRight className="group-hover/btn:translate-x-2 transition-transform duration-300" />
-                           </button>
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </div>
-
-              {/* Interaction Row */}
-              <div className="absolute top-8 right-8 flex flex-col gap-3 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
-                <button className="w-12 h-12 bg-white/95 backdrop-blur-xl rounded-2xl flex items-center justify-center text-slate-900 hover:bg-red-500 hover:text-white transition-all shadow-xl">
-                  <FaHeart />
-                </button>
-                <button className="w-12 h-12 bg-white/95 backdrop-blur-xl rounded-2xl flex items-center justify-center text-slate-900 hover:bg-blue-600 hover:text-white transition-all shadow-xl">
-                  <FaShare />
-                </button>
+              {/* Text Module Below Image */}
+              <div className="px-4 pb-2 flex-grow flex flex-col">
+                <div className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-2">
+                  {image.category}
+                </div>
+                <h3 className="text-xl font-black text-slate-900 mb-3 tracking-tight leading-snug">
+                  {image.title}
+                </h3>
+                
+                <p className="text-slate-500 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                  {image.description}
+                </p>
+                
+                {/* Action Link strictly preserving original logic */}
+                <Link href={`/Gallery/${image.id}`} className="mt-auto block">
+                  <button className="w-full py-4 rounded-2xl bg-[#fafcff] text-slate-900 hover:bg-blue-600 hover:text-white border border-slate-100 hover:border-blue-500 transition-all duration-300 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-widest group/btn shadow-sm">
+                    View Project
+                    <FaArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Advanced Video Highlight Overhaul */}
-      <section id="Video-Section" className="py-32 relative">
-        <div className="absolute inset-0 bg-slate-900 skew-y-3 translate-y-20 z-0"></div>
-        <div className="container mx-auto px-6 relative z-10">
+      {/* Premium Light Video Section */}
+      <section id="Video-Section" className="py-32 relative bg-[#fafcff] border-y border-slate-50">
+        <div className="absolute inset-0 z-0 opacity-40">
+          <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px]"></div>
+          <div className="absolute bottom-[20%] left-[10%] w-[400px] h-[400px] bg-purple-100/30 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full px-4 py-1.5 mb-8 text-[10px] font-black uppercase tracking-widest">
-                <FaVideo />
+              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-600 rounded-full px-3 py-1.5 mb-8 text-[10px] font-black uppercase tracking-widest shadow-sm">
+                <FaVideo className="animate-pulse" />
                 Visual Narrative
               </div>
-              <h2 className="text-6xl font-black text-white mb-8 tracking-tighter leading-[0.9]">
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter leading-[1.1]">
                 Cinematic <br />
-                <span className="text-blue-500">Highlights</span>
+                <span className="text-blue-600">Highlights</span>
               </h2>
-              <p className="text-lg text-slate-400 mb-12 max-w-lg font-medium leading-relaxed">
+              <p className="text-lg text-slate-500 mb-12 max-w-lg font-medium leading-relaxed">
                 Step inside our most successful operations. Experience the scale, quality, and atmosphere we bring to every event in the region.
               </p>
               
-              <div className="flex items-center gap-12">
+              <div className="flex items-center gap-12 p-8 bg-white rounded-3xl border border-slate-100 shadow-sm max-w-sm">
                 <div className="flex flex-col">
-                  <span className="text-4xl font-black text-white mb-1 tracking-tighter">4K</span>
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Resolution</span>
+                  <span className="text-4xl font-black text-slate-900 mb-1 tracking-tighter">4K</span>
+                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Resolution</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-4xl font-black text-white mb-1 tracking-tighter">60</span>
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">FPS Motion</span>
+                  <span className="text-4xl font-black text-slate-900 mb-1 tracking-tighter">60</span>
+                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">FPS Motion</span>
                 </div>
               </div>
             </div>
 
             <div className="relative group">
-              <div className="absolute inset-0 bg-blue-600/20 blur-[120px] rounded-full group-hover:bg-blue-600/30 transition-colors duration-700"></div>
-              <div className="relative bg-white/5 backdrop-blur-2xl border border-white/10 p-4 rounded-[3rem] shadow-2xl">
-                <div className="relative aspect-video rounded-[2rem] overflow-hidden">
+              <div className="absolute inset-0 bg-blue-100/50 blur-[80px] rounded-full transition-colors duration-700"></div>
+              <div className="relative bg-white p-4 rounded-[3rem] shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100">
+                <div className="relative aspect-video rounded-[2.5rem] overflow-hidden bg-slate-50">
                   {isPlaying ? (
                     <video src="/video/event-highlights.mp4" controls autoPlay className="w-full h-full object-cover" />
                   ) : (
                     <div className="relative w-full h-full group/video cursor-pointer" onClick={() => setIsPlaying(true)}>
-                      <Image src="/video-cover-image.png" alt="Highlights Cover" fill className="object-cover group-hover/video:scale-110 transition-transform duration-[2s]" />
-                      <div className="absolute inset-0 bg-slate-900/40 group-hover/video:bg-slate-900/20 transition-colors duration-700"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover/video:scale-110 transition-all duration-500">
-                          <FaPlay className="text-slate-900 text-2xl ml-1" />
+                      <Image src="/video-cover-image.png" alt="Highlights Cover" fill className="object-cover group-hover/video:scale-105 transition-transform duration-700" />
+                      
+                      {/* Play Button Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-slate-900/10 group-hover/video:bg-slate-900/5 transition-colors">
+                        <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center shadow-xl group-hover/video:scale-110 transition-all duration-500">
+                          <FaPlay className="text-blue-600 text-2xl ml-2" />
                         </div>
                       </div>
                     </div>
@@ -347,32 +360,30 @@ export default function Gallery() {
         </div>
       </section>
 
-
-      {/* Master-Class Portfolio Grid */}
-      <section className="pb-40 container mx-auto px-6">
+      {/* Master-Class Portfolio Grid in Standard Light Palette */}
+      <section className="py-32 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {[
-             { icon: FaIndustry, title: "Event Setup", desc: "Tailored decoration concepts for premium venues.", color: "blue" },
-             { icon: FaCalendarAlt, title: "Upcoming", desc: "Stay ahead with our next-gen seasonal activations.", color: "emerald" },
-             { icon: FaTools, title: "Ventures", desc: "Integrated rental solutions for elite celebrations.", color: "amber" }
+             { icon: FaIndustry, title: "Event Setup", desc: "Tailored decoration concepts for premium venues.", colorTheme: "text-blue-600 bg-blue-50" },
+             { icon: FaCalendarAlt, title: "Upcoming", desc: "Stay ahead with our next-gen seasonal activations.", colorTheme: "text-indigo-600 bg-indigo-50" },
+             { icon: FaTools, title: "Ventures", desc: "Integrated rental solutions for elite celebrations.", colorTheme: "text-slate-800 bg-slate-100" }
            ].map((item, i) => (
-             <div key={i} className="group bg-white p-12 rounded-[3.5rem] border border-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-2xl transition-all duration-700 text-center relative overflow-hidden flex flex-col items-center">
-                <div className={`absolute inset-0 bg-gradient-to-br from-${item.color}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-                <div className={`w-20 h-20 bg-${item.color}-50 text-${item.color}-600 rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-inner`}>
+             <div key={i} className="group bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 text-center flex flex-col items-center">
+                <div className={`w-20 h-20 ${item.colorTheme} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shadow-sm border border-white`}>
                    <item.icon className="text-3xl" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight group-hover:text-slate-700">{item.title}</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">{item.title}</h3>
                 <p className="text-slate-500 text-sm mb-10 font-medium leading-relaxed max-w-[200px]">
                    {item.desc}
                 </p>
                 {item.title === "Ventures" ? (
-                  <Link href="/rentals" className="mt-auto">
-                    <button className={`bg-slate-900 text-white px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-all duration-300 shadow-lg`}>
+                  <Link href="/rentals" className="mt-auto w-full">
+                    <button className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-blue-200">
                        View Catalog
                     </button>
                   </Link>
                 ) : (
-                  <button className="mt-auto bg-slate-50 text-slate-400 px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">
+                  <button className="mt-auto w-full bg-[#fafcff] text-slate-400 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest border border-slate-100 cursor-not-allowed">
                      Coming Soon
                   </button>
                 )}

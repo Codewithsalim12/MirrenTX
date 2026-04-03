@@ -144,7 +144,7 @@ export async function POST(request) {
 
       <div style="margin-top: 48px; text-align: center; border-top: 1px solid #f3f4f6; padding-top: 32px;">
         <p style="color: #6b7280; font-size: 14px; margin-bottom: 0;">
-          Contact us at: <a href="mailto:mirrentx@gmail.com" style="color: #5e4ae3; text-decoration: none; font-weight: 600;">mirrentx@gmail.com</a> | <strong>+91 98765 43210</strong>
+          Contact us at: <a href="mailto:mirrentx@gmail.com" style="color: #5e4ae3; text-decoration: none; font-weight: 600;">mirrentx@gmail.com</a> | <strong>+91 8082815863</strong>
         </p>
       </div>
     `;
@@ -160,7 +160,7 @@ export async function POST(request) {
       transporter.sendMail(adminMailOptions),
       transporter.sendMail(customerMailOptions)
     ]);
-    
+
     // Save to DataBase
     await connectToDatabase();
     await Rental.create({

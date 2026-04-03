@@ -58,167 +58,98 @@ export default function Services() {
   }, []);
   return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-        {/* Modern Hero Section with Slider */}
-        <div className="relative w-full bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 mt-16 lg:mt-20 overflow-hidden">
-          {/* Modern Background Pattern */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.3),transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.3),transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.2),transparent_50%)]"></div>
+        {/* Modern Cinema-Light Hero Section */}
+        <section className="relative pt-24 pb-16 overflow-hidden bg-[#fafcff] border-b border-slate-50">
+          {/* Animated Mesh Blobs */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/30 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-100/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
           </div>
 
-          {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            ></div>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slides[currentIndex].id}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="relative"
-            >
-              {/* Split Layout Container */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center">
-                {/* Left Content */}
-                <div className="relative z-20 px-6 lg:px-12 py-16 lg:py-20">
-                  <div className="max-w-xl">
-                    {/* Premium Badge */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6"
-                    >
-                      <FaGem className="text-yellow-400 text-sm animate-pulse" />
-                      <span className="text-white/90 font-medium text-sm">
-                        Premium Event Services
-                      </span>
-                    </motion.div>
-
-                    {/* Main Title */}
-                    <motion.h1
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight"
-                    >
-                      {slides[currentIndex].title}
-                    </motion.h1>
-
-                    {/* Subtitle */}
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 }}
-                      className="text-lg text-white/80 mb-8 leading-relaxed"
-                    >
-                      {slides[currentIndex].subtitle}
-                    </motion.p>
-
-                    {/* Action Buttons */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 }}
-                      className="flex flex-col sm:flex-row gap-4 mb-12"
-                    >
-                      <Link href="/rentals">
-                        <button className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
-                          <FaRocket className="group-hover:animate-bounce" />
-                          Book Now
-                          <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
-                        </button>
-                      </Link>
-
-                      <button className="group bg-white/10 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-3">
-                        <FaPlay className="group-hover:scale-110 transition-transform duration-300" />
-                        Watch Demo
-                      </button>
-                    </motion.div>
-
-                    {/* Stats Row */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1 }}
-                      className="flex gap-8"
-                    >
-                      {[
-                        { number: "50+", label: "Happy Clients" },
-                        { number: "50+", label: "Events" },
-                        { number: "4.9", label: "Rating" },
-                      ].map((stat, index) => (
-                        <div key={index} className="text-center">
-                          <div className="text-2xl font-bold text-white">
-                            {stat.number}
-                          </div>
-                          <div className="text-white/60 text-sm">
-                            {stat.label}
-                          </div>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </div>
+          <div className="container mx-auto px-6 relative z-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slides[currentIndex].id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="max-w-4xl mx-auto text-center"
+              >
+                {/* Premium Fleet Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-8 shadow-sm">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+                  </span>
+                  Elite Service Fleet
                 </div>
 
-                {/* Right Image */}
-                <div className="relative lg:h-[600px] h-[400px]">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="absolute inset-0"
-                  >
-                    <div
-                      className="w-full h-full bg-cover bg-center rounded-l-3xl lg:rounded-l-none"
-                      style={{
-                        backgroundImage: `url(${slides[currentIndex].image})`,
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/20 to-black/40 rounded-l-3xl lg:rounded-l-none"></div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[1] text-slate-900">
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    {slides[currentIndex].title.split(' ')[0]}
+                  </span>{" "}
+                  {slides[currentIndex].title.split(' ').slice(1).join(' ')}
+                </h1>
 
-          {/* Navigation Controls */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-            <div className="flex items-center gap-4">
-              {/* Slider Dots */}
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2">
-                {slides.map((_, index) => (
+                <p className="text-lg text-slate-500 mb-10 max-w-xl mx-auto font-medium leading-relaxed">
+                  {slides[currentIndex].subtitle}
+                </p>
+
+                {/* Hero Actions */}
+                <div className="flex flex-wrap justify-center gap-4 mb-16">
+                  <Link href="/rentals">
+                    <button className="h-16 px-10 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 shadow-2xl shadow-slate-200 hover:shadow-blue-200 active:scale-95 flex items-center gap-3 group">
+                      <FaRocket className="group-hover:animate-bounce" />
+                      Book Now
+                    </button>
+                  </Link>
+                  <button className="h-16 px-10 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 border border-slate-200 shadow-sm flex items-center gap-3">
+                    <FaPlay className="text-blue-600" />
+                    Watch Demo
+                  </button>
+                </div>
+
+                {/* Hero Image Container */}
+                <div className="relative group max-w-5xl mx-auto">
+                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-[3rem] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                   <div className="relative h-[300px] md:h-[450px] w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-white/50">
+                      <motion.div
+                        key={slides[currentIndex].image}
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2 }}
+                        className="w-full h-full"
+                      >
+                        <img
+                          src={slides[currentIndex].image}
+                          alt={slides[currentIndex].title}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                   </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center items-center gap-4 mt-12">
+               {slides.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`transition-all duration-300 ${
+                    className={`transition-all duration-500 rounded-full ${
                       index === currentIndex
-                        ? "w-8 h-2 bg-white rounded-full"
-                        : "w-2 h-2 bg-white/50 hover:bg-white/70 rounded-full"
+                        ? "w-10 h-2.5 bg-blue-600 shadow-lg shadow-blue-100"
+                        : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"
                     }`}
                   />
                 ))}
-              </div>
-
-              {/* Scroll Indicator */}
-              <div className="flex flex-col items-center text-white/80 animate-bounce ml-4">
-                <span className="text-xs font-medium mb-1">Scroll</span>
-                <div className="w-4 h-6 border border-white/40 rounded-full flex justify-center">
-                  <div className="w-0.5 h-2 bg-white/60 rounded-full mt-1 animate-pulse"></div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
+        </section>
+
+
 
         {/* Services Section */}
         <section className="py-20 px-4">
@@ -325,86 +256,80 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Pricing Plans Section */}
+        {/* Premium Pricing Plans Section */}
         <section
           id="Pricing"
-          className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden"
+          className="py-24 bg-white relative overflow-hidden"
         >
-          {/* Background Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-green-400 to-teal-400 rounded-full blur-3xl"></div>
+          {/* Subtle Background Blobs */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute top-20 right-[10%] w-80 h-80 bg-blue-50/50 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-[10%] w-96 h-96 bg-indigo-50/50 rounded-full blur-3xl"></div>
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             {/* Section Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-6"
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 mb-6"
               >
-                <FaGem className="text-yellow-400 animate-pulse" />
-                <span className="font-semibold">Transparent Pricing</span>
+                <FaGem className="text-blue-600 animate-pulse text-xs" />
+                <span className="font-black text-blue-600 text-[10px] uppercase tracking-widest">Transparent Rates</span>
               </motion.div>
 
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-5xl font-black mb-6 text-slate-900 tracking-tight"
               >
-                <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                  Our Pricing Plans
-                </span>
+                Simple, <span className="text-blue-600">Premium</span> Pricing
               </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl text-white/80 max-w-3xl mx-auto"
+                className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
               >
-                Choose a plan that fits your needs. We offer flexible pricing
-                options for every event size and budget.
+                High-end event solutions with clear, affordable pricing. We offer flexible options for every event size and budget in Kupwara.
               </motion.p>
             </div>
 
-            {/* Pricing Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Pricing Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {[
                 {
                   id: 1,
-                  title: "Lighting & Generator",
-                  description:
-                    "Enhance your event with beautiful lighting setups and reliable generator power.",
+                  title: "Lighting & Power",
+                  description: "Professional lighting setups paired with reliable generator power for continuous event coverage.",
                   price: "$30",
-                  icon: <FaLightbulb className="w-8 h-8 text-white" />,
+                  icon: <FaLightbulb className="w-7 h-7" />,
                   subTitle: "Lighting with Generator",
-                  gradient: "from-yellow-500 to-orange-500",
+                  gradient: "from-blue-600 to-indigo-600",
                   popular: false,
                 },
                 {
                   id: 2,
-                  title: "DSLR Camera Rental",
-                  description:
-                    "Capture your special moments with top-quality DSLR cameras for professional photography.",
+                  title: "Cinema Photography",
+                  description: "Professional DSLR camera sets and equipment for capturing high-resolution cinematic event moments.",
                   price: "$6",
-                  icon: <FaCamera className="w-8 h-8 text-white" />,
-                  subTitle: "High-Resolution Photography",
-                  gradient: "from-blue-500 to-cyan-500",
+                  icon: <FaCamera className="w-7 h-7" />,
+                  subTitle: "HD Visual Capture",
+                  gradient: "from-blue-600 to-purple-600",
                   popular: true,
                 },
                 {
                   id: 3,
-                  title: "Tents & Camping Gear",
-                  description:
-                    "Perfect for outdoor events, offering premium tents and camping equipment for all sizes.",
+                  title: "Elite Camping",
+                  description: "Premium tents and high-quality outdoor gear for comfortable and stylish outdoor event experiences.",
                   price: "$20",
-                  icon: <FaCampground className="w-8 h-8 text-white" />,
+                  icon: <FaCampground className="w-7 h-7" />,
                   subTitle: "Comfortable Outdoor Setup",
-                  gradient: "from-green-500 to-emerald-500",
+                  gradient: "from-indigo-600 to-purple-600",
                   popular: false,
                 },
               ].map((plan, index) => (
@@ -413,82 +338,51 @@ export default function Services() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative group ${
-                    plan.popular ? "scale-105 lg:scale-110" : ""
-                  }`}
+                  className={`relative group ${plan.popular ? "lg:scale-105" : ""}`}
                 >
                   {/* Popular Badge */}
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                        Most Popular
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                      <div className="bg-slate-900 text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
+                        Elite Choice
                       </div>
                     </div>
                   )}
 
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
-                    {/* Gradient Border Effect */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-r ${plan.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-3xl`}
-                    ></div>
-
-                    {/* Content */}
+                  <div className="h-full bg-white rounded-[2.5rem] border border-slate-100 p-10 text-center hover:border-blue-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
                     <div className="relative z-10">
                       {/* Icon */}
-                      <div
-                        className={`w-16 h-16 bg-gradient-to-r ${plan.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                      >
+                      <div className={`w-16 h-16 bg-gradient-to-br ${plan.gradient} rounded-2xl flex items-center justify-center mx-auto mb-8 text-white shadow-lg`}>
                         {plan.icon}
                       </div>
 
-                      {/* Title */}
-                      <h3 className="text-2xl font-bold text-white mb-2">
-                        {plan.title}
-                      </h3>
-                      <p className="text-white/60 text-sm mb-4">
-                        {plan.subTitle}
-                      </p>
-
-                      {/* Description */}
-                      <p className="text-white/80 mb-6 leading-relaxed">
+                      <h3 className="text-2xl font-black text-slate-900 mb-2 tracking-tight">{plan.title}</h3>
+                      <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-6">{plan.subTitle}</p>
+                      
+                      <p className="text-slate-500 text-sm mb-10 leading-relaxed font-medium">
                         {plan.description}
                       </p>
 
-                      {/* Price */}
-                      <div className="mb-8">
-                        <span className="text-4xl font-bold text-white">
-                          {plan.price}
-                        </span>
-                        <span className="text-white/60 text-lg ml-2">
-                          / Starting from
-                        </span>
+                      <div className="mb-10 flex items-baseline justify-center gap-1">
+                        <span className="text-4xl font-black text-slate-900">{plan.price}</span>
+                        <span className="text-slate-400 text-sm font-semibold">/ session</span>
                       </div>
 
                       {/* Features */}
-                      <div className="space-y-3 mb-8">
-                        {[
-                          "Premium Quality",
-                          "24/7 Support",
-                          "Setup Included",
-                        ].map((feature, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-center justify-center gap-2 text-white/80"
-                          >
-                            <FaCheckCircle className="text-green-400 text-sm" />
-                            <span className="text-sm">{feature}</span>
+                      <div className="space-y-4 mb-10">
+                        {["Elite Maintenance", "24/7 Expert Support", "Professional Setup"].map((feature, idx) => (
+                          <div key={idx} className="flex items-center justify-center gap-2 text-slate-600 font-medium text-sm">
+                            <FaCheckCircle className="text-blue-500 text-xs" />
+                            <span>{feature}</span>
                           </div>
                         ))}
                       </div>
 
                       {/* CTA Button */}
                       <Link href="/rentals">
-                        <button
-                          className={`w-full bg-gradient-to-r ${plan.gradient} hover:shadow-xl text-white px-6 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg`}
-                        >
-                          <FaShoppingCart />
+                        <button className="w-full h-14 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl shadow-slate-100 hover:shadow-blue-100 flex items-center justify-center gap-2 group">
+                          <FaShoppingCart className="text-sm" />
                           Book Now
-                          <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
                         </button>
                       </Link>
                     </div>
@@ -497,19 +391,17 @@ export default function Services() {
               ))}
             </div>
 
-            {/* Bottom CTA */}
+            {/* Custom Package CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-center mt-16"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-center mt-20"
             >
-              <p className="text-white/80 mb-6">
-                Need a custom package? We're here to help!
-              </p>
+              <p className="text-slate-500 text-sm font-medium mb-6">Need a custom package tailored for your event?</p>
               <Link href="/Contact">
-                <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 mx-auto">
-                  <FaUsers />
+                <button className="h-14 px-8 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-slate-200 shadow-sm flex items-center gap-3 mx-auto">
+                  <FaUsers className="text-blue-600" />
                   Contact Our Team
                 </button>
               </Link>
@@ -517,133 +409,99 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Additional Info Section */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-green-400 to-teal-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Elite Features Showcase Section */}
+        <section className="py-24 bg-[#fafcff] relative overflow-hidden">
+          {/* Soft Mesh Blobs */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-20 left-20 w-80 h-80 bg-blue-100/20 rounded-full blur-[100px] animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-100/10 rounded-full blur-[120px] animate-pulse"></div>
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Image Section */}
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              {/* Impact Image Section */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <div className="relative group">
-                  {/* Main Image */}
-                  <img
-                    src="/services-img.avif"
-                    alt="Service Details"
-                    className="w-full rounded-3xl shadow-2xl transform transition duration-700 group-hover:scale-105"
-                  />
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  {/* Floating Elements */}
-                  <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-80 blur-xl"></div>
-                  <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl opacity-60 blur-xl"></div>
-
-                  {/* Stats Overlay */}
-                  <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                        <FaCheckCircle className="text-white text-xl" />
+                <div className="relative group p-4 bg-white rounded-[3rem] border border-slate-100 shadow-2xl">
+                  <div className="overflow-hidden rounded-[2.2rem]">
+                    <img
+                      src="/services-img.avif"
+                      alt="Elite Service Delivery"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </div>
+                  
+                  {/* Floating Stat Piece */}
+                  <div className="absolute -bottom-6 -right-6 bg-white rounded-[1.8rem] p-6 shadow-2xl border border-slate-50">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                        <FaAward className="text-2xl" />
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-gray-900">
-                          50+
-                        </div>
-                        <div className="text-gray-600 text-sm">
-                          Events Completed
-                        </div>
+                        <div className="text-2xl font-black text-slate-900 leading-none">99%</div>
+                        <div className="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">Uptime Success</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Content Section */}
+              {/* Persuasion Content Section */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-8"
+                className="space-y-10"
               >
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full font-semibold">
-                  <FaAward className="animate-pulse" />
-                  Award-Winning Service
+                <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2">
+                  <FaShieldAlt className="text-blue-500 text-xs animate-pulse" />
+                  <span className="font-black text-blue-600 text-[10px] uppercase tracking-widest">Quality Assurance</span>
                 </div>
 
-                {/* Title */}
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Comprehensive
-                  </span>
-                  <br />
-                  Event Solutions
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                  Premium Solutions for <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Modern Events</span>
                 </h2>
 
-                {/* Description */}
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  We provide tailored event services, including logistics,
-                  decor, and professional photography. Ensure a seamless
-                  experience with our dedicated team of experts.
+                <p className="text-lg text-slate-500 leading-relaxed font-medium">
+                  We don't just provide equipment; we deliver a seamless experience. Our dedicated team ensures every technical detail is perfect, from cinematic coverage to uninterrupted power, so you can focus on the event itself.
                 </p>
 
-                {/* Features List */}
-                <div className="space-y-4">
+                {/* Feature Mini Cards */}
+                <div className="grid gap-6">
                   {[
-                    {
-                      icon: FaShieldAlt,
-                      title: "Quality Guaranteed",
-                      desc: "Premium equipment and professional service",
-                    },
-                    {
-                      icon: FaClock,
-                      title: "24/7 Support",
-                      desc: "Round-the-clock assistance for your events",
-                    },
-                    {
-                      icon: FaUsers,
-                      title: "Expert Team",
-                      desc: "Experienced professionals at your service",
-                    },
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <feature.icon className="text-white text-lg" />
+                    { icon: FaClock, title: "Precision Delivery", desc: "Always on time, every time. Guaranteed delivery to any venue in Kupwara." },
+                    { icon: FaTools, title: "Elite Maintenance", desc: "Every piece of equipment is professionally sanitized and tested before delivery." },
+                    { icon: FaUsers, title: "Personal Experts", desc: "Dedicated onsite support for complex lighting and camera requirements." }
+                  ].map((feature, i) => (
+                    <div key={i} className="flex gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
+                      <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors flex-shrink-0">
+                        <feature.icon className="text-2xl" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 mb-1">
-                          {feature.title}
-                        </h4>
-                        <p className="text-gray-600">{feature.desc}</p>
+                        <h4 className="font-black text-slate-900 mb-1 tracking-tight">{feature.title}</h4>
+                        <p className="text-slate-500 text-sm font-medium leading-relaxed">{feature.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/rentals">
-                    <button className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+                {/* Bottom CTA Block */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <Link href="/rentals" className="flex-1">
+                    <button className="w-full h-16 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 shadow-2xl shadow-slate-100 hover:shadow-blue-100 flex items-center justify-center gap-3 group">
                       <FaRocket className="group-hover:animate-bounce" />
                       Get Started
-                      <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+                      <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>
-
-                  <Link href="/Contact">
-                    <button className="group bg-white border-2 border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3">
-                      <FaUsers />
-                      Contact Us
+                  <Link href="/Contact" className="flex-1">
+                    <button className="w-full h-16 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 border border-slate-200 shadow-sm flex items-center justify-center gap-3">
+                      <FaUsers className="text-blue-600" />
+                      Support
                     </button>
                   </Link>
                 </div>

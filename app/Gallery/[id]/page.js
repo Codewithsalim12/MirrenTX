@@ -18,6 +18,7 @@ import {
   FaCheckCircle,
   FaPlus,
   FaRegClock,
+  FaStar
 } from "react-icons/fa";
 
 const eventDetails = {
@@ -108,216 +109,180 @@ export default function EventPage({ params }) {
   if (!event) return null;
 
   return (
-    <div className="bg-white min-h-screen selection:bg-blue-100 selection:text-blue-900 border-none overflow-x-hidden">
+    <div className="bg-[#fafcff] min-h-screen selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden font-['Inter_Tight']">
       
-      {/* 1. Precision Mesh Hero (No Background image) */}
-      <section className="relative h-[65vh] w-full flex flex-col items-center justify-center pt-20 px-6">
-         {/* Minimal Mesh Background */}
-         <div className="absolute inset-x-0 top-0 h-full bg-[#fafcff] -z-10 overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_rgba(59,130,246,0.03)_0%,_transparent_50%)]"></div>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,_rgba(168,85,247,0.03)_0%,_transparent_50%)]"></div>
-         </div>
+      
 
-         {/* Navigation - Precise Floating Header */}
-         <div className="absolute top-28 inset-x-0 z-30 container mx-auto px-6 flex justify-between items-center h-16">
-            <Link href="/Gallery" className="group bg-white border border-slate-100 px-6 py-3 rounded-2xl text-slate-900 text-[10px] font-bold uppercase tracking-widest hover:border-blue-200 transition-all shadow-sm flex items-center gap-3">
-               <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-               View Archive
-            </Link>
-            <div className="flex gap-4">
-               <button className="w-12 h-12 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-100 shadow-sm transition-all">
-                  <FaHeart />
-               </button>
-               <button className="w-12 h-12 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-100 shadow-sm transition-all">
-                  <FaShare />
-               </button>
-            </div>
-         </div>
-
-         {/* Hero Title Content - Standard Bold */}
-         <div className="container mx-auto max-w-5xl text-center z-10 pt-16">
-           <motion.div
-             initial={{ opacity: 0, scale: 0.98 }}
-             animate={{ opacity: 1, scale: 1 }}
-             transition={{ duration: 0.8 }}
-           >
-              <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-6 border border-blue-100">
-                <FaRocket />
-                Verified Archive Entrance
-              </span>
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
-                {event.title}
-              </h1>
-              <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium leading-relaxed">
-                {event.description}
-              </p>
-           </motion.div>
-         </div>
-
-         {/* 2. Floating Image Frame (Transition Point) */}
-         <motion.div 
-           initial={{ opacity: 0, y: 50 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.3, duration: 1 }}
-           className="container mx-auto max-w-5xl relative z-20 translate-y-32"
-         >
-            <div className="relative aspect-video rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] border-[12px] border-white bg-slate-50">
-               <Image 
-                 src={event.src} 
-                 alt={event.title} 
-                 fill 
-                 className="object-cover hover:scale-105 transition-transform duration-1000"
-                 priority
-               />
-               <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[3rem]"></div>
-            </div>
-         </motion.div>
+      {/* 2. Editorial Hero (Text Top, Image Bottom) */}
+      <section className="relative pt-40 pb-12 max-w-5xl mx-auto px-6 text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-blue-100 shadow-sm">
+            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
+            {event.category}
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6">
+            {event.title}
+          </h1>
+          <p className="text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
+            {event.subtitle}
+          </p>
+        </motion.div>
       </section>
 
-      {/* 3. High-Precision Narrative Section */}
-      <section className="bg-white pt-60 pb-40 container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+      {/* 3. Massive Cover Image */}
+      <section className="max-w-7xl mx-auto px-6 mb-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative aspect-[16/9] lg:aspect-[21/9] w-full rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.08)] bg-slate-100 group"
+        >
+          <Image 
+            src={event.src} 
+            alt={event.title} 
+            fill 
+            className="object-cover group-hover:scale-105 transition-transform duration-[1.5s]"
+            priority
+          />
+        </motion.div>
+      </section>
+
+      {/* 4. The Editorial Blog Reading Section & Sticky Sidebar */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
           
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center gap-4 mb-10">
-                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
-                    <FaCamera className="text-xl" />
-                 </div>
-                 <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-none uppercase">The Narrative</h2>
-              </div>
+          {/* Main Reading Column */}
+          <div className="w-full lg:w-2/3">
+             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} className="prose prose-lg prose-slate max-w-none">
+               {/* Intro Excerpt */}
+               <p className="text-2xl text-slate-900 font-medium leading-relaxed tracking-tight mb-12 italic border-l-4 border-blue-600 pl-8 py-2">
+                 "{event.description}"
+               </p>
 
-              <p className="text-xl text-slate-600 font-medium leading-[1.8] tracking-tight mb-16 border-l-4 border-blue-600 pl-10 bg-blue-50/20 py-4 mr-2 rounded-r-2xl">
+               {/* Body Paragraph */}
+               <p className="text-lg text-slate-600 font-medium leading-[1.9] mb-16">
                  {event.fullDescription}
-              </p>
+               </p>
 
-              {/* Clean Symmetrical Bento Grid */}
-              <div className="mb-20">
-                 <h3 className="text-xl font-black text-slate-900 mb-8 tracking-tight uppercase">Key Highlights</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {event.highlights.map((h, i) => (
-                      <div key={i} className="group bg-[#fafcff] p-8 rounded-3xl border border-slate-50 hover:bg-white hover:border-blue-100 hover:shadow-xl transition-all duration-500 flex items-start gap-6">
-                        <div className="w-10 h-10 bg-white shadow-sm border border-slate-100 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                           <FaCheckCircle />
-                        </div>
-                        <p className="text-slate-900 font-bold text-[11px] uppercase tracking-widest leading-relaxed">
-                          {h}
-                        </p>
+               {/* Highlights Grid perfectly integrated into the blog body */}
+               <h3 className="text-2xl font-black text-slate-900 mb-8 tracking-tight">Key Highlights</h3>
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-20">
+                  {event.highlights.map((h, i) => (
+                    <div key={i} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:-translate-y-1 hover:shadow-md transition-all group">
+                      <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                         <FaCheckCircle className="text-sm" />
+                      </div>
+                      <p className="text-slate-900 font-black text-[10px] uppercase tracking-widest m-0 leading-snug">
+                        {h}
+                      </p>
+                    </div>
+                  ))}
+               </div>
+
+               {/* Video Section integrated into the blog body */}
+               {event.youtube && (
+                 <div className="mt-16">
+                   <h3 className="text-2xl font-black text-slate-900 mb-8 tracking-tight">Archival Footage</h3>
+                   <div className="relative aspect-[16/9] sm:aspect-video rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.08)] bg-slate-900 group">
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none"></div>
+                      <Image 
+                         src={event.src} 
+                         alt="Video Cover" 
+                         fill 
+                         className="object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-700 blur-[2px]" 
+                      />
+                      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6">
+                        <Link href={event.youtube} target="_blank">
+                          <button className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 hover:scale-110 hover:bg-red-600 hover:border-red-500 transition-all duration-300 shadow-2xl mb-6">
+                             <FaYoutube className="text-3xl" />
+                          </button>
+                        </Link>
+                        <span className="text-white font-black uppercase text-[10px] tracking-widest drop-shadow-md">Watch on YouTube</span>
+                      </div>
+                   </div>
+                 </div>
+               )}
+             </motion.div>
+          </div>
+
+          {/* Sticky Sidebar Metrics */}
+          <div className="w-full lg:w-1/3">
+            <div className="sticky top-10 space-y-8">
+              
+              {/* Main Info Card */}
+              <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 text-center flex items-center justify-center gap-3">
+                   <span className="w-8 h-px bg-slate-200"></span>
+                   Project Details
+                   <span className="w-8 h-px bg-slate-200"></span>
+                 </h3>
+
+                 <div className="space-y-6 mb-10">
+                    {[
+                      { ic: FaMapMarkerAlt, lb: "Location", val: event.location },
+                      { ic: FaCalendarAlt, lb: "Date", val: event.date },
+                      { ic: FaEye, lb: "Views", val: event.stats.views },
+                      { ic: FaRegClock, lb: "Status", val: "Verified Capture" }
+                    ].map((s, i) => (
+                      <div key={i} className="flex items-center gap-4">
+                         <div className="w-10 h-10 bg-[#fafcff] border border-slate-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                            <s.ic className="text-sm" />
+                         </div>
+                         <div>
+                            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">{s.lb}</p>
+                            <p className="text-slate-900 font-bold text-sm tracking-tight">{s.val}</p>
+                         </div>
                       </div>
                     ))}
                  </div>
+
+                 {/* Actions */}
+                 <div className="space-y-3">
+                    <Link href="/Contact" className="block">
+                       <button className="w-full bg-slate-900 text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all duration-300 shadow-md shadow-slate-200 hover:shadow-blue-200 flex items-center justify-center gap-2 group">
+                          Initiate Booking <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                       </button>
+                    </Link>
+                    <button className="w-full bg-[#fafcff] text-slate-900 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest border border-slate-100 hover:bg-white hover:border-slate-200 transition-all flex items-center justify-center gap-2 group">
+                       <FaPlus className="text-blue-500 group-hover:rotate-90 transition-transform" />
+                       Project Inquiry
+                    </button>
+                 </div>
               </div>
 
-              {/* Precise Video Band */}
-              {event.youtube && (
-                <div className="bg-slate-900 rounded-[3rem] p-12 overflow-hidden relative group shadow-2xl">
-                   <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.1)_0%,_transparent_50%)]"></div>
-                   <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-                      <div>
-                         <span className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">Archive Recapping</span>
-                         <h3 className="text-3xl font-black text-white mb-6 tracking-tight leading-none uppercase">Watch the <br /> Cinematic Story</h3>
-                      </div>
-                      <Link href={event.youtube} target="_blank">
-                        <button className="bg-blue-600 text-white px-10 py-5 rounded-3xl font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-slate-950 transition-all duration-500 shadow-2xl">
-                           Launch Motion Player
-                        </button>
-                      </Link>
-                   </div>
-                </div>
-              )}
-            </motion.div>
-          </div>
+              {/* Rating Card */}
+              <div className="bg-blue-600 rounded-[2.5rem] p-8 text-white flex items-center justify-between shadow-xl shadow-blue-600/20">
+                 <div>
+                    <span className="text-[9px] font-black uppercase tracking-widest opacity-80 block mb-1">Impact Score</span>
+                    <span className="text-3xl font-black tracking-tighter">{event.stats.rating}<span className="text-xl opacity-60">/5</span></span>
+                 </div>
+                 <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 shrink-0">
+                    <FaStar className="text-yellow-400 text-xl" />
+                 </div>
+              </div>
 
-          {/* 4. Precision Metadata Cards (Sidebar) */}
-          <div className="lg:col-span-4 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-[#fafcff] rounded-[3rem] p-10 border border-slate-50 shadow-sm relative overflow-hidden"
-            >
-               <h3 className="text-xs font-black text-slate-400 mb-10 uppercase tracking-[0.3em]">Project Metrics</h3>
-
-               <div className="space-y-6 mb-12">
-                  {[
-                    { ic: FaMapMarkerAlt, lb: "Coordinates", val: event.location },
-                    { ic: FaCalendarAlt, lb: "Time Archival", val: event.date },
-                    { ic: FaTag, lb: "Classification", val: event.category },
-                    { ic: FaEye, lb: "Public Pulse", val: event.stats.views },
-                    { ic: FaRegClock, lb: "Auth Status", val: "Verified Capture" }
-                  ].map((s, i) => (
-                    <div key={i} className="flex items-center gap-6 group">
-                       <div className="w-12 h-12 bg-white border border-slate-100 text-slate-400 rounded-2xl flex items-center justify-center transition-all group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 shadow-sm">
-                          <s.ic className="text-lg" />
-                       </div>
-                       <div>
-                          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">{s.lb}</p>
-                          <p className="text-slate-900 font-bold text-xs tracking-tight">{s.val}</p>
-                       </div>
-                    </div>
-                  ))}
-               </div>
-
-               <div className="flex flex-col gap-3">
-                  <Link href="/Contact">
-                     <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all duration-500 shadow-xl flex items-center justify-center gap-3">
-                        Initiate Booking <FaArrowRight />
-                     </button>
-                  </Link>
-                  <button className="flex items-center justify-center gap-2 group w-full bg-white border border-slate-100 text-slate-900 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-slate-50 transition-all">
-                     <FaPlus className="text-slate-300 group-hover:text-blue-500 group-hover:rotate-90 transition-all" />
-                     Project Briefing
-                  </button>
-               </div>
-            </motion.div>
-
-            {/* Quick Rating Badge */}
-            <div className="bg-blue-600 p-8 rounded-[3rem] text-white flex items-center justify-between shadow-2xl shadow-blue-200">
-               <div className="flex flex-col">
-                  <span className="text-[9px] font-black uppercase tracking-widest opacity-60 mb-1">Impact Score</span>
-                  <span className="text-2xl font-black tracking-tighter leading-none">{event.stats.rating}/5.0</span>
-               </div>
-               <div className="flex -space-x-3">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full border border-white/30 flex items-center justify-center">
-                       <FaPlus className="text-[10px]" />
-                    </div>
-                  ))}
-               </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* 5. Minimal Global Impact Section */}
-      <section className="py-40 bg-[#fafcff] border-t border-slate-50">
-         <div className="container mx-auto px-6 text-center max-w-3xl">
-            <h2 className="text-4xl font-black text-slate-900 mb-8 tracking-tighter leading-[1.1] uppercase">
-              Defined by <br />
-              <span className="text-blue-600">Visual Standards.</span>
-            </h2>
-            <p className="text-slate-500 font-medium mb-12 text-lg">
-               Ready to create your own highlight? Contact our team for professional event planning and gear rental services.
-            </p>
-            <div className="flex flex-col md:flex-row justify-center gap-4">
-              <Link href="/Gallery">
-                <button className="bg-slate-900 text-white px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest hover:bg-blue-600 transition-all duration-500 shadow-xl active:scale-95">
-                  Gallery Archive
-                </button>
-              </Link>
-              <Link href="/rentals">
-                <button className="bg-white border-2 border-slate-900 text-slate-900 px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest hover:bg-slate-950 hover:text-white transition-all duration-500">
-                  Services Catalog
-                </button>
-              </Link>
-            </div>
-         </div>
+      {/* 5. Minimal Footer Navigation */}
+      <section className="py-24 bg-white border-t border-slate-50 text-center">
+         <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6">
+            Visual Standards <br />
+            <span className="text-blue-600">Defined.</span>
+         </h2>
+         <p className="text-slate-500 font-medium mb-10 max-w-lg mx-auto">
+            Ready to create your own highlight? Contact our team for professional event planning and gear rental services.
+         </p>
+         <Link href="/Gallery">
+            <button className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-blue-200">
+               Return to Archive
+            </button>
+         </Link>
       </section>
+
     </div>
   );
 }

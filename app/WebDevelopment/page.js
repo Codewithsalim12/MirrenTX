@@ -61,39 +61,29 @@ const projects = [
 
 export default function WebDevServices() {
   return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 pt-16 lg:pt-20">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-green-400 to-teal-400 rounded-full blur-3xl animate-pulse delay-500"></div>
+      <div className="min-h-screen bg-[#fafcff]">
+        {/* Modern Cinema-Light Hero Section */}
+        <section className="relative pt-24 pb-16 overflow-hidden border-b border-slate-50">
+          {/* Animated Mesh Blobs */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/30 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-100/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
           </div>
 
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            ></div>
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="text-center space-y-8">
-              {/* Badge */}
+          <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+            <div className="text-center space-y-8 max-w-4xl mx-auto">
+              {/* Premium Fleet Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mx-auto shadow-sm"
               >
-                <FaRocket className="text-yellow-400 animate-pulse" />
-                <span className="text-white font-semibold">
-                  Professional Web Development
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
                 </span>
+                Professional Web Development
               </motion.div>
 
               {/* Main Title */}
@@ -101,15 +91,13 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1] tracking-tighter text-slate-900"
               >
-                <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Web Development
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-cyan-200 via-white to-pink-200 bg-clip-text text-transparent">
-                  Services
-                </span>
+                Services
               </motion.h1>
 
               {/* Subtitle */}
@@ -117,7 +105,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed"
+                className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium"
               >
                 Creating stunning, responsive, and modern websites that drive
                 business growth and deliver exceptional user experiences.
@@ -128,7 +116,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-wrap justify-center gap-8 pt-8"
+                className="flex flex-wrap justify-center gap-10 pt-6"
               >
                 {[
                   { icon: FaUsers, number: "10+", label: "Happy Clients" },
@@ -136,13 +124,13 @@ export default function WebDevServices() {
                   { icon: FaAward, number: "6", label: "Months Experience" },
                 ].map((stat, index) => (
                   <div key={index} className="text-center group">
-                    <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                      <stat.icon className="text-2xl text-white" />
+                    <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:border-blue-200 transition-all duration-300 shadow-sm">
+                      <stat.icon className="text-2xl text-blue-600 group-hover:text-indigo-600 transition-colors" />
                     </div>
-                    <div className="text-3xl font-bold text-white">
+                    <div className="text-3xl font-black text-slate-900 tracking-tight">
                       {stat.number}
                     </div>
-                    <div className="text-white/80 text-sm">{stat.label}</div>
+                    <div className="text-slate-500 text-xs font-black uppercase tracking-widest mt-1">{stat.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -152,10 +140,10 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-10"
               >
                 <Link href="#projects">
-                  <button className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+                  <button className="h-16 px-10 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 shadow-2xl shadow-slate-200 hover:shadow-blue-200 active:scale-95 flex items-center gap-3 group">
                     <FaPlay className="group-hover:animate-bounce" />
                     View Projects
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -163,8 +151,8 @@ export default function WebDevServices() {
                 </Link>
 
                 <Link href="#contact">
-                  <button className="group bg-white/10 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3">
-                    <FaEnvelope className="group-hover:scale-110 transition-transform duration-300" />
+                  <button className="h-16 px-10 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 border border-slate-200 shadow-sm flex items-center gap-3 group">
+                    <FaEnvelope className="text-blue-600 group-hover:scale-110 transition-transform duration-300" />
                     Get In Touch
                   </button>
                 </Link>
@@ -174,79 +162,82 @@ export default function WebDevServices() {
         </section>
 
         {/* Services Section */}
-        <section className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="bg-[#fafcff] py-24 relative overflow-hidden">
+          {/* Subtle Background Elements */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute top-0 right-[20%] w-96 h-96 bg-blue-50/50 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             {/* Section Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full font-semibold mb-6"
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 mb-6"
               >
-                <FaCode className="animate-pulse" />
-                Our Expertise
+                <FaCode className="text-blue-600 animate-pulse text-xs" />
+                <span className="font-black text-blue-600 text-[10px] uppercase tracking-widest">Our Expertise</span>
               </motion.div>
 
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                className="text-4xl md:text-5xl font-black mb-6 text-slate-900 tracking-tight"
               >
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Development Services
-                </span>
+                Premium <span className="text-blue-600">Development</span> Services
               </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl text-gray-600 max-w-3xl mx-auto"
+                className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
               >
                 From concept to deployment, we deliver comprehensive web
-                solutions that exceed expectations.
+                solutions that exceed expectations and elevate your brand.
               </motion.p>
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {[
                 {
                   icon: FaCode,
                   title: "Full-Stack Development",
-                  gradient: "from-blue-500 to-cyan-500",
+                  gradient: "from-blue-600 to-indigo-600",
                   desc: "Custom web applications built with modern technologies and best practices.",
                   features: [
                     "React/Next.js",
-                    "Node.js",
-                    "Database Design",
-                    "API Development",
+                    "Node.js Ecosystem",
+                    "Scalable Databases",
+                    "Custom API Integration",
                   ],
                 },
                 {
                   icon: FaPaintBrush,
                   title: "UI/UX Design",
-                  gradient: "from-green-500 to-emerald-500",
+                  gradient: "from-indigo-600 to-purple-600",
                   desc: "Beautiful, intuitive designs that create exceptional user experiences.",
                   features: [
-                    "Responsive Design",
-                    "User Research",
-                    "Prototyping",
-                    "Brand Identity",
+                    "Responsive Layouts",
+                    "User Flow Research",
+                    "Interactive Prototypes",
+                    "Modern Brand Mapping",
                   ],
                 },
                 {
                   icon: FaMobile,
-                  title: "Mobile-First Development",
-                  gradient: "from-purple-500 to-pink-500",
-                  desc: "Mobile-optimized websites that perform flawlessly on all devices.",
+                  title: "Mobile-First Focus",
+                  gradient: "from-blue-500 to-cyan-500",
+                  desc: "Fluid, mobile-optimized websites that perform flawlessly on all devices.",
                   features: [
                     "Progressive Web Apps",
-                    "Cross-Platform",
-                    "Performance Optimization",
-                    "Touch Interfaces",
+                    "Cross-Platform Sync",
+                    "Performance Tuning",
+                    "Touch UI Interfaces",
                   ],
                 },
               ].map((service, index) => (
@@ -255,54 +246,43 @@ export default function WebDevServices() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+                  className="group relative bg-white rounded-[2.5rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
                 >
-                  {/* Gradient Border */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-r ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                  ></div>
-                  <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
-
                   {/* Content */}
-                  <div className="relative z-10 p-8 text-center">
+                  <div className="relative z-10 text-center">
                     {/* Icon */}
                     <div
-                      className={`w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                      className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg text-white group-hover:scale-110 transition-transform duration-300`}
                     >
-                      <service.icon className="text-3xl text-white" />
+                      <service.icon className="text-2xl" />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-600 mb-6 leading-relaxed">
+                    <p className="text-slate-500 text-sm mb-8 leading-relaxed font-medium">
                       {service.desc}
                     </p>
 
                     {/* Features */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
+                        <div key={idx} className="flex items-center justify-center gap-3">
                           <div
-                            className={`w-6 h-6 bg-gradient-to-r ${service.gradient} rounded-full flex items-center justify-center`}
+                            className={`w-5 h-5 flex items-center justify-center`}
                           >
-                            <FaCheckCircle className="text-white text-sm" />
+                            <FaCheckCircle className="text-blue-500 text-sm" />
                           </div>
-                          <span className="text-gray-700 font-medium">
+                          <span className="text-slate-600 text-sm font-medium">
                             {feature}
                           </span>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  {/* Hover Effect Background */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}
-                  ></div>
                 </motion.div>
               ))}
             </div>
@@ -312,37 +292,41 @@ export default function WebDevServices() {
         {/* Recent Projects Section */}
         <section
           id="projects"
-          className="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-20"
+          className="py-24 bg-[#fafcff] relative overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Subtle Mesh Blobs */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-40 left-[-10%] w-96 h-96 bg-blue-100/30 rounded-full blur-[100px] animate-pulse"></div>
+            <div className="absolute bottom-40 right-[-10%] w-96 h-96 bg-purple-100/20 rounded-full blur-[100px] animate-pulse delay-700"></div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             {/* Section Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-6 py-3 rounded-full font-semibold mb-6"
+                className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-5 py-2 mb-6"
               >
-                <FaGlobe className="animate-pulse" />
-                Portfolio Showcase
+                <FaGlobe className="text-purple-600 animate-pulse text-xs" />
+                <span className="font-black text-purple-600 text-[10px] uppercase tracking-widest">Portfolio Showcase</span>
               </motion.div>
 
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                className="text-4xl md:text-5xl font-black mb-6 text-slate-900 tracking-tight"
               >
-                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Featured Projects
-                </span>
+                Featured <span className="text-blue-600">Projects</span>
               </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl text-gray-600 max-w-3xl mx-auto"
+                className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
               >
                 Explore our latest web development projects that showcase
                 innovation, creativity, and technical excellence.
@@ -350,81 +334,55 @@ export default function WebDevServices() {
             </div>
 
             {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden border border-gray-100"
+                  className="group relative bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden flex flex-col"
                 >
-                  {/* Gradient Border Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
-
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-6 left-6 z-30 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
-                      ⭐ Featured
-                    </div>
-                  )}
-
-                  {/* Status Badge */}
-                  <div className="absolute top-6 right-6 z-30 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                    🟢 {project.status}
-                  </div>
-
-                  {/* Enhanced Image Container */}
-                  <div className="relative overflow-hidden rounded-t-3xl">
-                    <div className="aspect-video relative">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </div>
-
-                    {/* Enhanced Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
-                      <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-6 group-hover:scale-110 transition-transform duration-300">
-                        <FaPlay className="text-white text-3xl ml-1" />
+                  {/* Content */}
+                  <div className="relative z-10 p-8 flex flex-col flex-grow">
+                    
+                    {/* Top Badges (Now inline to avoid overlapping text since there's no image) */}
+                    <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {project.featured && (
+                          <div className="bg-slate-900 text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm flex items-center gap-1">
+                            <FaStar className="text-yellow-400" /> Featured
+                          </div>
+                        )}
+                        <div className="bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
+                          {project.category}
+                        </div>
+                      </div>
+                      
+                      <div className="bg-white text-slate-900 border border-slate-200 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                        {project.status}
                       </div>
                     </div>
 
-                    {/* Category Badge on Image */}
-                    <div className="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                      {project.category}
-                    </div>
-                  </div>
-
-                  {/* Enhanced Content */}
-                  <div className="relative z-10 p-8 space-y-6">
-                    {/* Title */}
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                    <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                       {project.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-gray-600 leading-relaxed text-base">
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed mb-8 flex-grow">
                       {project.description}
                     </p>
 
-                    {/* Tech Stack - Enhanced */}
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                        Technologies
+                    {/* Tech Stack */}
+                    <div className="space-y-4 mb-8 mt-auto">
+                      <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                        Core Technologies
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech, idx) => (
                           <span
                             key={idx}
-                            className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 text-blue-700 px-3 py-1.5 rounded-full text-sm font-medium hover:from-blue-100 hover:to-purple-100 transition-all duration-300 transform hover:scale-105"
+                            className="bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold hover:bg-blue-50 hover:text-blue-600 hover:border-blue-100 transition-all"
                           >
                             {tech}
                           </span>
@@ -432,12 +390,12 @@ export default function WebDevServices() {
                       </div>
                     </div>
 
-                    {/* Enhanced View Demo Button */}
+                    {/* View Demo Button */}
                     <a
                       href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl relative overflow-hidden group/btn cursor-pointer"
+                      className="w-full h-14 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 shadow-xl shadow-slate-100 hover:shadow-blue-100 flex items-center justify-center gap-2 group/btn cursor-pointer"
                       onClick={(e) => {
                         e.preventDefault();
                         window.open(
@@ -447,17 +405,10 @@ export default function WebDevServices() {
                         );
                       }}
                     >
-                      {/* Shimmer Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
-
-                      <FaPlay className="group-hover/btn:animate-pulse relative z-10" />
-                      <span className="relative z-10">View Demo</span>
-                      <FaExternalLinkAlt className="group-hover/btn:translate-x-1 transition-transform duration-300 relative z-10" />
+                      <FaPlay className="text-sm group-hover/btn:animate-pulse" />
+                      View Demo Platform
                     </a>
                   </div>
-
-                  {/* Enhanced Hover Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
                 </motion.div>
               ))}
             </div>
@@ -466,14 +417,14 @@ export default function WebDevServices() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-center mt-12"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-center mt-20"
             >
               <Link href="https://github.com/Codewithsalim12">
-                <button className="group bg-white border-2 border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3 mx-auto shadow-lg hover:shadow-xl">
-                  <FaGlobe className="group-hover:scale-110 transition-transform duration-300" />
-                  View All Projects
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+                <button className="h-14 px-8 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-slate-200 shadow-sm flex items-center gap-3 mx-auto group">
+                  <FaGlobe className="text-blue-600 group-hover:rotate-12 transition-transform duration-300" />
+                  View Developer GitHub
+                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
             </motion.div>
@@ -483,27 +434,25 @@ export default function WebDevServices() {
         {/* Contact Section */}
         <section
           id="contact"
-          className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 py-20"
+          className="py-24 bg-white relative overflow-hidden"
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Background Elements */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
+          {/* Background Elements */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute top-20 right-[15%] w-80 h-80 bg-blue-50/50 rounded-full blur-[100px] animate-pulse"></div>
+            <div className="absolute bottom-20 left-[15%] w-96 h-96 bg-purple-50/50 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+          </div>
 
-            <div className="relative z-10 space-y-8">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <div className="space-y-8">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3"
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 mb-6"
               >
-                <FaEnvelope className="text-yellow-400 animate-pulse" />
-                <span className="text-white font-semibold">
-                  Let&apos;s Work Together
-                </span>
+                <FaEnvelope className="text-blue-600 animate-pulse text-xs" />
+                <span className="font-black text-blue-600 text-[10px] uppercase tracking-widest">Let's Work Together</span>
               </motion.div>
 
               {/* Title */}
@@ -511,15 +460,11 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-slate-900"
               >
-                <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                  Ready to Start Your
-                </span>
+                Ready to Start Your
                 <br />
-                <span className="bg-gradient-to-r from-cyan-200 via-white to-pink-200 bg-clip-text text-transparent">
-                  Next Project?
-                </span>
+                <span className="text-blue-600">Next Project?</span>
               </motion.h2>
 
               {/* Description */}
@@ -527,7 +472,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
+                className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
               >
                 Let&apos;s discuss your ideas and bring your vision to life with
                 cutting-edge web development solutions.
@@ -538,21 +483,21 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 max-w-2xl mx-auto"
+                className="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 p-10 max-w-2xl mx-auto transform hover:-translate-y-2 mt-10"
               >
-                <div className="space-y-6">
-                  {/* Email */}
-                  <div className="flex items-center justify-center gap-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
-                      <FaEnvelope className="text-2xl text-white" />
+                <div className="space-y-10">
+                  {/* Email Box */}
+                  <div className="flex items-center justify-center gap-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                      <FaEnvelope className="text-2xl" />
                     </div>
                     <div className="text-left">
-                      <div className="text-white/80 text-sm font-medium">
-                        Email Me
+                      <div className="text-slate-400 text-[10px] uppercase font-black tracking-widest mb-1">
+                        Direct Email
                       </div>
                       <a
                         href="mailto:mirrentx@gmail.com"
-                        className="text-2xl font-bold text-white hover:text-blue-300 transition-colors duration-300"
+                        className="text-xl md:text-2xl font-black text-slate-900 hover:text-blue-600 transition-colors duration-300"
                       >
                         mirrentx@gmail.com
                       </a>
@@ -560,32 +505,32 @@ export default function WebDevServices() {
                   </div>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-100">
                     <a
                       href="mailto:mirrentx@gmail.com"
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3"
+                      className="flex-1 py-4 sm:py-0 h-auto sm:h-14 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 shadow-xl shadow-slate-100 hover:shadow-blue-100 flex items-center justify-center gap-2 group mt-6"
                     >
-                      <FaEnvelope />
-                      Send Email
+                      <FaEnvelope className="text-sm group-hover:scale-110 transition-transform" />
+                      Send Message
                     </a>
 
                     <a
                       href="tel:+918082815863"
-                      className="flex-1 bg-white/10 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white px-6 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
+                      className="flex-1 py-4 sm:py-0 h-auto sm:h-14 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-500 border border-slate-200 shadow-sm flex items-center justify-center gap-2 mt-6 cursor-pointer group"
                     >
-                      <FaChartLine />
+                      <FaChartLine className="text-blue-600 text-sm group-hover:scale-110 transition-transform" />
                       Schedule Call
                     </a>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Features */}
+              {/* Features Array */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-16"
               >
                 {[
                   {
@@ -596,7 +541,7 @@ export default function WebDevServices() {
                   {
                     icon: FaAward,
                     title: "Quality Work",
-                    desc: "Premium development standards",
+                    desc: "Premium standards",
                   },
                   {
                     icon: FaUsers,
@@ -605,13 +550,13 @@ export default function WebDevServices() {
                   },
                 ].map((feature, index) => (
                   <div key={index} className="text-center group">
-                    <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon className="text-xl text-white" />
+                    <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:border-blue-200 transition-all duration-300 shadow-sm">
+                      <feature.icon className="text-xl text-blue-600 group-hover:text-indigo-600 transition-colors" />
                     </div>
-                    <div className="text-white font-semibold">
+                    <div className="text-slate-900 font-black mb-1">
                       {feature.title}
                     </div>
-                    <div className="text-white/70 text-sm">{feature.desc}</div>
+                    <div className="text-slate-500 text-sm font-medium">{feature.desc}</div>
                   </div>
                 ))}
               </motion.div>

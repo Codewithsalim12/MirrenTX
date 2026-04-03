@@ -199,7 +199,7 @@ export default function Contact() {
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          
+
           {/* Left Column: Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -242,7 +242,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 text-left">Call for Support</p>
-                  <a href="tel:+919876543210" className="text-lg font-bold text-slate-900 hover:text-indigo-600 transition-colors block text-left">+91 98765 43210</a>
+                  <a href="tel:+919876543210" className="text-lg font-bold text-slate-900 hover:text-indigo-600 transition-colors block text-left">+91 8082815863</a>
                 </div>
               </div>
 
@@ -252,7 +252,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 text-left">Our Location</p>
-                  <p className="text-lg font-bold text-slate-900 leading-tight text-left">Awathkulla, Kralpora<br/><span className="text-sm text-slate-500">Kupwara, J&K</span></p>
+                  <p className="text-lg font-bold text-slate-900 leading-tight text-left">Awathkulla, Kralpora<br /><span className="text-sm text-slate-500">Kupwara, J&K</span></p>
                 </div>
               </div>
             </div>
@@ -267,7 +267,7 @@ export default function Contact() {
           >
             {/* Background Accent */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-50 rounded-full blur-3xl opacity-60"></div>
-            
+
             <div className="relative bg-white border border-slate-100 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-slate-200/50">
               <div className="mb-10 text-left">
                 <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">We&apos;d love to hear from you!</h2>
@@ -388,8 +388,8 @@ export default function Contact() {
             className="bg-white border border-slate-100 rounded-[3rem] shadow-xl shadow-slate-100/50 overflow-hidden"
           >
             <div className="p-12 border-b border-slate-50 text-left">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block text-left">Visit Us</span>
-                <h2 className="text-4xl font-black text-slate-900 tracking-tight text-left">Come see us in person</h2>
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block text-left">Visit Us</span>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tight text-left">Come see us in person</h2>
             </div>
             <div className="relative h-96 w-full grayscale-[0.5] hover:grayscale-0 transition-all duration-700">
               <iframe
@@ -406,40 +406,40 @@ export default function Contact() {
 
         {/* Newsletter Section */}
         <section className="mt-32 bg-slate-900 rounded-[3rem] p-8 sm:p-20 relative overflow-hidden text-center">
-            <div className="absolute inset-0 opacity-10">
-              <div className="grid grid-cols-6 h-full border-white/5">
-                {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/5" />)}
-              </div>
+          <div className="absolute inset-0 opacity-10">
+            <div className="grid grid-cols-6 h-full border-white/5">
+              {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/5" />)}
             </div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-10 max-w-2xl mx-auto"
-            >
-              <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-6">Stay Updated with Latest Offers</h2>
-              <p className="text-slate-400 font-medium mb-10 leading-relaxed">
-                Subscribe to our newsletter to get updates on new rentals, special discounts, and exclusive event planning tips.
-              </p>
+          </div>
 
-              <form onSubmit={subscribe} className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  className="flex-1 bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-indigo-500 transition-all font-medium"
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition-all disabled:bg-slate-700"
-                >
-                  {submitting ? "Subscribing..." : "Subscribe"}
-                </button>
-              </form>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 max-w-2xl mx-auto"
+          >
+            <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-6">Stay Updated with Latest Offers</h2>
+            <p className="text-slate-400 font-medium mb-10 leading-relaxed">
+              Subscribe to our newsletter to get updates on new rentals, special discounts, and exclusive event planning tips.
+            </p>
+
+            <form onSubmit={subscribe} className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={handleEmailChange}
+                className="flex-1 bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-indigo-500 transition-all font-medium"
+              />
+              <button
+                type="submit"
+                disabled={submitting}
+                className="bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition-all disabled:bg-slate-700"
+              >
+                {submitting ? "Subscribing..." : "Subscribe"}
+              </button>
+            </form>
+          </motion.div>
         </section>
       </div>
     </div>
