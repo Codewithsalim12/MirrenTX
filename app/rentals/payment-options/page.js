@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
@@ -24,6 +24,19 @@ export default function PaymentOptions() {
   const router = useRouter();
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Standard professional history lock for finalization steps
+    window.history.pushState(null, null, window.location.href);
+    
+    const handlePopState = () => {
+      window.history.pushState(null, null, window.location.href);
+      toast.info("Process nearly complete! Your details are saved. Please finalize your quote above.");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const handleWhatsApp = () => {
     window.open(
@@ -57,7 +70,7 @@ export default function PaymentOptions() {
       if (!response.ok) throw new Error("Failed to send request");
 
       toast.success("Callback request sent successfully!");
-      router.push("/rentals/request-success");
+      router.replace("/rentals/request-success");
     } catch (error) {
       console.error("Callback error:", error);
       toast.error("Failed to send request. Please try again or use WhatsApp.");
@@ -69,7 +82,7 @@ export default function PaymentOptions() {
     setIsLoading(true);
     // For now, this still leads to payment details, but we'll frame it as a deposit/advance
     setTimeout(() => {
-      router.push("/rentals/payment-details");
+      router.replace("/rentals/payment-details");
     }, 2000);
   };
 
@@ -269,7 +282,7 @@ export default function PaymentOptions() {
                     * Your details are already securely saved. Finalize now to exit the process.
                   </p>
                   <button
-                    onClick={() => router.push("/rentals/request-success")}
+                    onClick={() => router.replace("/rentals/request-success")}
                     className="w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-gray-900 to-slate-800 hover:from-black hover:to-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
                   >
                     Complete Booking & Finish

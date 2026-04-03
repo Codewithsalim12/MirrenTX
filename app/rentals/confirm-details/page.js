@@ -61,7 +61,7 @@ export default function ConfirmDetails() {
       if (response.ok) {
         toast.success("Booking confirmed! Redirecting...");
         setTimeout(() => {
-          router.push("/rentals/payment-options");
+          router.replace("/rentals/payment-options");
         }, 1500);
       } else {
         throw new Error("Failed to finalize booking");

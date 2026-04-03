@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaCopy,
   FaCheckCircle,
@@ -17,6 +17,19 @@ import { toast } from "sonner";
 export default function PaymentDetails() {
   const [isCopied1, setIsCopied1] = useState(false);
   const [isCopied2, setIsCopied2] = useState(false);
+
+  useEffect(() => {
+    // Professional history lock for final payment step
+    window.history.pushState(null, null, window.location.href);
+    
+    const handlePopState = () => {
+      window.history.pushState(null, null, window.location.href);
+      toast.info("Secure payment in progress. Please complete or use the 'Back' link if available.");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const upiId1 = "8082815863@paytm";
   const upiId2 = "8082815863@ybl";
