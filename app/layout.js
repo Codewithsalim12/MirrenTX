@@ -5,7 +5,7 @@ import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -49,12 +49,13 @@ export default function RootLayout({ children }) {
       >
         <SessionProvider>
           <Navbar />
-          <Toaster
-            position="top-right"
+          <Toaster 
+            position="top-right" 
+            richColors 
+            expand={true}
+            closeButton
             toastOptions={{
-              style: {
-                zIndex: 10001,
-              },
+              style: { zIndex: 10001, fontFamily: "var(--font-inter-tight)" }
             }}
           />
           <main>

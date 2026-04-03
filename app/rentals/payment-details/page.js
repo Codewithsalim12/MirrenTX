@@ -12,8 +12,7 @@ import {
   FaMobile,
   FaCamera,
 } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 
 export default function PaymentDetails() {
   const [isCopied1, setIsCopied1] = useState(false);
@@ -40,7 +39,7 @@ export default function PaymentDetails() {
     <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-50 py-12 px-4 shadow-inner">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-12 pt-20">
+        <div className="text-center mb-8 sm:mb-12 pt-20">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Secure Your Booking
@@ -275,19 +274,7 @@ export default function PaymentDetails() {
         </div>
       </div>
 
-      {/* Toast Notifications */}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+
     </div>
   );
 }

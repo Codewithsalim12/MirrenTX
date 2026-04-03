@@ -18,7 +18,7 @@ import {
   FaFileInvoiceDollar,
   FaPhoneAlt,
 } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function PaymentOptions() {
   const router = useRouter();

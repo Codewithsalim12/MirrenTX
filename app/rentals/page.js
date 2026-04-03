@@ -17,8 +17,7 @@ import {
   FaGem,
   FaThumbsUp,
 } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -285,8 +284,6 @@ export default function RentalsPage() {
           ))}
         </div>
       </section>
-
-      <ToastContainer />
     </div>
   );
 }
