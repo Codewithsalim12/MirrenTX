@@ -4,8 +4,8 @@ import { FaCheckCircle, FaPhoneAlt, FaHome, FaArrowRight, FaClock, FaHeadset } f
 
 export default function RequestSuccess() {
   return (
-    <div className="h-[calc(100vh-80px)] mt-20 bg-gradient-to-br from-white via-purple-50 to-blue-50 flex items-center justify-center px-4 overflow-hidden">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-12 bg-gradient-to-br from-white via-purple-50 to-blue-50 flex items-center justify-center px-4">
+      <div className="max-w-sm sm:max-w-md w-full">
         <div className="bg-white rounded-[28px] shadow-2xl border border-purple-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
           {/* Success Header */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center relative overflow-hidden">
@@ -52,7 +52,7 @@ export default function RequestSuccess() {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-2">
               <Link 
                 href="/"
                 className="flex items-center justify-center px-4 py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-xl font-bold transition-all duration-300 group text-xs"

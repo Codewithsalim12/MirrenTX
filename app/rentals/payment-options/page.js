@@ -78,7 +78,7 @@ export default function PaymentOptions() {
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 pt-20">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Finalize Your Quote
             </span>
@@ -123,7 +123,7 @@ export default function PaymentOptions() {
         <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Left Side - Payment Options */}
-            <div className="lg:col-span-2 p-8 lg:p-12">
+            <div className="lg:col-span-2 p-6 sm:p-8 lg:p-12">
               <div className="mb-8">
                 <button
                   onClick={() => router.back()}
@@ -143,7 +143,7 @@ export default function PaymentOptions() {
               </div>
 
               {/* Pricing Context Note */}
-              <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100 mb-8">
+              <div className="bg-purple-50 rounded-2xl p-5 sm:p-6 border border-purple-100 mb-8">
                 <div className="flex items-start">
                   <FaInfoCircle className="text-purple-600 mt-1 mr-4 text-xl flex-shrink-0" />
                   <div>
@@ -161,7 +161,7 @@ export default function PaymentOptions() {
 
               <div className="space-y-6">
                 {/* WhatsApp Option - Recommended */}
-                <div className="group border-2 border-purple-200 bg-purple-50/30 rounded-2xl p-6 hover:border-green-500 transition-all duration-300 cursor-pointer relative overflow-hidden">
+                <div className="group border-2 border-purple-200 bg-purple-50/30 rounded-2xl p-5 sm:p-6 hover:border-green-500 transition-all duration-300 cursor-pointer relative overflow-hidden">
                   <div className="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
                     Recommended
                   </div>
@@ -241,7 +241,7 @@ export default function PaymentOptions() {
                 */}
 
                 {/* Online Payment Option - For Advance */}
-                <div className="group border-2 border-gray-100 rounded-2xl p-6 hover:border-purple-400 transition-all duration-300 cursor-pointer opacity-80 hover:opacity-100">
+                <div className="group border-2 border-gray-100 rounded-2xl p-5 sm:p-6 hover:border-purple-400 transition-all duration-300 cursor-pointer opacity-80 hover:opacity-100">
                   <button
                     onClick={handlePayOnline}
                     disabled={isLoading}
@@ -288,7 +288,7 @@ export default function PaymentOptions() {
             </div>
 
             {/* Right Side - Coordination Info */}
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-8 lg:p-12 text-white">
+            <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-6 sm:p-8 lg:p-12 text-white">
               <div className="h-full flex flex-col justify-center">
                 <h3 className="text-2xl font-bold mb-6">Direct Coordination</h3>
 

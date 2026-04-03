@@ -85,7 +85,7 @@ export default function Services() {
                   Elite Service Fleet
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[1] text-slate-900">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 sm:mb-8 tracking-tighter leading-[1] text-slate-900">
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                     {slides[currentIndex].title.split(' ')[0]}
                   </span>{" "}
@@ -152,7 +152,7 @@ export default function Services() {
 
 
         {/* Services Section */}
-        <section className="py-20 px-4">
+        <section className="py-16 sm:py-20 px-4">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -170,7 +170,7 @@ export default function Services() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6"
               >
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Exceptional Event Solutions
@@ -189,21 +189,21 @@ export default function Services() {
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {servicesData.map((service, index) => (
                 <motion.div
                   key={service.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+                  className="group relative bg-white rounded-[2rem] sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
                 >
                   {/* Gradient Border */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
 
                   {/* Content */}
-                  <div className="relative z-10 p-8 text-center">
+                  <div className="relative z-10 p-6 sm:p-8 text-center">
                     {/* Icon Container */}
                     <div className="relative mb-6">
                       <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
@@ -259,7 +259,7 @@ export default function Services() {
         {/* Premium Pricing Plans Section */}
         <section
           id="Pricing"
-          className="py-24 bg-white relative overflow-hidden"
+          className="py-16 sm:py-24 bg-white relative overflow-hidden"
         >
           {/* Subtle Background Blobs */}
           <div className="absolute inset-0 opacity-40">
@@ -284,7 +284,7 @@ export default function Services() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-4xl md:text-5xl font-black mb-6 text-slate-900 tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 text-slate-900 tracking-tight"
               >
                 Simple, <span className="text-blue-600">Premium</span> Pricing
               </motion.h2>

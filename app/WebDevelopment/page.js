@@ -91,7 +91,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1] tracking-tighter text-slate-900"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1] tracking-tighter text-slate-900"
               >
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Web Development
@@ -105,7 +105,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium"
+                className="text-base sm:text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium"
               >
                 Creating stunning, responsive, and modern websites that drive
                 business growth and deliver exceptional user experiences.
@@ -116,7 +116,7 @@ export default function WebDevServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-wrap justify-center gap-10 pt-6"
+                className="flex flex-wrap justify-center gap-6 sm:gap-10 pt-6"
               >
                 {[
                   { icon: FaUsers, number: "10+", label: "Happy Clients" },
@@ -124,10 +124,10 @@ export default function WebDevServices() {
                   { icon: FaAward, number: "6", label: "Months Experience" },
                 ].map((stat, index) => (
                   <div key={index} className="text-center group">
-                    <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:border-blue-200 transition-all duration-300 shadow-sm">
-                      <stat.icon className="text-2xl text-blue-600 group-hover:text-indigo-600 transition-colors" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:border-blue-200 transition-all duration-300 shadow-sm">
+                      <stat.icon className="text-xl sm:text-2xl text-blue-600 group-hover:text-indigo-600 transition-colors" />
                     </div>
-                    <div className="text-3xl font-black text-slate-900 tracking-tight">
+                    <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                       {stat.number}
                     </div>
                     <div className="text-slate-500 text-xs font-black uppercase tracking-widest mt-1">{stat.label}</div>
@@ -246,7 +246,7 @@ export default function WebDevServices() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-[2.5rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+                  className="group relative bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
                 >
                   {/* Content */}
                   <div className="relative z-10 text-center">
@@ -334,17 +334,17 @@ export default function WebDevServices() {
             </div>
 
             {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden flex flex-col"
+                  className="group relative bg-white rounded-3xl sm:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-200 transition-all duration-500 transform hover:-translate-y-2 overflow-hidden flex flex-col"
                 >
                   {/* Content */}
-                  <div className="relative z-10 p-8 flex flex-col flex-grow">
+                  <div className="relative z-10 p-6 sm:p-8 flex flex-col flex-grow">
                     
                     {/* Top Badges (Now inline to avoid overlapping text since there's no image) */}
                     <div className="flex flex-wrap items-center justify-between gap-4 mb-6">

@@ -94,7 +94,7 @@ export default function RentalsPage() {
               Premium Fleet
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight leading-[1] text-slate-900">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight leading-[1] text-slate-900">
               Rent the <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Future</span> of Events
             </h1>
 
@@ -150,10 +150,10 @@ export default function RentalsPage() {
       </section>
 
       {/* Main Product Showcase - The Master-Class Grid */}
-      <section className="container mx-auto px-6 py-24 mb-12">
+      <section className="container mx-auto px-6 py-16 sm:py-24 mb-12">
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-12"
         >
           <AnimatePresence mode="popLayout">
             {filteredData.map((item) => (
@@ -164,10 +164,10 @@ export default function RentalsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="group relative bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 border border-slate-100 hover:border-blue-200/50"
+                className="group relative bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 border border-slate-100 hover:border-blue-200/50"
               >
                 {/* Visual Impact Container */}
-                <div className="relative h-72 overflow-hidden rounded-[2.2rem] m-3 shadow-inner">
+                <div className="relative h-64 sm:h-72 overflow-hidden rounded-[1.8rem] sm:rounded-[2.2rem] m-3 shadow-inner">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -210,7 +210,7 @@ export default function RentalsPage() {
                 </div>
 
                 {/* Content Precision */}
-                <div className="p-8 pt-4">
+                <div className="p-6 sm:p-8 pt-4">
                   <div className="flex items-center gap-3 mb-6">
                     <div className={`p-2.5 rounded-2xl bg-gradient-to-br ${item.gradient} text-white shadow-lg ring-4 ring-slate-50`}>
                       {item.icon}
@@ -252,18 +252,18 @@ export default function RentalsPage() {
 
 
       {/* Final Call to Action Refinement */}
-      <section className="container mx-auto px-6 pb-40">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <section className="container mx-auto px-6 pb-20 sm:pb-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {[
             { icon: FaCamera, title: "Drone Cinema", tags: ["4K", "Aerial"], color: "blue" },
             { icon: FaChair, title: "Elite Furniture", tags: ["Velvet", "Modern"], color: "purple" }
           ].map((item, i) => (
-            <div key={i} className="group bg-white p-12 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-700 text-center relative overflow-hidden">
+            <div key={i} className="group bg-white p-8 sm:p-12 rounded-[2rem] sm:rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-700 text-center relative overflow-hidden">
               <div className={`absolute -top-10 -right-10 w-40 h-40 bg-${item.color}-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-              <div className={`w-20 h-20 bg-${item.color}-50 text-${item.color}-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ring-8 ring-${item.color}-50/50`}>
-                <item.icon className="text-3xl" />
+              <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-${item.color}-50 text-${item.color}-600 rounded-[1.5rem] sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ring-8 ring-${item.color}-50/50`}>
+                <item.icon className="text-2xl sm:text-3xl" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">{item.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 sm:mb-4 tracking-tight">{item.title}</h3>
               <div className="flex justify-center gap-2 mb-8">
                 {item.tags.map(tag => (
                   <span key={tag} className="text-[10px] font-black uppercase tracking-widest text-slate-400">

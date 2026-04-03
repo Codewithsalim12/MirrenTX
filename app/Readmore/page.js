@@ -38,25 +38,8 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Modern Back Button */}
-      <div className="relative z-50 pt-8 px-4 sm:px-6 lg:px-8">
-        <motion.button
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          onClick={() => router.back()}
-          className="group bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-3 flex items-center gap-3 text-gray-700 hover:text-indigo-600 shadow-lg hover:shadow-xl transition-all duration-300"
-        >
-          <ArrowLeft
-            size={20}
-            className="group-hover:-translate-x-1 transition-transform duration-300"
-          />
-          <span className="font-semibold">Back</span>
-        </motion.button>
-      </div>
-
       {/* Modern Hero Section */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden pt-32 sm:pt-40 pb-20">
         {/* Floating Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -164,7 +147,7 @@ const About = () => {
                   />
 
                   {/* Floating badge */}
-                  <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg">
+                  <div className="absolute -bottom-4 right-2 sm:-right-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg">
                     <div className="flex items-center gap-2">
                       <FaAward className="text-yellow-400" />
                       <span className="font-bold">Premium Quality</span>

@@ -80,7 +80,7 @@ export default function ConfirmDetails() {
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 pt-20">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Confirm Your Details
             </span>
@@ -125,7 +125,7 @@ export default function ConfirmDetails() {
         <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Left Side - Details */}
-            <div className="lg:col-span-2 p-8 lg:p-12">
+            <div className="lg:col-span-2 p-6 sm:p-8 lg:p-12">
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Review Your Information
@@ -137,7 +137,7 @@ export default function ConfirmDetails() {
 
               <div className="space-y-6">
                 {/* Personal Information Card */}
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <div className="bg-gray-50 rounded-2xl p-5 sm:p-6 border border-gray-100">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                       <FaUser className="mr-3 text-blue-600" />
@@ -182,7 +182,7 @@ export default function ConfirmDetails() {
                 </div>
 
                 {/* Rental Details Card */}
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <div className="bg-gray-50 rounded-2xl p-5 sm:p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 flex items-center mb-4">
                     <FaClock className="mr-3 text-orange-600" />
                     Rental Duration
@@ -208,7 +208,7 @@ export default function ConfirmDetails() {
                 </div>
 
                 {/* Contact Information Card */}
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <div className="bg-gray-50 rounded-2xl p-5 sm:p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 flex items-center mb-4">
                     <FaPhone className="mr-3 text-green-600" />
                     Contact Information
@@ -225,7 +225,7 @@ export default function ConfirmDetails() {
                 </div>
 
                 {/* Address Information Card */}
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <div className="bg-gray-50 rounded-2xl p-5 sm:p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 flex items-center mb-4">
                     <FaMapMarkerAlt className="mr-3 text-purple-600" />
                     Address Information
@@ -291,7 +291,7 @@ export default function ConfirmDetails() {
             </div>
 
             {/* Right Side - Security Info */}
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-8 lg:p-12 text-white">
+            <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-6 sm:p-8 lg:p-12 text-white">
               <div className="h-full flex flex-col justify-center">
                 <h3 className="text-2xl font-bold mb-6">Secure & Protected</h3>
 

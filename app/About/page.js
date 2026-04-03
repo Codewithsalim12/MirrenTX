@@ -96,7 +96,7 @@ export default function About() {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-5xl lg:text-7xl font-black leading-[1] tracking-tighter text-slate-900">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1] tracking-tighter text-slate-900">
                   <span>Our</span>
                   <br />
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
@@ -107,7 +107,7 @@ export default function About() {
                 </h1>
 
                 {/* Description */}
-                <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
+                <p className="text-base sm:text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
                   Passionate entrepreneurs who turned their vision into a
                   premier local event rental service, delivering innovation and
                   excellence to every celebration.
@@ -139,7 +139,7 @@ export default function About() {
                 className="relative"
               >
                 {/* Stats Cards */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
                   {[
                     {
                       icon: FaCalendarAlt,
@@ -173,12 +173,12 @@ export default function About() {
                       transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                       className="group relative"
                     >
-                      <div className="bg-white p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="bg-white p-5 sm:p-8 rounded-3xl sm:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100 hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-2">
                         <div className="text-center">
-                          <div className={`w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-slate-100`}>
-                             <stat.icon className={`text-2xl ${stat.colorText}`} />
+                          <div className={`w-12 h-12 sm:w-14 sm:h-14 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-slate-100`}>
+                             <stat.icon className={`text-xl sm:text-2xl ${stat.colorText}`} />
                           </div>
-                          <div className="text-3xl font-black text-slate-900 tracking-tight">
+                          <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                             {stat.number}
                           </div>
                           <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2">{stat.label}</div>
@@ -218,18 +218,18 @@ export default function About() {
               >
                 <div className="relative group">
                   {/* Floating container */}
-                  <div className="bg-white rounded-[3rem] p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 transition-all duration-700 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)]">
+                  <div className="bg-white rounded-[2rem] sm:rounded-[3rem] p-2 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 transition-all duration-700 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)]">
                     <Image
                       src="/owner-img.jpg"
                       alt="About MirRenTX"
                       width={600}
                       height={700}
-                      className="w-full h-[500px] object-cover rounded-[2rem] group-hover:scale-[1.02] transition-transform duration-700 shadow-sm"
+                      className="w-full h-[350px] sm:h-[500px] object-cover rounded-3xl sm:rounded-[2rem] group-hover:scale-[1.02] transition-transform duration-700 shadow-sm"
                     />
                   </div>
 
                   {/* Floating badge */}
-                  <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white px-8 py-4 rounded-3xl shadow-xl animate-float border border-slate-700">
+                  <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-slate-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl sm:rounded-3xl shadow-xl animate-float border border-slate-700">
                     <div className="text-center">
                       <div className="text-3xl font-black tracking-tight">2021</div>
                       <div className="text-[10px] uppercase tracking-widest font-black text-slate-400 mt-1">Established</div>
@@ -328,16 +328,16 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100"
+              className="bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100"
             >
               {/* Header */}
-              <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-50 border border-yellow-100 text-yellow-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-6">
+              <div className="text-center mb-8 sm:mb-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-50 border border-yellow-100 text-yellow-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-4 sm:mb-6">
                   <FaCrown className="animate-pulse" />
                   Leadership
                 </div>
 
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 sm:mb-4 tracking-tight">
                   Meet Our
                   <span className="text-blue-600">
                     {" "}

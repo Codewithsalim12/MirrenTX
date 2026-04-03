@@ -14,6 +14,25 @@ export async function POST(request) {
       );
     }
 
+    const finalDuration = rentDuration === 'Custom' ? customDuration : rentDuration;
+
+    // Connect to database and check for duplicates to prevent duplicate emails
+    await connectToDatabase();
+    
+    // 10-minute duplication check based on matching email, equipment, and dates
+    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+    const existingRental = await Rental.findOne({
+      email: email,
+      equipmentName: equipmentName,
+      dates: dates,
+      createdAt: { $gte: tenMinutesAgo }
+    });
+
+    if (existingRental) {
+      console.log("Duplicate booking detected. Suppressing duplicate emails to maintain professionalism.");
+      return new Response(JSON.stringify({ success: true, message: "Duplicate mitigated safely" }), { status: 200 });
+    }
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -27,7 +46,7 @@ export async function POST(request) {
     const baseUrl = process.env.NEXTAUTH_URL || "https://mirrentx.com";
     const logoUrl = `${baseUrl}/logo-modern.svg`;
 
-    const getHtmlTemplate = (title, content) => `
+    const getHtmlTemplate = (title, content, isAdmin = false) => `
       <!DOCTYPE html>
       <html>
       <head>
@@ -62,13 +81,21 @@ export async function POST(request) {
               ${content}
             </div>
             <div class="footer">
-              <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
-              <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
-              <h3 class="help-title">Need help?</h3>
-              <p class="help-text">
-                If you have any questions, please contact our support team at 
-                <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
-              </p>
+              ${isAdmin ? `
+                <div style="height: 1px; background-color: #fde68a; margin: 32px 0;"></div>
+                <h3 class="help-title" style="color: #b45309;">Action Required</h3>
+                <p class="help-text" style="color: #92400e; font-weight: 600;">
+                  Please contact the customer in 15 or 30 minutes to finalize and place the order.
+                </p>
+              ` : `
+                <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
+                <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
+                <h3 class="help-title">Need help?</h3>
+                <p class="help-text">
+                  If you have any questions, please contact our support team at 
+                  <a href="mailto:mirrentx@gmail.com" class="help-link">mirrentx@gmail.com</a>.
+                </p>
+              `}
             </div>
           </div>
         </div>
@@ -76,7 +103,6 @@ export async function POST(request) {
       </html>
     `;
 
-    const finalDuration = rentDuration === 'Custom' ? customDuration : rentDuration;
     const orderNumber = Math.floor(100000 + Math.random() * 900000);
 
     const htmlContent = `
@@ -105,7 +131,7 @@ export async function POST(request) {
 
       <div style="margin-top: 32px; padding: 24px; background: #fffbeb; border-radius: 12px; border: 1px solid #fde68a;">
         <p style="margin: 0; color: #92400e; font-size: 14px; font-weight: 700; line-height: 1.5; text-align: center;">
-          ⚡ Admin Review Required: Reach out to the customer within 2 hours to finalize the request.
+          ⚡ Admin Review Required: Reach out to the customer within 15 to 30 minutes to finalize the request.
         </p>
       </div>
     `;
@@ -114,7 +140,7 @@ export async function POST(request) {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: `🛡️ Premium Booking: ${equipmentName} (${name})`,
-      html: getHtmlTemplate("New Booking Request", htmlContent),
+      html: getHtmlTemplate("New Booking Request", htmlContent, true),
     };
 
     const customerHtmlContent = `
@@ -153,7 +179,7 @@ export async function POST(request) {
       from: process.env.EMAIL_USER,
       to: email,
       subject: `Confirmation: Your Rental Request for ${equipmentName}`,
-      html: getHtmlTemplate("Order Received", customerHtmlContent),
+      html: getHtmlTemplate("Order Received", customerHtmlContent, false),
     };
 
     await Promise.all([
@@ -162,7 +188,6 @@ export async function POST(request) {
     ]);
 
     // Save to DataBase
-    await connectToDatabase();
     await Rental.create({
       name,
       email,

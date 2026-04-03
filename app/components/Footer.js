@@ -3,8 +3,6 @@ import {
   FaFacebook,
   FaInstagram,
   FaYoutube,
-  FaTwitter,
-  FaLinkedin,
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
@@ -68,8 +66,6 @@ const Footer = () => {
             {[ 
               { Icon: FaFacebook, url: "#" },
               { Icon: FaInstagram, url: "#" },
-              { Icon: FaTwitter, url: "#" },
-              { Icon: FaLinkedin, url: "#" },
               { Icon: FaYoutube, url: "https://youtube.com/@scenicwanderers?si=me6NdoJfKjh8gdYl" },
             ].map(({ Icon, url }, i) => (
               <Link 

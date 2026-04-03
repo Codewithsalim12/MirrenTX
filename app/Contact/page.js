@@ -197,8 +197,8 @@ export default function Contact() {
       />
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16 sm:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
 
           {/* Left Column: Info */}
           <motion.div
@@ -214,14 +214,14 @@ export default function Contact() {
               </span>
             </div>
 
-            <h1 className="text-6xl sm:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter mb-8 text-left">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter mb-6 sm:mb-8 text-left">
               Contact <br />
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 MirRenTX
               </span>
             </h1>
 
-            <p className="text-xl text-slate-600 leading-relaxed mb-12 max-w-lg text-left">
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-10 sm:mb-12 max-w-lg text-left">
               Not sure what you need? Our team at MirRenTX will be happy to listen to you and suggest the best equipment for your specific event.
             </p>
 
@@ -268,10 +268,10 @@ export default function Contact() {
             {/* Background Accent */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-50 rounded-full blur-3xl opacity-60"></div>
 
-            <div className="relative bg-white border border-slate-100 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-slate-200/50">
-              <div className="mb-10 text-left">
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">We&apos;d love to hear from you!</h2>
-                <p className="text-slate-500 font-medium italic">Let&apos;s get in touch</p>
+            <div className="relative bg-white border border-slate-100 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-12 shadow-2xl shadow-slate-200/50">
+              <div className="mb-8 sm:mb-10 text-left">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">We&apos;d love to hear from you!</h2>
+                <p className="text-slate-500 font-medium italic text-sm sm:text-base">Let&apos;s get in touch</p>
               </div>
 
               <form onSubmit={sendMessage} className="space-y-6">
@@ -380,16 +380,16 @@ export default function Contact() {
         </div>
 
         {/* Map Section */}
-        <section className="mt-32">
+        <section className="mt-20 sm:mt-32">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white border border-slate-100 rounded-[3rem] shadow-xl shadow-slate-100/50 overflow-hidden"
+            className="bg-white border border-slate-100 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-100/50 overflow-hidden"
           >
-            <div className="p-12 border-b border-slate-50 text-left">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block text-left">Visit Us</span>
-              <h2 className="text-4xl font-black text-slate-900 tracking-tight text-left">Come see us in person</h2>
+            <div className="p-8 sm:p-12 border-b border-slate-50 text-left">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 sm:mb-4 block text-left">Visit Us</span>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight text-left">Come see us in person</h2>
             </div>
             <div className="relative h-96 w-full grayscale-[0.5] hover:grayscale-0 transition-all duration-700">
               <iframe
@@ -405,7 +405,7 @@ export default function Contact() {
         </section>
 
         {/* Newsletter Section */}
-        <section className="mt-32 bg-slate-900 rounded-[3rem] p-8 sm:p-20 relative overflow-hidden text-center">
+        <section className="mt-20 sm:mt-32 bg-slate-900 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-20 relative overflow-hidden text-center">
           <div className="absolute inset-0 opacity-10">
             <div className="grid grid-cols-6 h-full border-white/5">
               {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/5" />)}
@@ -418,8 +418,8 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="relative z-10 max-w-2xl mx-auto"
           >
-            <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-6">Stay Updated with Latest Offers</h2>
-            <p className="text-slate-400 font-medium mb-10 leading-relaxed">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 sm:mb-6">Stay Updated with Latest Offers</h2>
+            <p className="text-sm sm:text-base text-slate-400 font-medium mb-8 sm:mb-10 leading-relaxed">
               Subscribe to our newsletter to get updates on new rentals, special discounts, and exclusive event planning tips.
             </p>
 

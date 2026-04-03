@@ -114,7 +114,7 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-[#fafcff] selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
       {/* Premium Light-Themed Slider Section */}
-      <section className="relative pt-32 pb-24 overflow-hidden border-b border-slate-50 bg-[#fafcff]">
+      <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden border-b border-slate-50 bg-[#fafcff]">
         {/* Floating Mesh Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-[0%] left-[-10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[120px] animate-pulse"></div>
@@ -122,24 +122,24 @@ export default function Gallery() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-4xl mx-auto mb-16">
+          <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-6 sm:mb-8">
                 <FaImages className="animate-pulse" />
                 Visual Portfolio
               </div>
-              <h1 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-4 sm:mb-6">
                 Captured
                 <br />
                 <span className="text-blue-600">
                   Moments
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto text-balance">
+              <p className="text-base sm:text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto text-balance">
                 Explore our collection of the most memorable operations. Every
                 frame tells a story of quality, dedication, and unforgettable
                 experiences.
@@ -218,19 +218,19 @@ export default function Gallery() {
       </section>
 
       {/* Premium Gallery Grid Section */}
-      <section id="gallery-items" className="py-24 max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-16 gap-8 text-center md:text-left">
+      <section id="gallery-items" className="py-16 sm:py-24 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 sm:mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl flex flex-col items-center md:items-start">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest shadow-sm mb-4 sm:mb-6">
               <FaCamera className="animate-pulse" />
               Our Capture
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
               Memorable <br className="hidden md:block" />
               <span className="text-blue-600">Highlights</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-lg max-w-sm mb-2 font-medium leading-relaxed md:text-right">
+          <p className="text-slate-500 text-base sm:text-lg max-w-sm mb-2 font-medium leading-relaxed md:text-right">
             Every frame tells a story of quality, dedication, and unforgettable
             experiences in the heart of Kashmir.
           </p>
@@ -302,43 +302,43 @@ export default function Gallery() {
       </section>
 
       {/* Premium Light Video Section */}
-      <section id="Video-Section" className="py-32 relative bg-[#fafcff] border-y border-slate-50">
+      <section id="Video-Section" className="py-16 sm:py-32 relative bg-[#fafcff] border-y border-slate-50">
         <div className="absolute inset-0 z-0 opacity-40">
           <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px]"></div>
           <div className="absolute bottom-[20%] left-[10%] w-[400px] h-[400px] bg-purple-100/30 rounded-full blur-[100px]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-600 rounded-full px-3 py-1.5 mb-8 text-[10px] font-black uppercase tracking-widest shadow-sm">
+              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-600 rounded-full px-3 py-1.5 mb-6 sm:mb-8 text-[10px] font-black uppercase tracking-widest shadow-sm">
                 <FaVideo className="animate-pulse" />
                 Visual Narrative
               </div>
-              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter leading-[1.1]">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-6 sm:mb-8 tracking-tighter leading-[1.1]">
                 Cinematic <br />
                 <span className="text-blue-600">Highlights</span>
               </h2>
-              <p className="text-lg text-slate-500 mb-12 max-w-lg font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-500 mb-10 sm:mb-12 max-w-lg font-medium leading-relaxed">
                 Step inside our most successful operations. Experience the scale, quality, and atmosphere we bring to every event in the region.
               </p>
               
-              <div className="flex items-center gap-12 p-8 bg-white rounded-3xl border border-slate-100 shadow-sm max-w-sm">
+              <div className="flex items-center gap-8 sm:gap-12 p-6 sm:p-8 bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm max-w-sm">
                 <div className="flex flex-col">
-                  <span className="text-4xl font-black text-slate-900 mb-1 tracking-tighter">4K</span>
-                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Resolution</span>
+                  <span className="text-3xl sm:text-4xl font-black text-slate-900 mb-1 tracking-tighter">4K</span>
+                  <span className="text-[9px] sm:text-[10px] font-black text-blue-600 uppercase tracking-widest">Resolution</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-4xl font-black text-slate-900 mb-1 tracking-tighter">60</span>
-                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">FPS Motion</span>
+                  <span className="text-3xl sm:text-4xl font-black text-slate-900 mb-1 tracking-tighter">60</span>
+                  <span className="text-[9px] sm:text-[10px] font-black text-blue-600 uppercase tracking-widest">FPS Motion</span>
                 </div>
               </div>
             </div>
 
             <div className="relative group">
               <div className="absolute inset-0 bg-blue-100/50 blur-[80px] rounded-full transition-colors duration-700"></div>
-              <div className="relative bg-white p-4 rounded-[3rem] shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100">
-                <div className="relative aspect-video rounded-[2.5rem] overflow-hidden bg-slate-50">
+              <div className="relative bg-white p-2 sm:p-4 rounded-[2rem] sm:rounded-[3rem] shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-slate-100">
+                <div className="relative aspect-video rounded-[1.8rem] sm:rounded-[2.5rem] overflow-hidden bg-slate-50">
                   {isPlaying ? (
                     <video src="/video/event-highlights.mp4" controls autoPlay className="w-full h-full object-cover" />
                   ) : (
@@ -361,19 +361,19 @@ export default function Gallery() {
       </section>
 
       {/* Master-Class Portfolio Grid in Standard Light Palette */}
-      <section className="py-32 max-w-7xl mx-auto px-6">
+      <section className="py-16 sm:py-32 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {[
              { icon: FaIndustry, title: "Event Setup", desc: "Tailored decoration concepts for premium venues.", colorTheme: "text-blue-600 bg-blue-50" },
              { icon: FaCalendarAlt, title: "Upcoming", desc: "Stay ahead with our next-gen seasonal activations.", colorTheme: "text-indigo-600 bg-indigo-50" },
              { icon: FaTools, title: "Ventures", desc: "Integrated rental solutions for elite celebrations.", colorTheme: "text-slate-800 bg-slate-100" }
            ].map((item, i) => (
-             <div key={i} className="group bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 text-center flex flex-col items-center">
-                <div className={`w-20 h-20 ${item.colorTheme} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shadow-sm border border-white`}>
-                   <item.icon className="text-3xl" />
+             <div key={i} className="group bg-white p-8 sm:p-12 rounded-[2rem] sm:rounded-[3.5rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 text-center flex flex-col items-center">
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 ${item.colorTheme} rounded-2xl sm:rounded-3xl flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shadow-sm border border-white`}>
+                   <item.icon className="text-2xl sm:text-3xl" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">{item.title}</h3>
-                <p className="text-slate-500 text-sm mb-10 font-medium leading-relaxed max-w-[200px]">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 sm:mb-4 tracking-tight">{item.title}</h3>
+                <p className="text-slate-500 text-xs sm:text-sm mb-8 sm:mb-10 font-medium leading-relaxed max-w-[200px]">
                    {item.desc}
                 </p>
                 {item.title === "Ventures" ? (

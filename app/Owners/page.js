@@ -54,7 +54,7 @@ const OwnersPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-4 sm:mb-6"
           >
             Meet Our
             <br />
@@ -82,7 +82,7 @@ const OwnersPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
           >
             {[
               { icon: FaUsers, number: "3", label: "Team Leaders" },
@@ -91,12 +91,12 @@ const OwnersPage = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-2 group"
+                className="bg-white rounded-3xl sm:rounded-[2rem] p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-2 group"
               >
-                <div className="w-14 h-14 bg-[#fafcff] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-50 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="text-2xl text-blue-600" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#fafcff] rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 border border-slate-50 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="text-xl sm:text-2xl text-blue-600" />
                 </div>
-                <div className="text-4xl font-black text-slate-900 tracking-tight mb-2">
+                <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-2">
                   {stat.number}
                 </div>
                 <div className="text-[10px] uppercase font-black tracking-widest text-slate-400">{stat.label}</div>
@@ -107,8 +107,8 @@ const OwnersPage = () => {
       </section>
 
       {/* Modern Owner Cards Section */}
-      <section className="max-w-7xl mx-auto px-6 pb-24 relative z-10 -mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <section className="max-w-7xl mx-auto px-6 pb-24 relative z-10 -mt-10 sm:-mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-10 mt-16 sm:mt-0">
           
           {/* Owner Card 1 - Tanveer Mir */}
           <motion.div
@@ -117,7 +117,7 @@ const OwnersPage = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="group relative"
           >
-            <div className="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
+            <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
               {/* Header with mesh background */}
               <div className="relative h-48 bg-[#fafcff] overflow-visible border-b border-slate-50">
                 {/* Floating mesh decorations */}
@@ -209,7 +209,7 @@ const OwnersPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="group relative"
           >
-            <div className="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
+            <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
               {/* Header with mesh background */}
               <div className="relative h-48 bg-[#fafcff] overflow-visible border-b border-slate-50">
                 {/* Floating mesh decorations */}
@@ -300,7 +300,7 @@ const OwnersPage = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="group relative"
           >
-            <div className="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
+            <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] flex flex-col h-full">
               {/* Header with mesh background */}
               <div className="relative h-48 bg-[#fafcff] overflow-visible border-b border-slate-50">
                 {/* Floating mesh decorations */}

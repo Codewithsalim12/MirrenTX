@@ -114,28 +114,28 @@ export default function EventPage({ params }) {
       
 
       {/* 2. Editorial Hero (Text Top, Image Bottom) */}
-      <section className="relative pt-40 pb-12 max-w-5xl mx-auto px-6 text-center">
+      <section className="relative pt-28 sm:pt-40 pb-8 sm:pb-12 max-w-5xl mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-blue-100 shadow-sm">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 sm:mb-6 border border-blue-100 shadow-sm">
             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
             {event.category}
           </span>
-          <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-4 sm:mb-6">
             {event.title}
           </h1>
-          <p className="text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
             {event.subtitle}
           </p>
         </motion.div>
       </section>
 
       {/* 3. Massive Cover Image */}
-      <section className="max-w-7xl mx-auto px-6 mb-24">
+      <section className="max-w-7xl mx-auto px-6 mb-12 sm:mb-24">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative aspect-[16/9] lg:aspect-[21/9] w-full rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.08)] bg-slate-100 group"
+          className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.08)] bg-slate-100 group"
         >
           <Image 
             src={event.src} 
@@ -148,19 +148,19 @@ export default function EventPage({ params }) {
       </section>
 
       {/* 4. The Editorial Blog Reading Section & Sticky Sidebar */}
-      <section className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
+      <section className="max-w-7xl mx-auto px-6 pb-16 sm:pb-32">
+        <div className="flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-24 relative">
           
           {/* Main Reading Column */}
           <div className="w-full lg:w-2/3">
              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} className="prose prose-lg prose-slate max-w-none">
                {/* Intro Excerpt */}
-               <p className="text-2xl text-slate-900 font-medium leading-relaxed tracking-tight mb-12 italic border-l-4 border-blue-600 pl-8 py-2">
+               <p className="text-xl sm:text-2xl text-slate-900 font-medium leading-relaxed tracking-tight mb-8 sm:mb-12 italic border-l-4 border-blue-600 pl-4 sm:pl-8 py-2">
                  "{event.description}"
                </p>
 
                {/* Body Paragraph */}
-               <p className="text-lg text-slate-600 font-medium leading-[1.9] mb-16">
+               <p className="text-base sm:text-lg text-slate-600 font-medium leading-[1.9] mb-12 sm:mb-16">
                  {event.fullDescription}
                </p>
 
@@ -210,8 +210,8 @@ export default function EventPage({ params }) {
             <div className="sticky top-10 space-y-8">
               
               {/* Main Info Card */}
-              <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 text-center flex items-center justify-center gap-3">
+              <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 sm:mb-8 text-center flex items-center justify-center gap-3">
                    <span className="w-8 h-px bg-slate-200"></span>
                    Project Details
                    <span className="w-8 h-px bg-slate-200"></span>

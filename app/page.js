@@ -74,7 +74,7 @@ export default function Home() {
           </div>
 
           <h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[0.95] text-slate-900"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[0.95] text-slate-900"
             data-aos="zoom-out-up"
             data-aos-duration="1200"
           >
@@ -148,7 +148,7 @@ export default function Home() {
       `}</style>
 
       {/* Features Grid Section: Premium Edition */}
-      <section className="py-32 px-6 bg-white relative overflow-hidden">
+      <section className="py-20 sm:py-32 px-6 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-24">
             <div 
@@ -158,7 +158,7 @@ export default function Home() {
               Why MirRenTX?
             </div>
             <h2
-              className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter"
+              className="text-3xl sm:text-4xl md:text-6xl font-black text-slate-900 mb-6 sm:mb-8 tracking-tighter"
               data-aos="fade-up"
             >
               Excellence in <br className="sm:hidden" />
@@ -197,7 +197,7 @@ export default function Home() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="group relative p-10 rounded-[32px] bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(94,74,227,0.1)] transition-all duration-500 transform hover:-translate-y-2 cursor-default"
+                className="group relative p-6 sm:p-10 rounded-[24px] sm:rounded-[32px] bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(94,74,227,0.1)] transition-all duration-500 transform hover:-translate-y-2 cursor-default"
                 data-aos="fade-up"
                 data-aos-delay={item.delay}
               >
@@ -217,9 +217,9 @@ export default function Home() {
       </section>
 
       {/* Services Showcase: Cinematic Split */}
-      <section className="py-32 px-6 bg-[#fafafa] relative overflow-hidden">
+      <section className="py-20 sm:py-32 px-6 bg-[#fafafa] relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="w-full lg:w-1/2" data-aos="fade-right">
               <div className="relative">
                 {/* Master Image Frame */}
@@ -249,7 +249,7 @@ export default function Home() {
             <div className="w-full lg:w-1/2" data-aos="fade-left">
               <div className="mb-10">
                 <div className="text-blue-600 text-xs font-black uppercase tracking-[0.3em] mb-4">Elite Capabilities</div>
-                <h2 className="text-4xl lg:text-6xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">
+                <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-slate-900 mb-6 sm:mb-8 tracking-tighter leading-[0.95]">
                   Everything You Need <br />
                   <span className="text-slate-400 italic font-medium">For Your Next Event.</span>
                 </h2>
@@ -294,8 +294,8 @@ export default function Home() {
       </section>
 
       {/* CTA Section: Brand Masterpiece */}
-      <section className="py-24 px-6 bg-[#f8fafc] overflow-hidden">
-        <div className="max-w-6xl mx-auto rounded-[60px] bg-slate-900 overflow-hidden relative p-12 md:p-24 text-center">
+      <section className="py-16 sm:py-24 px-6 bg-[#f8fafc] overflow-hidden">
+        <div className="max-w-6xl mx-auto rounded-[40px] md:rounded-[60px] bg-slate-900 overflow-hidden relative p-8 sm:p-12 md:p-24 text-center">
           {/* Animated Background Splashes */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/30 rounded-full blur-[120px]"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>
@@ -304,7 +304,7 @@ export default function Home() {
             <div className="text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] mb-6 animate-pulse">
               Ready to begin?
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-10 tracking-tighter leading-[0.95]">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 sm:mb-10 tracking-tighter leading-[0.95]">
               Let’s Create Your <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Next Masterpiece.</span>
             </h2>
