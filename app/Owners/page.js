@@ -109,7 +109,7 @@ const OwnersPage = () => {
       {/* Modern Owner Cards Section */}
       <section className="max-w-7xl mx-auto px-6 pb-24 relative z-10 -mt-10 sm:-mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-10 mt-16 sm:mt-0">
-          
+
           {/* Owner Card 1 - Tanveer Mir */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -280,10 +280,10 @@ const OwnersPage = () => {
                 <div className="flex flex-wrap justify-center gap-2 mt-auto">
                   {["Management", "Operations", "Excellence"].map(
                     (tag, index) => (
-                       <span
-                         key={index}
-                         className="bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-widest cursor-default hover:bg-slate-100"
-                       >
+                      <span
+                        key={index}
+                        className="bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-widest cursor-default hover:bg-slate-100"
+                      >
                         {tag}
                       </span>
                     )
@@ -312,7 +312,7 @@ const OwnersPage = () => {
                   <div className="relative group-hover:-translate-y-2 transition-transform duration-500">
                     <div className="absolute inset-0 bg-green-100 rounded-full blur-md opacity-50"></div>
                     <Image
-                      src="/social-media-handler.jpg"
+                      src="/social-media-handler.png"
                       alt="Mohammad Salim Mir - Digital Lead"
                       width={128}
                       height={128}
@@ -371,10 +371,10 @@ const OwnersPage = () => {
                 <div className="flex flex-wrap justify-center gap-2 mt-auto">
                   {["Digital Marketing", "Development", "Branding"].map(
                     (tag, index) => (
-                       <span
-                         key={index}
-                         className="bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-widest cursor-default hover:bg-slate-100"
-                       >
+                      <span
+                        key={index}
+                        className="bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-widest cursor-default hover:bg-slate-100"
+                      >
                         {tag}
                       </span>
                     )
@@ -470,9 +470,9 @@ const OwnersPage = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="bg-[#fafcff] rounded-2xl p-6 border border-slate-100 hover:border-blue-200 shadow-sm transition-all duration-300 group"
                     >
-                       <div className="w-12 h-12 mx-auto bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-50 mb-4 group-hover:scale-110 transition-transform duration-300">
-                         <item.icon className="text-2xl text-blue-600" />
-                       </div>
+                      <div className="w-12 h-12 mx-auto bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-50 mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <item.icon className="text-2xl text-blue-600" />
+                      </div>
                       <h3 className="text-slate-900 font-black text-lg mb-2">
                         {item.title}
                       </h3>
