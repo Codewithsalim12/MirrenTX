@@ -29,7 +29,7 @@ export async function POST(req) {
           @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
           body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
           .wrapper { background-color: #f9fafb; padding: 60px 20px; }
-          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; }
+          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; border: 1px solid #f3f4f6; }
           .logo { display: block; margin: 0 auto 40px; width: 60px; height: auto; }
           .header-title { color: #000000; font-size: 32px; font-weight: 800; margin: 0 0 24px; letter-spacing: -1.5px; line-height: 1.1; text-align: left; }
           .content-text { color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
@@ -38,11 +38,18 @@ export async function POST(req) {
           .data-value { color: #4b5563; font-size: 16px; font-weight: 500; margin-bottom: 24px; }
           .button { display: inline-block; padding: 16px 32px; background-color: #5e4ae3; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; margin: 20px 0; font-size: 14px; }
           .message-box { background: #f9fafb; padding: 32px; border-radius: 20px; border: 1px solid #f3f4f6; color: #1f2937; position: relative; font-size: 16px; line-height: 1.7; margin-top: 12px; }
-          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; }
+          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; clear: both; }
           .footer-signoff { color: #1a1a1a; font-size: 16px; font-weight: 700; margin-bottom: 32px; }
           .help-title { color: #000000; font-size: 18px; font-weight: 800; margin-bottom: 12px; }
           .help-text { color: #6b7280; font-size: 14px; line-height: 1.5; }
           .help-link { color: #5e4ae3; text-decoration: none; font-weight: 600; }
+          
+          @media only screen and (max-width: 600px) {
+            .wrapper { padding: 20px 10px !important; }
+            .container { padding: 24px !important; border-radius: 16px !important; }
+            .header-title { font-size: 26px !important; }
+            .message-box { padding: 20px !important; font-size: 15px !important; }
+          }
         </style>
       </head>
       <body>

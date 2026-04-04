@@ -36,18 +36,27 @@ export async function POST(req) {
           @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
           body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
           .wrapper { background-color: #f9fafb; padding: 60px 20px; }
-          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; }
+          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); padding: 40px; border: 1px solid #f3f4f6; }
           .logo { display: block; margin: 0 auto 40px; width: 60px; height: auto; }
           .header-title { color: #000000; font-size: 32px; font-weight: 800; margin: 0 0 24px; letter-spacing: -1.5px; line-height: 1.1; text-align: left; }
           .content-text { color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
           .data-block { border-top: 1px solid #f3f4f6; padding-top: 32px; margin-top: 32px; }
           .data-label { color: #000000; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
           .data-value { color: #4b5563; font-size: 16px; font-weight: 500; margin-bottom: 24px; }
-          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; }
+          .footer { border-top: 1px solid #f3f4f6; margin-top: 48px; padding-top: 40px; clear: both; }
           .footer-signoff { color: #1a1a1a; font-size: 16px; font-weight: 700; margin-bottom: 32px; }
           .help-title { color: #000000; font-size: 18px; font-weight: 800; margin-bottom: 12px; }
           .help-text { color: #6b7280; font-size: 14px; line-height: 1.5; }
           .help-link { color: #5e4ae3; text-decoration: none; font-weight: 600; }
+          .admin-alert { background: #fffbeb; border: 1px solid #fde68a; border-radius: 16px; padding: 24px; margin-top: 32px; }
+          
+          @media only screen and (max-width: 600px) {
+            .wrapper { padding: 20px 10px !important; }
+            .container { padding: 24px !important; border-radius: 16px !important; }
+            .header-title { font-size: 26px !important; margin-bottom: 20px !important; }
+            .content-text { font-size: 15px !important; margin-bottom: 24px !important; }
+            .data-value { font-size: 15px !important; }
+          }
         </style>
       </head>
       <body>
@@ -60,11 +69,12 @@ export async function POST(req) {
             </div>
             <div class="footer">
               ${isAdmin ? `
-                <div style="height: 1px; background-color: #fde68a; margin: 32px 0;"></div>
-                <h3 class="help-title" style="color: #b45309;">Action Required</h3>
-                <p class="help-text" style="color: #92400e; font-weight: 600;">
-                  Please contact the customer in 15 or 30 minutes to finalize and place the order.
-                </p>
+                <div class="admin-alert">
+                  <h3 class="help-title" style="color: #b45309; margin-top: 0;">Action Required</h3>
+                  <p class="help-text" style="color: #92400e; font-weight: 600; margin-bottom: 0;">
+                    Please contact the customer in 15 or 30 minutes to finalize and place the order.
+                  </p>
+                </div>
               ` : `
                 <p class="footer-signoff">Best,<br/>The MirrenTX Team</p>
                 <div style="height: 1px; background-color: #f3f4f6; margin: 32px 0;"></div>
@@ -99,8 +109,6 @@ export async function POST(req) {
           <strong>Location:</strong> ${district}, ${tehsilVillage}<br/>
           <strong>Duration:</strong> ${rentDuration}
         </p>
-      </div>
-
       </div>
     `;
 
