@@ -141,8 +141,6 @@ export async function POST(request) {
           <strong>Duration:</strong> ${finalDuration}
         </p>
       </div>
-
-      </div>
     `;
 
     const adminMailOptions = {
@@ -175,8 +173,6 @@ export async function POST(request) {
         <div style="text-align: center; margin: 40px 0;">
           <a href="${baseUrl}/rentals" class="button" style="display: inline-block; padding: 18px 48px; background-color: #5e4ae3; color: #ffffff; text-decoration: none; border-radius: 16px; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px -1px rgba(94, 74, 227, 0.25);">Explore Rentals</a>
         </div>
-      </div>
-
       </div>
     `;
 

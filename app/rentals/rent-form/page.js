@@ -190,7 +190,7 @@ function RentFormContent() {
                     <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="e.g., Sahil Khan"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -212,7 +212,7 @@ function RentFormContent() {
                     <FaPhone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="tel"
-                      placeholder="Enter your phone number"
+                      placeholder="e.g., +91 98765 43210"
                       value={formData.contact}
                       onChange={(e) =>
                         setFormData({ ...formData, contact: e.target.value })
@@ -260,7 +260,7 @@ function RentFormContent() {
                     <FaBuilding className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Enter your Tehsil or Village name"
+                      placeholder="e.g., Kralpora, Trehgam"
                       value={formData.tehsilVillage}
                       onChange={(e) =>
                         setFormData({ ...formData, tehsilVillage: e.target.value })
@@ -280,7 +280,7 @@ function RentFormContent() {
                     <FaHome className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Enter your street address"
+                      placeholder="e.g., Mirpora, Chowkibal, Kralpora"
                       value={formData.streetAddress}
                       onChange={(e) =>
                         setFormData({
@@ -316,7 +316,7 @@ function RentFormContent() {
                       <option value="2 Days">2 Days</option>
                       <option value="3 Days">3 Days</option>
                       <option value="1 Week">1 Week</option>
-                      <option value="Custom">Custom (Contact Support)</option>
+                      <option value="Custom">Custom Duration</option>
                     </select>
                   </div>
                 </div>
@@ -331,7 +331,7 @@ function RentFormContent() {
                       <FaClock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                       <input
                         type="text"
-                        placeholder="e.g. 5 days, 1 month, etc."
+                        placeholder="e.g., 5 Days or 1 Month"
                         value={formData.customDuration}
                         onChange={(e) =>
                           setFormData({ ...formData, customDuration: e.target.value })
@@ -447,7 +447,7 @@ function RentFormContent() {
 
 export default function RentForm() {
   return (
-    <Suspense 
+    <Suspense
       fallback={
         <div className="min-h-screen flex flex-col items-center justify-center bg-white">
           <FaSpinner className="animate-spin text-blue-600 text-3xl mb-4" />
