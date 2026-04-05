@@ -528,8 +528,19 @@ export default function AdminPanel() {
                       ) : dashboardData.recentUsers.map((user, i) => (
                         <div key={i} className="p-6 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                              {user.name.charAt(0)}
+                            <div className="relative w-12 h-12 rounded-xl bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
+                              {/* Always render the fallback letter behind the image */}
+                              <span className="absolute inset-0 flex items-center justify-center">
+                                {user.name?.charAt(0) || user.email?.charAt(0)}
+                              </span>
+                              {user.image && (
+                                <img 
+                                  src={user.image} 
+                                  alt={user.name} 
+                                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" 
+                                  onError={(e) => { e.currentTarget.style.opacity = '0'; }}
+                                />
+                              )}
                             </div>
                             <div className="min-w-0">
                               <h4 className="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">{user.name}</h4>
@@ -582,8 +593,18 @@ export default function AdminPanel() {
                         <tr key={i} className="hover:bg-slate-50 transition-colors group">
                           <td className="px-7 py-4">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-black text-sm">
-                                {user.name?.charAt(0) || user.email?.charAt(0)}
+                              <div className="relative w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-black text-sm overflow-hidden shrink-0">
+                                <span className="absolute inset-0 flex items-center justify-center text-[10px]">
+                                  {user.name?.charAt(0) || user.email?.charAt(0)}
+                                </span>
+                                {user.image && (
+                                  <img 
+                                    src={user.image} 
+                                    alt={user.name} 
+                                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" 
+                                    onError={(e) => { e.currentTarget.style.opacity = '0'; }}
+                                  />
+                                )}
                               </div>
                               <div className="flex flex-col">
                                 <span className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{user.name || "N/A"}</span>

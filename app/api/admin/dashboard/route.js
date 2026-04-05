@@ -75,6 +75,7 @@ export async function GET(request) {
       id: u._id.toString(),
       name: u.name,
       email: u.email,
+      image: u.image,
       rentals: "N/A", // We could lookup rentals by email
       joined: u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : "N/A",
       status: "Verified",

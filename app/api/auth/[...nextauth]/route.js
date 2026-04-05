@@ -47,30 +47,45 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ user, account, profile }) {
       if (account?.provider === "github" || account?.provider === "google") {
         await connectToDatabase();
         const existingUser = await User.findOne({ email: profile?.email });
+        
+        const profileImage = user?.image || profile?.picture || profile?.avatar_url;
+        const profileName = profile?.name || user?.name;
+
         if (!existingUser) {
           await User.create({
-            name: profile?.name,
+            name: profileName,
             email: profile?.email,
+            image: profileImage,
           });
+        } else {
+          // Always update name and image to keep them fresh
+          await User.updateOne(
+            { _id: existingUser._id },
+            { $set: { name: profileName, image: profileImage } }
+          );
         }
       }
       return true;
     },
 
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, profile }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.name = user.name || profile?.name;
+        token.picture = user.image || profile?.picture || profile?.avatar_url;
       }
       return token;
     },
+
     async session({ session, token }) {
       if (token) {
         session.user = {
+          id: token.id,
           email: token.email,
           name: token.name,
           image: token.picture,
