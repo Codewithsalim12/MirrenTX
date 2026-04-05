@@ -48,7 +48,7 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      if (account?.provider === "github") {
+      if (account?.provider === "github" || account?.provider === "google") {
         await connectToDatabase();
         const existingUser = await User.findOne({ email: profile?.email });
         if (!existingUser) {
