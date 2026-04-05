@@ -526,9 +526,9 @@ export default function AdminPanel() {
                           No users found.
                         </div>
                       ) : dashboardData.recentUsers.map((user, i) => (
-                        <div key={i} className="p-6 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer">
-                          <div className="flex items-center gap-4">
-                            <div className="relative w-12 h-12 rounded-xl bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
+                        <div key={i} className="p-4 md:p-6 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer border-b border-slate-50 last:border-0">
+                          <div className="flex items-center gap-3 md:gap-4 min-w-0">
+                            <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center font-black text-sm md:text-lg shadow-sm group-hover:scale-105 transition-transform shrink-0 overflow-hidden">
                               {/* Always render the fallback letter behind the image */}
                               <span className="absolute inset-0 flex items-center justify-center">
                                 {user.name?.charAt(0) || user.email?.charAt(0)}
@@ -543,13 +543,13 @@ export default function AdminPanel() {
                               )}
                             </div>
                             <div className="min-w-0">
-                              <h4 className="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">{user.name}</h4>
-                              <p className="text-sm font-medium text-slate-500 mt-0.5 truncate">{user.email}</p>
+                              <h4 className="text-sm md:text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate leading-tight">{user.name}</h4>
+                              <p className="text-[11px] md:text-sm font-medium text-slate-500 mt-0.5 truncate leading-tight">{user.email}</p>
                             </div>
                           </div>
-                          <div className="text-right shrink-0 ml-4">
-                            <span className={`inline-block px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider ${
-                              user.status === 'Verified' ? 'text-emerald-600' : 'text-amber-500'
+                          <div className="text-right shrink-0 ml-3">
+                            <span className={`inline-block px-1.5 md:px-2.5 py-0.5 md:py-1 rounded text-[9px] md:text-xs font-black uppercase tracking-wider ${
+                              user.status === 'Verified' ? 'text-emerald-600 bg-emerald-50 border border-emerald-100' : 'text-amber-500 bg-amber-50 border border-amber-100'
                             }`}>
                               {user.status}
                             </span>
